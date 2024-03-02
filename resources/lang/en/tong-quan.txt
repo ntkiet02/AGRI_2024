@@ -1,0 +1,18 @@
+<div class="row">
+<div class="col-md-12" style="text-align:justify">
+<p style="text-align:center"><span style="color:#0066ff;"><span style="font-size:28px"><strong>SOCIAL SCIENCES AND HUMANITIES RESEARCH CENTER</strong></span></span></p>
+
+<p style="text-align:center"><span style="font-size:28px;"><font color="#e74c3c"><b>&quot;CREATIVITY - RESPONSIBILITY - INTEGRATION&quot;</b></font></span></p>
+
+<p>Social Sciences and Humannities Research Center was established under the Decision 671/QD.UB dated 7th May 2003 by The People&#39;s Committe of An Giang Province.</p>
+
+<ul>
+	<li>Office: 18, Ung Van Khiem street, Dong Xuyen ward, Long Xuyen city, An Giang, Vietnam</li>
+	<li>Phone number: (+84) (296) 3943695</li>
+	<li>E-mail: shrc@agu.edu.vn</li>
+	<li>Website: shrc.agu.edu.vn</li>
+</ul>
+
+<p style="text-align: left;">The Center&#39;s research staff are young and active. They participate in researches and projects on social sciences and humannities, such as: education, culture, community development, social work, history, etc.</p>
+</div>
+</div>
