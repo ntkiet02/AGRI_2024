@@ -7,7 +7,7 @@
 <div class="row">
   <div class="col-12">
         <div class="card-box">
-            <h3 class="m-t-0"><a href="{{ env('APP_URL').app()->getLocale() }}/admin/khoa-luan-tot-nghiep" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Thêm mới Khóa luận tốt nghiệp') }}</h3>
+            <h3 class="m-t-0"><a href="{{ env('APP_URL').app()->getLocale() }}/admin/khoa-luan-tot-nghiep" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Sửa Khóa luận tốt nghiệp') }}</h3>
             <form action="{{ env('APP_URL').app()->getLocale() }}/admin/khoa-luan-tot-nghiep/update" method="post" id="dinhkemform" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input type="hidden" name="trans_id" id="trans_id" value="{{ $trans_id }}" placeholder="">
@@ -27,25 +27,37 @@
                         if(old('ma_so_sinh_vien') != null) {
                             $ma_so_sinh_vien = old('ma_so_sinh_vien');
                             $ten_sinh_vien = old('ten_sinh_vien');
-                            $ten_khoa_luan = old('ten_khoa_luan');
+                            $ten_de_tai = old('ten_de_tai');
+                            $slug = old('slug');
                             $lop= old('lop');
                             $giang_vien_huong_dan = old('giang_vien_huong_dan');
                             $nam = old('cap_nam');
-                            $thoi_gian_thuc_hien = old('thoi_gian_thuc_hien');
+
+                            $date_post = old('date_post');
                             //$so_trang = old('so_trang');
                         } else if(isset($ds['ma_so_sinh_vien']) && $ds['ma_so_sinh_vien']) {
                             $ma_so_sinh_vien = $ds['ma_so_sinh_vien'];
                             $ten_sinh_vien = $ds['ten_sinh_vien'];
-                            $ten_khoa_luan = $ds['ten_khoa_luan'];
+                            $ten_de_tai = $ds['ten_de_tai'];
+                            $slug = $ds['slug'];
                             $lop= $ds['lop'];
                             $giang_vien_huong_dan = $ds['giang_vien_huong_dan'];
+                            $date_post = $ds['date_post'];
                             $nam = $ds['nam'];
-                            $thoi_gian_thuc_hien = $ds['thoi_gian_thuc_hien'];
+
                             
                         } else {
-                            $ma_so_sinh_vien =''; $ten_sinh_vien='';$ten_khoa_luan=''; $lop=''; $giang_vien_huong_dan=''; $nam=''; $thoi_gian_thuc_hien='';
+                            $ma_so_sinh_vien =''; $ten_sinh_vien='';$ten_de_tai='';$slug=''; $lop=''; $giang_vien_huong_dan=''; $nam=''; $date_post = App\Http\Controllers\ObjectController::setDate();
                         }
                     @endphp
+                    <div class="col-md-4">
+                            <select name="tags" id="tags" class="form-control select2" required>
+                                <option value="">Chọn phân loại</option>
+                                @foreach($tags as $tag)
+                                    <option value="{{ $tag }}">{{ __($tag) }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     <div class="form-group row">
                         <label class="control-label col-md-2 text-right p-t-10">{{ __('Mã số sinh viên') }}</label>
                         <div class="col-md-4">
@@ -55,16 +67,21 @@
                         <div class="col-md-4">
                             <input type="text" id="ten_sinh_vien" name="ten_sinh_vien" class="form-control" placeholder="Tên sinh viên" value="{{ $ten_sinh_vien }}"  />
                         </div>
-                    </div>
+                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Lớp') }}</label>
+                        <div class="col-md-4">
+                            <input type="text" id="lop" name="lop" class="form-control" placeholder="{{ __('Lớp') }}" value="{{ $lop }}" />
+                        </div>
+                        
+                    </div>       
                     <div class="row form-group">
-                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Tên khóa luận') }}</label>
+                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Tên đề tài') }}</label>
                         <div class="col-md-4">
-                            <input type="text" id="ten_khoa_luan" name="ten_khoa_luan" class="form-control" placeholder="{{ __('Tên khóa luận') }}" value="{{ $ten_khoa_luan }}"  />
+                            <input type="text" id="ten_de_tai" name="ten_de_tai" class="form-control" placeholder="{{ __('Tên khóa luận') }}" value="{{ $ten_de_tai }}"  />
                         </div>
-                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Thời gian thực hiện') }}</label>
+                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Slug') }}</label>
                         <div class="col-md-4">
-                            <input type="text" id="thoi_gian_thuc_hien" name="thoi_gian_thuc_hien" class="form-control" placeholder="Thời gian thực hiện" value="{{ $thoi_gian_thuc_hien }}" />
-                        </div>
+                            <input type="text" id="slug" name="slug" class="form-control" placeholder="{{ __('slug') }}" value="{{ $slug }}" required />
+                        </div> 
                     </div>
                     <div class="row form-group">
                         <label class="control-label col-md-2 text-right p-t-10">{{ __('Năm') }}</label>
@@ -74,6 +91,10 @@
                         <label class="control-label col-md-2 text-right p-t-10">{{ __('Giảng viên hướng dẫn') }}</label>
                         <div class="col-md-4">
                             <input type="text" id="giang_vien_huong_dan" name="giang_vien_huong_dan" class="form-control" placeholder="{{ __('Giảng viên hướng dẫn') }}" value="{{ $giang_vien_huong_dan }}" />
+                        </div>
+                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Ngày tạo') }}</label>
+                        <div class="col-md-2">
+                            <input type="text" id="date_post" name="date_post" class="form-control" placeholder="{{ __('Ngày tạo') }}" value="{{ $date_post }}" required />
                         </div>
                     </div>
                </div>
@@ -142,27 +163,40 @@
                     <button type="submit" class="btn btn-info"> <i class="fa fa-check"></i> {{ __('Cập nhật') }}</button>
                 </div>
             </div>
-
             </form>
         </div>
     </div>
 </div>
-
 @endsection
 @section('js')
-    <script src="{{ env('APP_URL') }}assets/backend/libs/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+<script src="{{ env('APP_URL') }}assets/backend/libs/select2/select2.min.js" type="text/javascript"></script>
+    <script src="{{ env('APP_URL') }}assets/backend/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="{{ env('APP_URL') }}assets/backend/js/drag-arrange.min.js" type="text/javascript"></script>
     <script src="{{ env('APP_URL') }}assets/backend/libs/ckeditor/ckeditor.js"></script>
+    <script src="{{ env('APP_URL') }}assets/backend/libs/switchery/switchery.min.js"></script>
+    <script src="{{ env('APP_URL') }}assets/backend/js/script.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            jQuery("#thoi_gian_bat_dau").datepicker({ format:"dd/mm/yyyy", autoclose: true});
-            jQuery("#thoi_gian_ket_thuc").datepicker({ format:"dd/mm/yyyy", autoclose: true });
+            delete_file();$(".select2").select2();
             var options = {
                 filebrowserImageBrowseUrl: '{{ env('APP_URL') }}laravel-filemanager?type=Images',
                 filebrowserImageUploadUrl: '{{ env('APP_URL') }}laravel-filemanager/upload?type=Images&_token=',
                 filebrowserBrowseUrl: '{{ env('APP_URL') }}laravel-filemanager?type=Files',
                 filebrowserUploadUrl: '{{ env('APP_URL') }}laravel-filemanager/upload?type=Files&_token='
             };
-            CKEDITOR.replace('tom_tat', options);
+
+            upload_files("{{ env('APP_URL') }}{{ app()->getLocale() }}/file/uploads");
+            upload_hinhanh("{{ env('APP_URL') }}{{ app()->getLocale() }}/image/uploads");
+            $("#ten").change(function(){
+                var title = $(this).val();
+                $.get("{{ env('APP_URL') }}{{ app()->getLocale() }}/slug/" + title, function(slug){
+                    $("#slug").val(slug);
+                });
+            });
+            $("#progressbar").hide();
+            $('.js-switch').each(function() {
+                new Switchery($(this)[0], $(this).data());
+            });
         });
     </script>
 @endsection

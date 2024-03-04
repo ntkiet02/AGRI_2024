@@ -18,6 +18,7 @@ use App\Http\Controllers\VanBanController;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Http\Controllers\ObjectControler;
+use App\Models\KhoaLuanTotNghiep;
 use App\Models\NganhDaoTao;
 use Config;
 class FrontendController extends Controller
@@ -40,6 +41,10 @@ class FrontendController extends Controller
     function du_an(Request $request, $locale = '') {
         $danhsach = DuAn::where('locale', '=', $locale)->orderBy('updated_at', 'desc')->paginate(7);
         return view('Frontend.du-an')->with(compact('danhsach'));
+    }
+    function khoa_luan_tot_nghiep(Request $request, $locale = '') {
+        $danhsach = KhoaLuanTotNghiep::where('locale', '=', $locale)->orderBy('updated_at', 'desc')->paginate(7);
+        return view('Frontend.khoa-luan-tot-nghiep')->with(compact('danhsach'));
     }
     function du_an_ct(Request $request, $locale = '', $slug='') {
         $ds = DuAn::where('locale', '=', $locale)->where('slug','=',ObjectController::ObjectId($slug))->first();

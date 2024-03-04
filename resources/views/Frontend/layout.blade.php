@@ -67,8 +67,8 @@
 @section('body') @show
 <!-- End Header -->
 <!-- Start Footer -->
+<div style="color: #fff; height:40px"></div>
 <footer class="footer">
-
   <!-- Start Footer Bottom -->
   <div class="bottom" style="background:#005a25;">
     <div class="container">

@@ -61,7 +61,7 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
       
     Route::get('du-an','FrontendController@du_an')->name('du-an');
 
-
+    Route::get('khoa-luan-tot-nghiep','FrontendController@khoa_luan_tot_nghiep')->name('khoa-luan-tot-nghiep');
 
     Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
         Route::get('/', 'AuthController@admin')->middleware('checkauth')->name('admin');
@@ -105,9 +105,9 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
         Route::get('khoa-luan-tot-nghiep/add', 'KhoaLuanTotNghiepController@add')->middleware('role:Admin,Manager,Updater')->name('admin-khoa-luan-tot-nghiep-add');
         Route::post('khoa-luan-tot-nghiep/create', 'KhoaLuanTotNghiepController@create')->middleware('role:Admin,Manager,Updater')->name('admin-khoa-luan-tot-nghiep-create');  
         Route::get('khoa-luan-tot-nghiep/edit/{id}', 'KhoaLuanTotNghiepController@edit')->middleware('role:Admin,Manager,Updater')->name('admin-khoa-luan-tot-nghiep-edit');
-        Route::post('khoa-luan-tot-nghiep/update', 'KhoaLuanTotNghiepController@update')->middleware('role:Admin,Manager,Updater')->name('admin-khoa-luan-tot-nghiep-update');  
+        Route::post('khoa-luan-tot-nghiep/update', 'KhoaLuanTotNghiepController@update')->middleware('role:Admin,Manager,Updater')->name('admin-khoa-luan-tot-nghiep-update'); 
+        Route::get('khoa-luan-tot-nghiep/delete/{id}', 'KhoaLuanTotNghiepController@delete')->middleware('role:Admin,Manager,Updater')->name('admin-khoa-luan-tot-nghiep-delete');  
        
-
         Route::get('du-an', 'DuAnController@list')->middleware('role:Admi,Manager,Updater')->name('admin-du-an');
         Route::get('du-an/add', 'DuAnController@add')->middleware('role:Admin,Manager,Updater')->name('admin-du-an-add');
         Route::post('du-an/create', 'DuAnController@create')->middleware('role:Admin,Manager,Updater')->name('admin-du-an-create');

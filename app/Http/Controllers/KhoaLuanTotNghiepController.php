@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Session;use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\ObjectController;
 use App\Http\Controllers\LogController;
 use App\Http\Controllers\FileController;
@@ -15,7 +15,14 @@ use App\Models\TranslatePath;
 
 class KhoaLuanTotNghiepController extends Controller
 {
-    //
+    const TAGS = array(
+        'khoa-luan-tot-nghiep'=>'Khóa luận tốt nghiệp',
+        'chuyen-de-tot-nghiep'=>'Chuyên đề tốt nghiệp'
+
+    );
+    static function get_tags(){
+        return self::TAGS;
+    }
     function list(Request $request, $locale = '') {
         $danhsach = KhoaLuanTotNghiep::where('locale','=',$locale)->get();
         return view('Admin.KhoaLuanTotNghiep.list')->with(compact('danhsach'));
@@ -29,31 +36,44 @@ class KhoaLuanTotNghiepController extends Controller
         } else {
             $ds = '';
         }
-        return view('Admin.KhoaLuanTotNghiep.add')->with(compact('ds','trans_id', 'trans_lang'));
+        $tags = self::TAGS;
+        return view('Admin.KhoaLuanTotNghiep.add')->with(compact('ds','trans_id', 'trans_lang','tags'));
     }  
 
     function create(Request $request, $locale = '') {
         $data = $request->all();
         $validator = Validator::make($data, [
-            'ma_so_sinh_vien' => 'required|unique:khoa_luan_tot_nghiep'
+            'slug' => 'required|unique:khoa_luan_tot_nghiep',
+            'ten_de_tai'=>'required',
+            'ma_so_sinh_vien'=>'required'
         ]);
         if ($validator->fails()) {
           return redirect(env('APP_URL').$locale.'/admin/khoa_luan_tot_nghiep/add')->withErrors($validator)->withInput();
         }
-        $db = new KhoaLuanTotNghiep();
+
+        $arr_dinhkem = array();
+        if(isset($data['file_aliasname']) && $data['file_aliasname']){
+            foreach($data['file_aliasname'] as $k => $v){
+              array_push($arr_dinhkem, array('aliasname' => $v, 'filename' => $data['file_filename'][$k], 'title' => $data['file_title'][$k], 'size' => $data['file_size'][$k], 'type' => $data['file_type'][$k]));
+            }
+        }
+
         $id = ObjectController::Id();
+        $id_user = $request->session()->get('user._id');
+        $db = new KhoaLuanTotNghiep();
         $db->_id = $id;
-        $db->ten_khoa_luan = $data['ten_khoa_luan'];
+        $db->ten_de_tai = $data['ten_de_tai'];
+        $db->slug = $data['slug'];
         $db->ten_sinh_vien = $data['ten_sinh_vien'];
         $db->ma_so_sinh_vien = $data['ma_so_sinh_vien'];
         $db->lop=$data['lop'];
         $db->giang_vien_huong_dan = $data['giang_vien_huong_dan'];
+        $db->tags = $data['tags'];
         $db->nam = $data['nam'];
-        $db->thoi_gian_thuc_hien = $data['thoi_gian_thuc_hien'];
-        //$db->so_trang = $data['so_trang'];
-
+        $db->attachments = $arr_dinhkem;
+        $db->date_post = $data['date_post'];
         $db->locale = $locale;
-        $db->slug = $id;
+        $db->id_user = ObjectController::ObjectId($id_user);
         $db->save();
 
         //cập nhật translate path
@@ -76,8 +96,15 @@ class KhoaLuanTotNghiepController extends Controller
             $trans->collection = 'khoa_luan_tot_nghiep';
             $trans->save();
         }
-
+        $logQuery = array (
+            'action' => 'Thêm Thông tin ['.$data['ten_de_tai'].']',
+            'id_collection' => $id,
+            'collection' => 'khoa_luan_tot_nghiep',
+            'data' => $data
+        );
+        LogController::addLog($logQuery);
         Session::flash('msg', 'Cập nhật thành công');
+        if($trans_lang) return redirect(env('APP_URL') .$trans_lang.'/admin/khoa-luan-tot-nghiep');
         return redirect(env('APP_URL').$locale.'/admin/khoa-luan-tot-nghiep');
     }
 
@@ -85,27 +112,39 @@ class KhoaLuanTotNghiepController extends Controller
         $trans_id = $request->input('trans_id');
         $trans_lang = $request->input('trans_lang');
         $ds = KhoaLuanTotNghiep::find($id);
-        return view('Admin.KhoaLuanTotNghiep.edit')->with(compact('ds','trans_id', 'trans_lang'));
+        $tags = self::TAGS;
+        return view('Admin.KhoaLuanTotNghiep.edit')->with(compact('ds','trans_id', 'trans_lang','tags'));
     }
 
     function update(Request $request, $locale = '', $id='') {
         $data = $request->all();
-        $validator = Validator::make($data, [
-            'ma_so_sinh_vien' => 'required:unique:khoa_luan_tot_nghiep,_id,'.$data['id']
+        $validator= Validator::make($data,[
+        'slug'=>'required|unique:khoa_luan_tot_nghiep, _id,'.$data['id'],
+        'ten_de_tai'=>'required',
+        'ma_so_sinh_vien'=>'required'
         ]);
+        
         if ($validator->fails()) {
           return redirect(env('APP_URL').$locale.'/admin/khoa-luan-tot-nghiep/edit/'.$data['id'].'?trans_id='.$data['trans_id'].'&trans_lang='.$data['trans_lang'])->withErrors($validator)->withInput();
         }
+        $arr_dinhkem = array();
+        if(isset($data['file_aliasname']) && $data['file_aliasname']){
+            foreach($data['file_aliasname'] as $k => $v){
+              array_push($arr_dinhkem, array('aliasname' => $v, 'filename' => $data['file_filename'][$k], 'title' => $data['file_title'][$k], 'size' => $data['file_size'][$k], 'type' => $data['file_type'][$k]));
+            }
+        }
         $id_user = $request->session()->get('user._id');
         $db = KhoaLuanTotNghiep::find($data['id']);
-        $db->ten_khoa_luan = $data['ten_khoa_luan'];
+        $db->ten_de_tai = $data['ten_de_tai'];
+        $db->slug = $data['slug'];
         $db->ten_sinh_vien = $data['ten_sinh_vien'];
         $db->ma_so_sinh_vien = $data['ma_so_sinh_vien'];
         $db->lop=$data['lop'];
         $db->giang_vien_huong_dan = $data['giang_vien_huong_dan'];
+        $db->tags = $data['tags'];
         $db->nam = $data['nam'];
-        $db->thoi_gian_thuc_hien = $data['thoi_gian_thuc_hien'];
-        //$db->so_trang = $data['so_trang'];
+        $db->attachments = $arr_dinhkem;
+        $db->date_post = $data['date_post'];
         $db->locale = $locale;
         $db->id_user = ObjectController::ObjectId($id_user);
         $db->save();
@@ -120,12 +159,31 @@ class KhoaLuanTotNghiepController extends Controller
         $trans->{"slug_$locale"} = ObjectController::ObjectId($data['id']);
         $trans->collection = 'khoa_luan_tot_nghiep';
         $trans->save();
+        $logQuery = array (
+            'action' => 'Chỉnh sửa Khóa Luận tốt nghiệp ['.$data['ten_de_tai'].']',
+            'id_collection' => $data['id'],
+            'collection' => 'khoa_luan_tot_nghiep',
+            'data' => $data
+        );
+        LogController::addLog($logQuery);
         Session::flash('msg', 'Cập nhật thành công');
         if($trans_lang) return redirect(env('APP_URL') .$trans_lang.'/admin/khoa-luan-tot-nghiep');
         return redirect(env('APP_URL') .$locale.'/admin/khoa-luan-tot-nghiep');
     }
 
     function delete(Request $request, $locale='', $id = '') {
+        $data = KhoaLuanTotNghiep::find($id);
+        $logQuery = array (
+            'action' => 'Xóa Khóa luận tốt nghiệp ['.$data['ten_de_tai'].']',
+            'id_collection' => $id,
+            'collection' => 'khoa_luan_tot_nghiep',
+            'data' => $data
+        );
+        if($data['photos']){
+            foreach($data['photos'] as $p){
+                ImageController::remove($p['aliasname']);
+            }
+        }
         KhoaLuanTotNghiep::destroy($id);
         $id_path = ObjectController::ObjectId($id);
         $trans = TranslatePath::where('id_'.$locale, '=', $id_path)->first();
@@ -133,7 +191,8 @@ class KhoaLuanTotNghiepController extends Controller
             $trans->unset('id_'.$locale);
             $trans->unset('slug_'.$locale);
         }
-        Session::flash('msg', 'Cập nhật thành công');
+        LogController::addLog($logQuery);
+        Session::flash('msg', 'Xóa thành công');
         return redirect(env('APP_URL').$locale.'/admin/khoa-luan-tot-nghiep');
     }
 }

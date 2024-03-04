@@ -12,12 +12,14 @@
             <thead>
                 <tr>
                     <th>{{ __('STT') }}</th>
+                    <th>{{ __('Loại') }}</th>
                     <th>{{ __('Tên đề tài') }}</th>
                     <th>{{ __('Tên sinh viên') }}</th>
                     <th>{{ __('Mã số sinh viên') }}</th>
                     <th>{{ __('Lớp') }}</th>
                     <th>{{ __('Giảng viên hướng dẫn') }}</th>   
-                    <th>{{ __('Năm') }}</th>  
+                    <th>{{ __('Năm') }}</th> 
+                    
                     <th class="text-center">#</th>
                     @foreach($arr_lang as $klang => $vlang)
                         @if($klang != app()->getLocale())
@@ -31,12 +33,14 @@
                 @foreach($danhsach as $k => $ds)
                     <tr>
                         <td class="text-center">{{ ($k+1) }}</td>
-                        <td class="text-center">{{ $ds['ten_khoa_luan'] }}</td>
+                        <td class="text-center">{{ $ds['tags'] }}</td>
+                        <td class="text-center">{{ $ds['ten_de_tai'] }}</td>
                         <td>{{ $ds['ten_sinh_vien'] }}</td>
                         <td>{{ $ds['ma_so_sinh_vien'] }}</td>
                         <td>{{ $ds['lop'] }}</td>
                         <td>{{ $ds['giang_vien_huong_dan'] }}</td>
-                        <td>{{ $ds['nam'] }}</td>                 
+                        <td>{{ $ds['nam'] }}</td>
+                                    
                         <td class="text-center">
                             <a href="{{ env('APP_URL').$ds['locale'] }}/admin/khoa-luan-tot-nghiep/delete/{{$ds['_id']}}" onclick="return confirm('Are you sure?')"><i class="fa fa-trash text-danger"></i></a>
                             <a href="{{ env('APP_URL').$ds['locale'] }}/admin/khoa-luan-tot-nghiep/edit/{{$ds['_id']}}"><i class="fas fa-pencil-alt"></i></a>

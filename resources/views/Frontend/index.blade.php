@@ -32,7 +32,12 @@
                     {{-- <ul class="post-detail">
                       <li><span class="icon-date-icon ico"></span> <span class="bold">{{ App\Http\Controllers\ObjectController::getDate($ds['date_post'], "d/m/Y H:i") }}</li>
                     </ul> --}}
-                    <a><i class="bi bi-calendar-check"></i>{{$ds->date_post}}</a>
+                    <ul class="post-detail">
+                      <li>
+                        <span><i class="fa fa-calendar-o"></i></span> 
+                        <span>{{$ds->date_post}}</span>
+                      </li>
+                    </ul>
                     <h2 style="height:130px;overflow:hidden;"><a href="{{ env('APP_URL').app()->getLocale() }}/tin-tuc-su-kien/{{ $ds['slug'] }}" title="{{ $ds['ten'] }}">{{ Str::limit($ds['ten'],100) }}</a></h2>
                     <p  style="height:100px;overflow:hidden;">{{ $ds['mo_ta'] }}</p>
                     <br />
@@ -72,32 +77,34 @@
   </div>
 </section>
 <!-- section   hình ảnh hoạt động -->
-<section class=" campus-tour padding-lg ">
+<section class="campus-tour padding-lg">
   <div class="container">
-    <div class="row">
-      <div class="col-8 col-md-8">
-        <h3 style="padding-bottom:20px;text-transform:uppercase;color:#27316b;"><i class="fa fa-newspaper-o"></i> {{ __('Hình ảnh hoạt động') }}</h3>
-      </div>
-    </div> 
-    <ul class="gallery clearfix">   
-      <li>
-        <div class="overlay">
-          <h3>Lorem ipsum</h3>
-          <p>Lorem ipsum</p>
-          <a class="galleryItem" href="images/tour-lg10.jpg"><span class="icon-enlarge-icon"></span></a> <a href="gallery.html" class="more"><span class="icon-gallery-more-arrow"></span></a> </div>
-        <figure><img src="{{ env('APP_URL') }}assets/frontend/images/default_thumb.jpg" class="img-responsive" alt=""></figure>
-      </li>
-      <li>
-        <div class="overlay">
-          <h3>Lorem ipsum</h3>
-          <p>Lorem ipsum</p>
-          <a class="galleryItem" href="images/tour-lg10.jpg"><span class="icon-enlarge-icon"></span></a> <a href="gallery.html" class="more"><span class="icon-gallery-more-arrow"></span></a> </div>
-        <figure><img src="{{ env('APP_URL') }}assets/frontend/images/default_thumb.jpg" class="img-responsive" alt=""></figure>
-      </li>
-    </ul>
+    <h2>Hình ảnh hoạt động</h2>
   </div>
+  <ul class="gallery clearfix">
+    <li>
+      <div class="overlay">
+        <h3>Lorem ipsum</h3>
+        <p>Lorem ipsum</p>
+        <a class="galleryItem" href="images/tour-lg1.jpg"><span class="icon-enlarge-icon"></span></a> <a href="gallery.html" class="more"><span class="icon-gallery-more-arrow"></span></a> </div>
+      <figure><img src="{{ env('APP_URL') }}assets/frontend/images/default_thumb.jpg" class="img-responsive" alt=""></figure>
+    </li>
+    <li>
+      <div class="overlay">
+        <h3>Lorem ipsum</h3>
+        <p>Lorem ipsum</p>
+        <a class="galleryItem" href="images/tour-lg2.jpg"><span class="icon-enlarge-icon"></span></a> <a href="gallery.html" class="more"><span class="icon-gallery-more-arrow"></span></a> </div>
+      <figure><img src="{{ env('APP_URL') }}assets/frontend/images/default_thumb.jpg" class="img-responsive" alt=""></figure>
+    </li>
+    <li>
+      <div class="overlay">
+        <h3>Lorem ipsum</h3>
+        <p>Lorem ipsum</p>
+        <a class="galleryItem" href="images/tour-lg3.jpg"><span class="icon-enlarge-icon"></span></a> <a href="gallery.html" class="more"><span class="icon-gallery-more-arrow"></span></a> </div>
+      <figure><img src="{{ env('APP_URL') }}assets/frontend/images/default_thumb.jpg" class="img-responsive" alt=""></figure>
+    </li>
+  </ul>
 </section>
-
 <!-- End Campus Tour Section -->
 {{--
 <section class="about inner padding-lg">

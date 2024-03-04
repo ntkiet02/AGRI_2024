@@ -76,8 +76,7 @@
               <li><a href="{{ env('APP_URL') }}vi/nhan-su/bo-mon-cong-nghe-sinh-hoc">Bộ môn Công nghệ Sinh học</a></li>
               <li><a href="{{ env('APP_URL') }}vi/nhan-su/bo-mon-chan-nuoi-thu-y">Bộ môn Chăn nuôi thú y</a></li>
               <li><a href="{{ env('APP_URL') }}vi/nhan-su/bo-mon-khoa-hoc-cay-trong">Bộ môn Khoa học Cây trồng</a></li>
-              <li><a href="{{ env('APP_URL') }}vi/nhan-su/bo-mon-phat-trien-nong-thon-va-qltntn">Bộ môn Phát triển Nông thôn và QLTNTN</a></li>
-              
+              <li><a href="{{ env('APP_URL') }}vi/nhan-su/bo-mon-phat-trien-nong-thon-va-qltntn">Bộ môn Phát triển Nông thôn và QLTNTN</a></li>  
             </ul>
           </li>
           <li class="dropdown"><a data-toggle="dropdown" href="{{ env('APP_URL') }}vi/tin-tuc-su-kien">Tin tức <i class="fa fa-angle-down" aria-hidden="true"></i></a>
@@ -126,7 +125,7 @@
               </li>
               <li class="dropdown"><a data-toggle="dropdown" href="#">Sinh viên</a>
                 <ul>
-                    <li><a href="#">Khóa luận tốt nghiệp</a></li>
+                    <li><a href="{{ env('APP_URL') }}vi/khoa-luan-tot-nghiep">Khóa luận tốt nghiệp</a></li>
                     <li><a href="#">Thực tập cuối khóa </a></li>   
                 </ul>
               </li>
@@ -187,15 +186,15 @@
           <li class="dropdown"><a data-toggle="dropdown"  href="#">Văn bản - Biểu mẫu <i class="fa fa-angle-down" aria-hidden="true"></i></a>
             <ul class="dropdown-menu">
               <li><a href="#">Biểu mẫu dành cho Giảng viên</a></li>
-              <li><a href="#"> biểu mẫu dành cho Sinh viên</a></li>
+              <li><a href="#"> Biểu mẫu dành cho Sinh viên</a></li>
             </ul> 
           </li>
           <li class="dropdown"><a data-toggle="dropdown"  href="#">Đoàn thể<i class="fa fa-angle-down" aria-hidden="true"></i></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Công tác Đảng</a></li>
-              <li><a href="#">Đoàn thanh niên</a></li>
-              <li><a href="#">Hội sinh viên</a></li>
-              <li><a href="#">Công đoàn</a></li>
+              <li><a href="https://cpv.agu.edu.vn/">Công tác Đảng</a></li>
+              <li><a href="https://youth.agu.edu.vn/">Đoàn thanh niên</a></li>
+              <li><a href="https://youth.agu.edu.vn/">Hội sinh viên</a></li>
+              <li><a href="https://union.agu.edu.vn/">Công đoàn</a></li>
             </ul> 
           </li>
           <!-- <li> <a href="{{ env('APP_URL') }}vi/lien-he">Liên hệ</a></li> -->
