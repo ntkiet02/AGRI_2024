@@ -77,8 +77,12 @@
 @endsection
 @section('js')
     <script src="{{ env('APP_URL') }}assets/backend/libs/jquery-toast/jquery.toast.min.js"></script>
+    <script type="text/javascript" src="{{ env('APP_URL') }}assets/backend/libs/isotope/isotope.pkgd.min.js"></script>
+    <script type="text/javascript" src="{{ env('APP_URL') }}assets/backend/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script type="text/javascript" src="{{ env('APP_URL') }}assets/backend/libs/select2/select2.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function(){
+            $(".select2").select2();
             @if(Session::get('msg') != null && Session::get('msg'))
             $.toast({
                 heading:"Thông báo",
@@ -86,6 +90,16 @@
                 loaderBg:"#3b98b5",icon:"info", hideAfter:3e3,stack:1,position:"top-right"
             });
             @endif
+            $('.image-popup').magnificPopup({
+                type: 'image',
+                closeOnContentClick: true,
+                mainClass: 'mfp-fade',
+                gallery: {
+                    enabled: true,
+                    navigateByImgClick: true,
+                    preload: [0,1] // Will preload 0 - before current, and 1 after the current image
+                }
+            });
         });
     </script>
 @endsection

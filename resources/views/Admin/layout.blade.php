@@ -120,8 +120,14 @@
                                     <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/khoa-luan-tot-nghiep">{{ __('Khóa luận tốt nghiệp') }}</a></li>
                                     <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/du-an">{{ __('Dự án') }}</a></li>
                                     <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/hoi-nghi-hoi-thao">{{ __('Hội nghị - Hội thảo') }}</a></li>
-                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/van-ban">{{ __('Văn bản') }}</a></li>
                                     <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/doi-tac">{{ __('Đối tác') }}</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-submenu">
+                                <a href="#"><i class="fab fa-xbox"></i> {{ __('Văn bản - Biểu mẫu') }} <div class="arrow-down"></div></a>
+                                <ul class="submenu">
+                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/van-ban">{{ __('Văn bản') }}</a></li>
+                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/bieu-mau">{{ __('Biểu mẫu') }}</a></li>
                                 </ul>
                             </li>
                             <li class="has-submenu">

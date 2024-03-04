@@ -9,7 +9,7 @@
 <div class="row">
     <div class="col-12">
         <div class="card-box">
-            <h3 class="m-t-0"><a href="{{ env('APP_URl') }}{{ app()->getLocale() }}/admin/tin-tuc-su-kien" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Thêm mới Tin tức Sự kiện') }}</h3>
+            <h3 class="m-t-0"><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/tin-tuc-su-kien" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Thêm mới Tin tức Sự kiện') }}</h3>
             <form action="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/tin-tuc-su-kien/create" method="post" id="dinhkemform" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input type="hidden" name="trans_id" id="trans_id" value="{{ $trans_id }}" placeholder="">
@@ -27,15 +27,29 @@
                     @endif
                     @php
                         if(old('ten') != null){
-                            $ten = old('ten'); $noi_dung = old('noi_dung');$slug = old('slug');
-                            $thu_tu = old('thu_tu'); $mo_ta = old('mo_ta');
-                            $date_post = old('date_post'); $tin_moi = old('tin_moi');
+                            $ten = old('ten'); 
+                            $noi_dung = old('noi_dung');
+                            $slug = old('slug');
+                            $thu_tu = old('thu_tu'); 
+                            $mo_ta = old('mo_ta');
+                            $date_post = old('date_post'); 
+                            $tin_moi = old('tin_moi');
                         } else if(isset($ds['ten']) && $ds['ten']){
-                            $ten = $ds['ten']; $noi_dung = $ds['noi_dung'];$slug = $ds['slug'];
-                            $thu_tu = $ds['thu_tu']; $mo_ta = $ds['mo_ta'];$date_post = $ds['date_post'];
+                            $ten = $ds['ten']; 
+                            $noi_dung = $ds['noi_dung'];
+                            $slug = $ds['slug'];
+                            $thu_tu = $ds['thu_tu']; 
+                            $mo_ta = $ds['mo_ta'];
+                            $date_post = $ds['date_post'];
                             $tin_moi = $ds['tin_moi'];
                         } else {
-                            $ten = '';$noi_dung = '';$slug='';$thu_tu=0;$mo_ta = ''; $date_post = App\Http\Controllers\ObjectController::setDate();$tin_moi=0;
+                            $ten = '';
+                            $noi_dung = '';
+                            $slug='';
+                            $thu_tu=0;
+                            $mo_ta = ''; 
+                            $date_post = App\Http\Controllers\ObjectController::setDate();
+                            $tin_moi=0;
                         }
                     @endphp
                     <div class="form-group row">

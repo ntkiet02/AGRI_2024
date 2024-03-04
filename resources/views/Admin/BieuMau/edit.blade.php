@@ -1,5 +1,5 @@
 @extends('Admin.layout')
-@section('title', __('Sửa Văn bản'))
+@section('title', __('Sửa Biểu mẫu'))
 @section('css')
     <link href="{{ env('APP_URL') }}assets/backend/libs/select2/select2.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ env('APP_URL') }}assets/backend/libs/magnific-popup/magnific-popup.css"/>
@@ -8,8 +8,8 @@
 <div class="row">
     <div class="col-12">
         <div class="card-box">
-            <h3 class="m-t-0"><a href="{{ env('APP_URl') }}{{ app()->getLocale() }}/admin/van-ban" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('SửaVăn bản') }}</h3>
-            <form action="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/van-ban/update" method="post" id="dinhkemform" enctype="multipart/form-data">
+            <h3 class="m-t-0"><a href="{{ env('APP_URl') }}{{ app()->getLocale() }}/admin/bieu-mau" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Sửa Biểu mẫu') }}</h3>
+            <form action="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/bieu-mau/update" method="post" id="dinhkemform" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input type="hidden" name="id" id="id" value="{{ $ds['_id'] }}" placeholder="">
                 <input type="hidden" name="trans_id" id="trans_id" value="{{ $trans_id }}" placeholder="">
@@ -126,7 +126,7 @@
 
                 </div>
                 <div class="form-actions">
-                    <a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/van-ban" class="btn btn-light"><i class="fa fa-reply-all"></i> {{ __('Trở về') }}</a>
+                    <a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/bieu-mau" class="btn btn-light"><i class="fa fa-reply-all"></i> {{ __('Trở về') }}</a>
                     <button type="submit" class="btn btn-info"> <i class="fa fa-check"></i> {{ __('Cập nhật') }}</button>
               </div>
             </form>

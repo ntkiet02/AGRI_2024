@@ -25,14 +25,16 @@
                     @endif
                     @php
                         if(old('ten_nganh') != null) {
-                            $ten_nganh = old('ten_nganh');   
+                            $ten_nganh = old('ten_nganh');  
+                            $slug=old('slug'); 
                             $noi_dung=old('noi_dung');
 
                         } else if(isset($ds['ten_nganh']) && $ds['ten_nganh']) {
                             $ten_nganh = $ds['ten_nganh'];
+                            $slug=$ds['slug'];
                             $noi_dung=$ds['noi_dung'];   
                         } else {
-                            $ten_nganh = '';;$noi_dung = '';
+                            $ten_nganh = '';$slug='';$noi_dung = '';
                         }
                     @endphp
                     <div class="row form-group">
@@ -49,7 +51,12 @@
                             </select>
                         </div>
                     </div>
-
+                    <div class="row form-group">
+                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Slug') }}</label>
+                        <div class="col-md-3">
+                            <input type="text" id="slug" name="slug" class="form-control" placeholder="{{ __('slug') }}" value="{{ $slug }}" required />
+                        </div>  
+                    </div>
                     <div class="row form-group">
                         <label class="control-label col-md-2 text-right p-t-10">{{ __('Nội dung') }}</label>
                         <div class="col-md-10">

@@ -1,5 +1,5 @@
 @extends('Admin.layout')
-@section('title', __('Sửa Văn bản'))
+@section('title', __('Thêm mới Biểu mẫu'))
 @section('css')
     <link href="{{ env('APP_URL') }}assets/backend/libs/select2/select2.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ env('APP_URL') }}assets/backend/libs/magnific-popup/magnific-popup.css"/>
@@ -8,10 +8,9 @@
 <div class="row">
     <div class="col-12">
         <div class="card-box">
-            <h3 class="m-t-0"><a href="{{ env('APP_URl') }}{{ app()->getLocale() }}/admin/van-ban" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('SửaVăn bản') }}</h3>
-            <form action="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/van-ban/update" method="post" id="dinhkemform" enctype="multipart/form-data">
+            <h3 class="m-t-0"><a href="{{ env('APP_URl') }}{{ app()->getLocale() }}/admin/bieu-mau" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Thêm mới Văn bản') }}</h3>
+            <form action="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/bieu-mau/create" method="post" id="dinhkemform" enctype="multipart/form-data">
                 {{ csrf_field() }}
-                <input type="hidden" name="id" id="id" value="{{ $ds['_id'] }}" placeholder="">
                 <input type="hidden" name="trans_id" id="trans_id" value="{{ $trans_id }}" placeholder="">
                 <input type="hidden" name="trans_lang" id="trans_lang" value="{{ $trans_lang }}" placeholder="">
                 <div class="form-body">
@@ -31,7 +30,7 @@
                         } else if(isset($ds['ten']) && $ds['ten']){
                             $ten = $ds['ten']; $noi_dung = $ds['noi_dung'];$slug = $ds['slug'];$mo_ta = $ds['mo_ta']; $id_cat = $ds['id_cat'];
                         } else {
-                            $ten = '';$mo_ta = '';$noi_dung = '';$slug='';$id_cat=array();
+                            $ten = '';$mo_ta = '';$noi_dung = '';$slug='';$id_cat= array();
                         }
                     @endphp
                     <div class="form-group row">

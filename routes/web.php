@@ -44,6 +44,8 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     Route::get('overview', 'FrontendController@tong_quan')->name('introduction-overview');
     Route::get('nhan-su/{slug}', 'FrontendController@nhan_su')->name('gioi-thieu-nhan-su');
 
+    Route::get('dao-tao/{slug}', 'FrontendController@dao_tao')->name('dao-dao');
+
     Route::get('tin-tuc-su-kien/tag/{key}', 'FrontendController@tin_tuc_su_kien_tag');
     Route::get('tin-tuc-su-kien', 'FrontendController@tin_tuc_su_kien');
     Route::get('tin-tuc-su-kien/xem-truc-tuyen/{id}/{key}', 'FrontendController@tin_tuc_su_kien_xtt')->name('tin-tuc-su-kien-xem-truc-tuyen');
@@ -55,13 +57,21 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     Route::get('news-and-events/tai-ve/{id}/{key}', 'FrontendController@tin_tuc_su_kien_tv')->name('news-and-events-tai-ve');
     Route::get('news-and-events/{slug}', 'FrontendController@tin_tuc_su_kien_ct');
 
-    Route::get('nganh-dao-tao/tag/{key}', 'FrontendController@nganh_dao_tao_tag');
-    Route::get('nganh-dao-tao', 'FrontendController@nganh_dao_tao');
-    Route::get('nganh-dao-tao/{slug}', 'FrontendController@nganh_dao_tao_ct');
+    // Route::get('dao-tao/tag/{key}', 'FrontendController@_dao_tao_tag');
+    // Route::get('dao-tao', 'FrontendController@_dao_tao');
+    // Route::get('dao-tao/{slug}', 'FrontendController@_dao_tao_ct');
       
     Route::get('du-an','FrontendController@du_an')->name('du-an');
-
     Route::get('khoa-luan-tot-nghiep','FrontendController@khoa_luan_tot_nghiep')->name('khoa-luan-tot-nghiep');
+    
+    Route::get('van-ban','FrontendController@van_ban')->name('van-ban');
+    Route::get('van-ban-ct/{slug}','FrontendController@van_ban_ct')->name('van-ban-ct');
+    Route::get('van-ban/tai-ve/{id}/{key}','FrontendController@van_ban_tv')->name('van-ban-tai-ve');
+    
+    Route::get('bieu-mau','FrontendController@bieu_mau')->name('bieu_mau');
+    Route::get('bieu-mau-ct/{slug}','FrontendController@bieu_mau_ct')->name('bieu-mau-ct');
+    Route::get('bieu-mau/tai-ve/{id}/{key}','FrontendController@bieu_mau_tv')->name('bieu-mau-tai-ve');
+    
 
     Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
         Route::get('/', 'AuthController@admin')->middleware('checkauth')->name('admin');
@@ -78,14 +88,14 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
         Route::get('lien-he', 'BannerController@lien_he')->middleware('role:Admi,Manager,Updater')->name('admin-banner-lien-he');
         Route::post('lien-he/update', 'BannerController@lien_he_update')->middleware('role:Admi,Manager,Updater')->name('admin-banner-lien-he-update');
 
-        Route::get('nhan-su/{tags}', 'NhanSuController@list')->middleware('role:Admi,Manager,Updater')->name('admin-nhan-su-tags');
-        Route::get('nhan-su/{tags}/add', 'NhanSuController@add')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-tags-add');
-        Route::post('nhan-su/{tags}/create', 'NhanSuController@create')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-tags-create');
-        Route::get('nhan-su/nhan-su/edit/{id}', 'NhanSuController@edit')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-tags-edit-id');
-        Route::get('nhan-su/chuyen-gia/edit/{id}', 'NhanSuController@edit')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-tags-edit-id');
-        Route::post('nhan-su/{tags}/update', 'NhanSuController@update')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-tags-update');
-        Route::get('nhan-su/nhan-su/delete/{id}', 'NhanSuController@delete')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-tags-delete');
-        Route::get('nhan-su/chuyen-gia/delete/{id}', 'NhanSuController@delete')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-tags-delete');
+        Route::get('nhan-su/{arr_bo_phan}', 'NhanSuController@list')->middleware('role:Admi,Manager,Updater')->name('admin-nhan-su');
+        Route::get('nhan-su/{arr_bo_phan}/add', 'NhanSuController@add')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-add');
+        Route::post('nhan-su/{arr_bo_phan}/create', 'NhanSuController@create')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-create');
+        Route::get('nhan-su/nhan-su/edit/{id}', 'NhanSuController@edit')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-edit-id');
+        Route::get('nhan-su/chuyen-gia/edit/{id}', 'NhanSuController@edit')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-edit-id');
+        Route::post('nhan-su/{arr_bo_phan}/update', 'NhanSuController@update')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-update');
+        Route::get('nhan-su/nhan-su/delete/{id}', 'NhanSuController@delete')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-delete');
+        Route::get('nhan-su/chuyen-gia/delete/{id}', 'NhanSuController@delete')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-delete');
 
         Route::get('tin-tuc-su-kien', 'TinTucSuKienController@list')->middleware('role:Admi,Manager,Updater')->name('admin-tin-tuc-su-kien');
         Route::get('tin-tuc-su-kien/add', 'TinTucSuKienController@add')->middleware('role:Admin,Manager,Updater')->name('admin-tin-tuc-su-kien-add');
@@ -159,14 +169,20 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
         Route::post('translate-path/update', 'TranslatePathController@update')->middleware('role:Admin,Manager,Updater')->name('admin-translate-path-update');
         Route::get('translate-path/delete/{key}', 'TranslatePathController@delete')->middleware('role:Admin,Manager,Updater')->name('admin-translate-path-delete');
         
-        Route::get('nganh-dao-tao', 'NganhDaoTaoController@list')->middleware('role:Admi,Manager,Updater')->name('admin-nganh-dao-tao');
-        Route::get('nganh-dao-tao/add', 'NganhDaoTaoController@add')->middleware('role:Admin,Manager,Updater')->name('admin-nganh-dao-tao-add');
-        Route::post('nganh-dao-tao/create', 'NganhDaoTaoController@create')->middleware('role:Admin,Manager,Updater')->name('admin-nganh-dao-tao-create');
-        Route::get('nganh-dao-tao/edit/{id}', 'NganhDaoTaoController@edit')->middleware('role:Admin,Manager,Updater')->name('admin-nganh-dao-tao-edit');
-        Route::post('nganh-dao-tao/update', 'NganhDaoTaoController@update')->middleware('role:Admin,Manager,Updater')->name('admin-nganh-dao-tao-update');
-        Route::get('nganh-dao-tao/delete/{id}', 'NganhDaoTaoController@delete')->middleware('role:Admin,Manager,Updater')->name('admin-nganh-dao-tao-delete');
+        Route::get('dao-tao', 'DaoTaoController@list')->middleware('role:Admi,Manager,Updater')->name('admin-dao-tao');
+        Route::get('dao-tao/add', 'DaoTaoController@add')->middleware('role:Admin,Manager,Updater')->name('admin-dao-tao-add');
+        Route::post('dao-tao/create', 'DaoTaoController@create')->middleware('role:Admin,Manager,Updater')->name('admin-dao-tao-create');
+        Route::get('dao-tao/edit/{id}', 'DaoTaoController@edit')->middleware('role:Admin,Manager,Updater')->name('admin-dao-tao-edit');
+        Route::post('dao-tao/update', 'DaoTaoController@update')->middleware('role:Admin,Manager,Updater')->name('admin-dao-tao-update');
+        Route::get('dao-tao/delete/{id}', 'DaoTaoController@delete')->middleware('role:Admin,Manager,Updater')->name('admin-dao-tao-delete');
 
-    
+        Route::get('bieu-mau', 'BieuMauController@list')->middleware('role:Admi,Manager,Updater')->name('admin-bieu-mau');
+        Route::get('bieu-mau/add', 'BieuMauController@add')->middleware('role:Admin,Manager,Updater')->name('admin-bieu-mau-add');
+        Route::post('bieu-mau/create', 'BieuMauController@create')->middleware('role:Admin,Manager,Updater')->name('admin-bieu-mau-create');
+        Route::get('bieu-mau/edit/{id}', 'BieuMauController@edit')->middleware('role:Admin,Manager,Updater')->name('admin-bieu-mau-edit');
+        Route::post('bieu-mau/update', 'BieuMauController@update')->middleware('role:Admin,Manager,Updater')->name('admin-bieu-mau-update');
+        Route::get('bieu-mau/delete/{id}', 'BieuMauController@delete')->middleware('role:Admin,Manager,Updater')->name('admin-bieu-mau-delete');
+
     });
 });
 

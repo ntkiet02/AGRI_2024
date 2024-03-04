@@ -2,10 +2,10 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
-use Intervention\Image\ImageManager;
-use Intervention\Image\Drivers\Gd\Driver;
+
 use Illuminate\Support\Facades\Storage;
-use Intervention\Image\Laravel\Facades\Image;
+use Intervention\Image\Facades\Image;
+use Illuminate\Support\Facades\Config;
 class ImageController extends Controller
 {
     //
@@ -17,13 +17,13 @@ class ImageController extends Controller
           $extension = $file->getClientOriginalExtension();
           $realname = $file->getClientOriginalName();
           $filename = date("YmdHis") . '_' . strtolower(uniqid()) . '.' . $extension;
-          Storage::put('private/images/'.$filename, file_get_contents($file), 'private');
-          $storagePath  = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix();
-          $origin = $storagePath . '/public/images/origin/' . $filename;
+          Storage::put( '/app/private/images/'.$filename, file_get_contents($file), 'private');
+          //$storagePath  = Storage::disk('local')->getDriver()->getAdapter()->getPathPrefix();
+          $origin = storage_path() . '/app/public/images/origin/' . $filename;
           Image::make($file->getRealPath())->save($origin);
-          $thumb = $storagePath . '/public/images/thumb_360x200/' . $filename;
+          $thumb = storage_path() . '/app/public/images/thumb_360x200/' . $filename;
           Image::make($file->getRealPath())->resize(360, null, function($constraint){ $constraint->aspectRatio();})->save($thumb);
-          $thumb_50 = $storagePath . '/public/images/thumb_50/' . $filename;
+          $thumb_50 = storage_path() . '/app/public/images/thumb_50/' . $filename;
           Image::make($file->getRealPath())->resize(null, 50, function($constraint){ $constraint->aspectRatio();})->save($thumb_50);
           echo '<div class="col-sm-6 col-md-4 items draggable-element text-center">
                 <input type="hidden" name="hinhanh_aliasname[]" value="'.$filename.'" readonly/>
@@ -31,7 +31,7 @@ class ImageController extends Controller
                   <a href="'.env('APP_URL').'storage/images/origin/'.$filename.'" class="image-popup">
                     <div class="portfolio-masonry-box">
                       <div class="portfolio-masonry-img">
-                        <img src="'.env('APP_URL').'storage/images/thumb_360x200/'.$filename.'" class="thumb-img img-fluid" alt="'.$filename.'">
+                        <img src="'.env('APP_URL').'/app/pubic/images/thumb_360x200/'.$filename.'" class="thumb-img img-fluid" alt="'.$filename.'">
                       </div>
                       <div class="portfolio-masonry-detail">
                         <p>'.$realname.'</p>

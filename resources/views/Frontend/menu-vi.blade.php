@@ -92,8 +92,8 @@
             <ul class="dropdown-menu">   
               <li class="dropdown"><a data-toggle="dropdown" href="#">Đại học</a>
                 <ul>
-                    <li><a href="{{ env('APP_URL') }}vi/nganh-dao-tao/cong-nghe-thuc-pham">Công nghệ thực phẩm</a></li>
-                    <li><a href="#">Đảm bảo chất lượng & ATVSTP</a></li>
+                    <li><a href="{{ env('APP_URL') }}vi/dao-tao/dh-cong-nghe-thuc-pham">Công nghệ thực phẩm</a></li>
+                    <li><a href="{{ env('APP_URL') }}vi/dao-tao/dh-dam-bao-chat-luong">Đảm bảo chất lượng & ATVSTP</a></li>
                     <li><a href="#">Nuôi trồng Thuỷ sản</a></li>
                     <li><a href="#">Công nghệ Sinh học</a></li>
                     <li><a href="#">Chăn nuôi</a></li>
@@ -185,8 +185,8 @@
           <li> <a href="#">Hợp tác quốc tế</a></li>
           <li class="dropdown"><a data-toggle="dropdown"  href="#">Văn bản - Biểu mẫu <i class="fa fa-angle-down" aria-hidden="true"></i></a>
             <ul class="dropdown-menu">
-              <li><a href="#">Biểu mẫu dành cho Giảng viên</a></li>
-              <li><a href="#"> Biểu mẫu dành cho Sinh viên</a></li>
+              <li><a href="{{env('APP_URL')}}vi/van-ban">Văn bản</a></li>
+              <li><a href="{{env('APP_URL')}}vi/bieu-mau">Biểu mẫu</a></li>
             </ul> 
           </li>
           <li class="dropdown"><a data-toggle="dropdown"  href="#">Đoàn thể<i class="fa fa-angle-down" aria-hidden="true"></i></a>

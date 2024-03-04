@@ -1,5 +1,5 @@
 @extends('Frontend.layout')
-@section('title', __('Văn bản'))
+@section('title', __('Biểu mẫu'))
 @section('css')
     <style type="text/css" media="screen">
         .noi-dung h3 {
@@ -26,11 +26,11 @@
     <div class="container">
         <div class="row">
           <div class="col-12 col-md-12">
-            <h1 class="text-center">{{ __('Văn bản') }}</h1>
+            <h1 class="text-center">{{ __('Biểu mẫu') }}</h1>
             @foreach($cats as $cat)
                 @php
                     $locale = app()->getLocale();
-                    $danhsach = App\Models\VanBan::where('locale', '=', $locale)->where('id_cat', $cat)->get();
+                    $danhsach = App\Models\BieuMau::where('locale', '=', $locale)->where('id_cat', $cat)->get();
                 @endphp
             @if($danhsach && $danhsach->count() > 0)
                 <h3 style="padding:20px;"><i class="fa fa-file-text-o" aria-hidden="true"></i> {{ $cat }}</h3>
@@ -42,7 +42,7 @@
                             @if($ds['attachments'])
                             <!-- foreach($ds['attachments'] as $key => $dk) -->
                                 <li>   
-                                    <a href="{{ env('APP_URL').app()->getLocale() }}/van-ban-ct/{{$ds['slug']}}">
+                                    <a href="{{ env('APP_URL').app()->getLocale() }}/bieu-mau-ct/{{$ds['slug']}}">
                                         {{ $ds['ten'] }}
                                     </a>
                                 </li>

@@ -10,6 +10,7 @@
             <h3 class="m-t-0"><a href="{{ env('APP_URL').app()->getLocale() }}/admin/khoa-luan-tot-nghiep" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Sửa Khóa luận tốt nghiệp') }}</h3>
             <form action="{{ env('APP_URL').app()->getLocale() }}/admin/khoa-luan-tot-nghiep/update" method="post" id="dinhkemform" enctype="multipart/form-data">
                 {{ csrf_field() }}
+                <input type="hidden" name="id" id="id" value="{{ $ds['_id'] }}" placeholder="">
                 <input type="hidden" name="trans_id" id="trans_id" value="{{ $trans_id }}" placeholder="">
                 <input type="hidden" name="trans_lang" id="trans_lang" value="{{ $trans_lang }}" placeholder="">
                 <div class="form-body">

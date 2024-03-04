@@ -10,6 +10,7 @@
             <h3 class="m-t-0"><a href="{{ env('APP_URL').app()->getLocale() }}/admin/nganh-dao-tao" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Sửa mới Ngành đào tạo') }}</h3>
             <form action="{{ env('APP_URL').app()->getLocale() }}/admin/nganh-dao-tao/update" method="post" id="dinhkemform" enctype="multipart/form-data">
                 {{ csrf_field() }}
+                <input type="hidden" name="id" id="id" value="{{ $ds['_id'] }}" placeholder="">
                 <input type="hidden" name="trans_id" id="trans_id" value="{{ $trans_id }}" placeholder="">
                 <input type="hidden" name="trans_lang" id="trans_lang" value="{{ $trans_lang }}" placeholder="">
                 <div class="form-body">
@@ -26,16 +27,16 @@
                     @php
                         if(old('ten_nganh') != null) {
                             $ten_nganh = old('ten_nganh');
-                    
+                            $slug =old('slug');
                             $noi_dung=old('noi_dung');
 
                         } else if(isset($ds['ten_nganh']) && $ds['ten_nganh']) {
                             $ten_nganh = $ds['ten_nganh'];
-                 
+                            $slug=$ds['slug'];
                             $noi_dung=$ds['noi_dung'];
                             
                         } else {
-                            $ten_nganh = '';$noi_dung = '';
+                            $ten_nganh = '';$noi_dung = '';$slug='';
                         }
                     @endphp
                     <div class="row form-group">
@@ -50,9 +51,9 @@
                                     <option value="{{ $tag }}">{{ __($tag) }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div>            
                     </div>
-
+                    
                     <div class="row form-group">
                         <label class="control-label col-md-2 text-right p-t-10">{{ __('Nội dung') }}</label>
                         <div class="col-md-10">

@@ -201,8 +201,11 @@ return [
         App\Providers\RouteServiceProvider::class,
         MongoDB\Laravel\MongoDBServiceProvider::class,
         Unisharp\Laravelfilemanager\LaravelFilemanagerServiceProvider::class,
-        Intervention\Image\Laravel\ServiceProvider::class,
-
+        // Intervention\Image\ImageManager::class,
+        // Intervention\Image\Drivers\Gd\Driver::class,  
+        // Intervention\Image\Image::class,  
+        Intervention\Image\ImageServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
     ])->toArray(),
 
     /*
@@ -218,8 +221,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
-        'Image' => Intervention\Image\Laravel\Facades\Image::class,
-
+        'Image' => Intervention\Image\Facades\Image::class,
     ])->toArray(),
 
 ];

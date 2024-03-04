@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
-// use App\Http\Controllers\FileController;
-// use App\Http\Controllers\ImageController;
+use App\Http\Controllers\FileController;
+use App\Http\Controllers\ImageController;
 use App\Models\Banner;
 use Illuminate\Support\Str;
 use File;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Validator;
 class BannerController extends Controller
 {
@@ -25,7 +26,7 @@ class BannerController extends Controller
     function create(Request $request, $locale = ''){
         $data = $request->all();
         $validator = Validator::make($data, [
-            'title' => 'required:banner'
+            'title' => 'required:banners'
         ]);
         if ($validator->fails()) {
           return redirect(env('APP_URL').$locale.'/admin/banner/add')->withErrors($validator)->withInput();
@@ -55,7 +56,7 @@ class BannerController extends Controller
     function update(Request $request, $locale = ''){
         $data = $request->all();
         $validator = Validator::make($data, [
-            'title' => 'required:banner'
+            'title' => 'required:banners'
         ]);
         if ($validator->fails()) {
           return redirect(env('APP_URL').$locale.'/admin/banner/edit/'.$data['id'])->withErrors($validator)->withInput();

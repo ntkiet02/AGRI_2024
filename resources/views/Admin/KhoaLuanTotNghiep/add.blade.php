@@ -50,7 +50,7 @@
                             $ma_so_sinh_vien =''; $ten_sinh_vien='';$ten_de_tai='';$slug=''; $lop=''; $giang_vien_huong_dan=''; $nam=''; $date_post = App\Http\Controllers\ObjectController::setDate();
                         }
                     @endphp
-                    <div class="col-md-4">
+                        <div class="col-md-4">
                             <select name="tags" id="tags" class="form-control select2" required>
                                 <option value="">Chọn phân loại</option>
                                 @foreach($tags as $tag)

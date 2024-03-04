@@ -20,7 +20,8 @@ use Illuminate\Support\Str;
 use App\Http\Controllers\ObjectControler;
 use App\Models\KhoaLuanTotNghiep;
 use App\Models\NganhDaoTao;
-use Config;
+use App\Models\BieuMau;
+use Illuminate\Support\Facades\Config;
 class FrontendController extends Controller
 {
     //
@@ -123,11 +124,31 @@ class FrontendController extends Controller
         return Storage::download($file_path, $name);
     }
     function van_ban(Request $request, $locale = '') {
-        $cats = VanBanController::get_cats();
+        $cats = VanBanController::get_cats(); 
         return view('Frontend.van-ban')->with(compact('cats'));
+    }
+    function van_ban_ct(Request $request, $locale = '', $slug = '') {
+        $ds = VanBan::where('locale', '=', $locale)->where('slug', '=', $slug)->first();
+        $danhsach = VanBan::where('cats','=',$ds['cats'])->where('locale', '=', $locale)->paginate(7);
+        return view('Frontend.van-ban-ct')->with(compact('danhsach', 'ds'));
     }
     function van_ban_tv(Request $request, $locale='', $id = '', $key = 0) {
         $ds = VanBan::find($id);$key = intval($key);
+        $file_path = 'public/files/' . $ds['attachments'][$key]['aliasname'];
+        $name  = Str::slug($ds['attachments'][$key]['title'], '-') . '.' . $ds['attachments'][$key]['type'];
+        return Storage::download($file_path, $name);
+    }
+    function bieu_mau(Request $request, $locale = '') {
+        $cats = BieuMauController::get_cats(); 
+        return view('Frontend.bieu-mau')->with(compact('cats'));
+    }
+    function bieu_mau_ct(Request $request, $locale = '', $slug = '') {
+        $ds = BieuMau::where('locale', '=', $locale)->where('slug', '=', $slug)->first();
+        $danhsach = BieuMau::where('cats','=',$ds['cats'])->where('locale', '=', $locale)->paginate(7);
+        return view('Frontend.bieu-mau-ct')->with(compact('danhsach', 'ds'));
+    }
+    function bieu_mau_tv(Request $request, $locale='', $id = '', $key = 0) {
+        $ds = BieuMau::find($id);$key = intval($key);
         $file_path = 'public/files/' . $ds['attachments'][$key]['aliasname'];
         $name  = Str::slug($ds['attachments'][$key]['title'], '-') . '.' . $ds['attachments'][$key]['type'];
         return Storage::download($file_path, $name);
@@ -223,6 +244,10 @@ class FrontendController extends Controller
         $q = $request->input('q');
         $danhsach = TinTucSuKien::where('locale', '=', $locale)->where('ten', 'regexp', '/.*'.$q.'/i')->orderBy('date_post', 'desc')->paginate(9);
         return view('Frontend.tim-kiem')->with(compact('danhsach','q'));
+    }
+
+    function dao_tao(Request $request, $locale = 'vi', $slug = '') {
+        echo storage_path();
     }
    
 }
