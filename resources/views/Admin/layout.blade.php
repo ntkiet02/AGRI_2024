@@ -109,10 +109,22 @@
                                     <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/lien-he">{{ __('Liên hệ') }}</a></li>
                                 </ul>
                             </li>
-                            
-                            <li>
-                                <a href="{{ env('APP_URL') . app()->getLocale() }}/admin/tin-tuc-su-kien"><i class="far fa-newspaper"></i> {{ __('Tin tức - Sự kiện') }}</a>
+                            <li class="has-submenu">
+                                <a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/nhan-su"><i class="far fa-file-alt"></i> {{ __('Nhân sự') }} <div class="arrow-down"></div> </a>
+                                <ul class="submenu">
+                                    <li><a href="#">{{ __('Văn phòng khoa') }}</a></li>
+                                    <li><a href="#">{{ __('Ban lãnh đạo khoa') }}</a></li>
+                                </ul>
                             </li>
+                            <li >
+                                <a href="{{ env('APP_URL') . app()->getLocale() }}/admin/tin-tuc-su-kien"><i class="far fa-newspaper"></i> {{ __('Tin tức - Sự kiện') }}</a>
+    
+                            </li>
+                            <li>
+                                <a href="{{ env('APP_URL') . app()->getLocale() }}/admin/dao-tao"><i class="fab fa-xbox"></i> {{ __('Đào tạo') }} <div class="arrow-down"></div></a>
+  
+                            </li>
+                        
                             <li class="has-submenu">
                                 <a href="#"><i class="fab fa-xbox"></i> {{ __('Nghiên cứu') }} <div class="arrow-down"></div></a>
                                 <ul class="submenu">
@@ -129,15 +141,7 @@
                                     <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/van-ban">{{ __('Văn bản') }}</a></li>
                                     <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/bieu-mau">{{ __('Biểu mẫu') }}</a></li>
                                 </ul>
-                            </li>
-                            <li class="has-submenu">
-                                <a href="#"><i class="fab fa-xbox"></i> {{ __('Đào tạo') }} <div class="arrow-down"></div></a>
-                                <ul class="submenu">
-                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nganh-dao-tao">{{ __('Ngành đào tạo') }}</a></li>
-        
-                                </ul>
-                            </li>
-
+                            </li
                         </ul>
                         <!-- End navigation menu -->
                         <div class="clearfix"></div>

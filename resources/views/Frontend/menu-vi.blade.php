@@ -13,6 +13,8 @@
       $path_vi = env('APP_URL') . 'vi';
       $path_en = env('APP_URL') . 'en';
   }
+  $tags_dao_tao = App\Http\Controllers\DaoTaoController::get_tags();
+
 @endphp
 <header>
   <div class="header-top">
@@ -87,8 +89,16 @@
               <li><a href="{{ env('APP_URL') }}vi/hinh-anh-hoat-dong">Hình ảnh hoạt động</a></li>
             </ul>
           </li>
-          
-          <li class="dropdown"><a data-toggle="dropdown"  href="#">Đào tạo <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+          <li class="dropdown"><a data-toggle="dropdown" href="{{ env('APP_URL') }}vi/dao-tao">Đào tạo<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+            <ul class="dropdown-menu">
+              @foreach($tags_dao_tao as $ktag => $tag)
+                <li class="dropdown"><a href="{{ env('APP_URL') }}vi/dao-tao/tag/{{ $ktag }}">{{ $tag }}</a></li>
+                  <ul class="dropdown-menu">
+                  </ul>
+              @endforeach
+            </ul>
+          </li>
+          <!-- <li class="dropdown"><a data-toggle="dropdown"  href="#">Đào tạo <i class="fa fa-angle-down" aria-hidden="true"></i></a>
             <ul class="dropdown-menu">   
               <li class="dropdown"><a data-toggle="dropdown" href="#">Đại học</a>
                 <ul>
@@ -112,7 +122,7 @@
                 </ul>
               </li>
             </ul>
-          </li> 
+          </li>  -->
           <li class="dropdown"><a data-toggle="dropdown"  href="#">Nghiên cứu khoa học <i class="fa fa-angle-down" aria-hidden="true"></i></a>
             <ul class="dropdown-menu">
               <li class="dropdown"><a data-toggle="dropdown" href="#">Giảng viên</a>

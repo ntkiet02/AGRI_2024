@@ -59,17 +59,17 @@
         <h3 style="padding-bottom:20px;text-transform:uppercase;color:#27316b;"><i class="fa fa-newspaper-o"></i> {{ __('Ngành đào tạo') }}</h3>
       </div>
     </div>     
-        @if($danhsach_nganh_dao_tao)
+        @if($danhsach_dao_tao)
         <ul class="row">
-        @foreach($danhsach_nganh_dao_tao as $ds)
+        @foreach($danhsach_dao_tao as $ds)
         <li class="col-sm-4" style="margin-top: 25px;">
           <div class="overly">
             <div class="cnt-block">
-              <a style="color:aliceblue; font-style:bold; font-size:25px" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/nganh-dao-tao/{{ $ds['slug'] }}"> {{$ds->ten_nganh}} </a>
+              <a style="color:aliceblue; font-style:bold; font-size:25px" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/dao-tao/{{ $ds['slug'] }}"> {{$ds->ten}} </a>
               <p style="font-size: 20px;">{{$ds->tags}}</p>
             </div>
           </div>
-          <figure><img src="{{ env('APP_URL') }}assets/frontend/images/default_thumb.jpg" class="img-responsive" alt=""></figure>
+          <figure><img src="{{ env('APP_URL') }}storage/images/thumb_360x200/{{ $ds['photos'][0]['aliasname'] }}" class="img-responsive" alt="" style="width:360px;height:200px;"></figure>
         </li>
         @endforeach
       </ul>

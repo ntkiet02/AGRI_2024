@@ -1,5 +1,5 @@
 @extends('Admin.layout')
-@section('title', __('Thêm Ngành đào tạo'))
+@section('title', __('Sửa Đào tạo'))
 @section('css')
 <link href="{{ env('APP_URL') }}assets/backend/libs/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
 @endsection
@@ -7,9 +7,10 @@
 <div class="row">
   <div class="col-12">
         <div class="card-box">
-            <h3 class="m-t-0"><a href="{{ env('APP_URL').app()->getLocale() }}/admin/nganh-dao-tao" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Thêm mới Ngành đào tạo') }}</h3>
-            <form action="{{ env('APP_URL').app()->getLocale() }}/admin/nganh-dao-tao/create" method="post" id="dinhkemform" enctype="multipart/form-data">
+            <h3 class="m-t-0"><a href="{{ env('APP_URL').app()->getLocale() }}/admin/dao-tao" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Sửa mới Ngành đào tạo') }}</h3>
+            <form action="{{ env('APP_URL').app()->getLocale() }}/admin/dao-tao/update" method="post" id="dinhkemform" enctype="multipart/form-data">
                 {{ csrf_field() }}
+                <input type="hidden" name="id" id="id" value="{{ $ds['_id'] }}" placeholder="">
                 <input type="hidden" name="trans_id" id="trans_id" value="{{ $trans_id }}" placeholder="">
                 <input type="hidden" name="trans_lang" id="trans_lang" value="{{ $trans_lang }}" placeholder="">
                 <div class="form-body">
@@ -24,23 +25,24 @@
                         </div>
                     @endif
                     @php
-                        if(old('ten_nganh') != null) {
-                            $ten_nganh = old('ten_nganh');  
-                            $slug=old('slug'); 
+                        if(old('ten') != null) {
+                            $ten = old('ten');
+                            $slug =old('slug');
                             $noi_dung=old('noi_dung');
 
-                        } else if(isset($ds['ten_nganh']) && $ds['ten_nganh']) {
-                            $ten_nganh = $ds['ten_nganh'];
+                        } else if(isset($ds['ten']) && $ds['ten']) {
+                            $ten = $ds['ten'];
                             $slug=$ds['slug'];
-                            $noi_dung=$ds['noi_dung'];   
+                            $noi_dung=$ds['noi_dung'];
+                            
                         } else {
-                            $ten_nganh = '';$slug='';$noi_dung = '';
+                            $ten = '';$noi_dung = '';$slug='';
                         }
                     @endphp
                     <div class="row form-group">
                         <label class="control-label col-md-2 text-right p-t-10">{{ __('Tên ngành') }}</label>
                         <div class="col-md-4">
-                            <input type="text" id="ten_nganh" name="ten_nganh" class="form-control" placeholder="{{ __('Tên ngành') }}" value="{{ $ten_nganh }}" />
+                            <input type="text" id="ten" name="ten" class="form-control" placeholder="{{ __('Tên ngành') }}" value="{{ $ten }}" />
                         </div>
                         <div class="col-md-3">
                             <select name="tags" id="tags" class="form-control select2" required>
@@ -49,7 +51,7 @@
                                     <option value="{{ $tag }}">{{ __($tag) }}</option>
                                 @endforeach
                             </select>
-                        </div>
+                        </div>            
                     </div>
                     <div class="row form-group">
                         <label class="control-label col-md-2 text-right p-t-10">{{ __('Slug') }}</label>
@@ -57,6 +59,7 @@
                             <input type="text" id="slug" name="slug" class="form-control" placeholder="{{ __('slug') }}" value="{{ $slug }}" required />
                         </div>  
                     </div>
+                    
                     <div class="row form-group">
                         <label class="control-label col-md-2 text-right p-t-10">{{ __('Nội dung') }}</label>
                         <div class="col-md-10">
@@ -184,7 +187,7 @@
                     </div>
                </div>
                 <div class="form-actions">
-                    <a href="{{ env('APP_URL').app()->getLocale() }}/admin/nganh-dao-tao" class="btn btn-light"><i class="fa fa-reply-all"></i> {{ __('Trở về') }}</a>
+                    <a href="{{ env('APP_URL').app()->getLocale() }}/admin/dao-tao" class="btn btn-light"><i class="fa fa-reply-all"></i> {{ __('Trở về') }}</a>
                     <button type="submit" class="btn btn-info"> <i class="fa fa-check"></i> {{ __('Cập nhật') }}</button>
                 </div>
             </div>

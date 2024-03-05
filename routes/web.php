@@ -44,7 +44,6 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     Route::get('overview', 'FrontendController@tong_quan')->name('introduction-overview');
     Route::get('nhan-su/{slug}', 'FrontendController@nhan_su')->name('gioi-thieu-nhan-su');
 
-    Route::get('dao-tao/{slug}', 'FrontendController@dao_tao')->name('dao-dao');
 
     Route::get('tin-tuc-su-kien/tag/{key}', 'FrontendController@tin_tuc_su_kien_tag');
     Route::get('tin-tuc-su-kien', 'FrontendController@tin_tuc_su_kien');
@@ -56,11 +55,11 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     Route::get('news-and-events/xem-truc-tuyen/{id}/{key}', 'FrontendController@tin_tuc_su_kien_xtt')->name('news-and-events-xem-truc-tuyen');
     Route::get('news-and-events/tai-ve/{id}/{key}', 'FrontendController@tin_tuc_su_kien_tv')->name('news-and-events-tai-ve');
     Route::get('news-and-events/{slug}', 'FrontendController@tin_tuc_su_kien_ct');
+    
+    Route::get('dao-tao', 'FrontendController@dao_tao');
+    Route::get('dao-tao/tag/{tags}', 'FrontendController@dao_tao_tag');
+    Route::get('dao-tao/{slug}', 'FrontendController@dao_tao_ct');
 
-    // Route::get('dao-tao/tag/{key}', 'FrontendController@_dao_tao_tag');
-    // Route::get('dao-tao', 'FrontendController@_dao_tao');
-    // Route::get('dao-tao/{slug}', 'FrontendController@_dao_tao_ct');
-      
     Route::get('du-an','FrontendController@du_an')->name('du-an');
     Route::get('khoa-luan-tot-nghiep','FrontendController@khoa_luan_tot_nghiep')->name('khoa-luan-tot-nghiep');
     
@@ -103,6 +102,13 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
         Route::get('tin-tuc-su-kien/edit/{id}', 'TinTucSuKienController@edit')->middleware('role:Admin,Manager,Updater')->name('admin-tin-tuc-su-kien-edit');
         Route::post('tin-tuc-su-kien/update', 'TinTucSuKienController@update')->middleware('role:Admin,Manager,Updater')->name('admin-tin-tuc-su-kien-update');
         Route::get('tin-tuc-su-kien/delete/{id}', 'TinTucSuKienController@delete')->middleware('role:Admin,Manager,Updater')->name('admin-tin-tuc-su-kien-delete');
+
+        Route::get('dao-tao', 'DaoTaoController@list')->middleware('role:Admi,Manager,Updater')->name('admin-dao-tao');
+        Route::get('dao-tao/add', 'DaoTaoController@add')->middleware('role:Admin,Manager,Updater')->name('admin-dao-tao-add');
+        Route::post('dao-tao/create', 'DaoTaoController@create')->middleware('role:Admin,Manager,Updater')->name('admin-dao-tao-create');
+        Route::get('dao-tao/edit/{id}', 'DaoTaoController@edit')->middleware('role:Admin,Manager,Updater')->name('admin-dao-tao-edit');
+        Route::post('dao-tao/update', 'DaoTaoController@update')->middleware('role:Admin,Manager,Updater')->name('admin-dao-tao-update');
+        Route::get('dao-tao/delete/{id}', 'DaoTaoController@delete')->middleware('role:Admin,Manager,Updater')->name('admin-dao-tao-delete');
 
         Route::get('nghien-cuu-khoa-hoc', 'NghienCuuKhoaHocController@list')->middleware('role:Admi,Manager,Updater')->name('admin-nghien-cuu-khoa-hoc');
         Route::get('nghien-cuu-khoa-hoc/add', 'NghienCuuKhoaHocController@add')->middleware('role:Admin,Manager,Updater')->name('admin-nghien-cuu-khoa-hoc-add');
@@ -168,13 +174,6 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
         Route::get('translate-path/edit/{key}', 'TranslatePathController@edit')->middleware('role:Admin,Manager,Updater')->name('admin-translate-path-edit');
         Route::post('translate-path/update', 'TranslatePathController@update')->middleware('role:Admin,Manager,Updater')->name('admin-translate-path-update');
         Route::get('translate-path/delete/{key}', 'TranslatePathController@delete')->middleware('role:Admin,Manager,Updater')->name('admin-translate-path-delete');
-        
-        Route::get('dao-tao', 'DaoTaoController@list')->middleware('role:Admi,Manager,Updater')->name('admin-dao-tao');
-        Route::get('dao-tao/add', 'DaoTaoController@add')->middleware('role:Admin,Manager,Updater')->name('admin-dao-tao-add');
-        Route::post('dao-tao/create', 'DaoTaoController@create')->middleware('role:Admin,Manager,Updater')->name('admin-dao-tao-create');
-        Route::get('dao-tao/edit/{id}', 'DaoTaoController@edit')->middleware('role:Admin,Manager,Updater')->name('admin-dao-tao-edit');
-        Route::post('dao-tao/update', 'DaoTaoController@update')->middleware('role:Admin,Manager,Updater')->name('admin-dao-tao-update');
-        Route::get('dao-tao/delete/{id}', 'DaoTaoController@delete')->middleware('role:Admin,Manager,Updater')->name('admin-dao-tao-delete');
 
         Route::get('bieu-mau', 'BieuMauController@list')->middleware('role:Admi,Manager,Updater')->name('admin-bieu-mau');
         Route::get('bieu-mau/add', 'BieuMauController@add')->middleware('role:Admin,Manager,Updater')->name('admin-bieu-mau-add');

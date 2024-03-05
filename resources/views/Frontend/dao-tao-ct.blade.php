@@ -29,7 +29,7 @@
     <div class="container noi-dung">
       <p>{{ __('Trang chủ') }} <i class="fa fa-angle-double-right" aria-hidden="true"></i> <strong>{{ __('Ngành đào tạo') }}</strong></p>
       <span class="tags">{{ $ds['tags'] }}</span><br />
-      <h3 style="text-transform:uppercase;">{{ $ds['ten_nganh'] }}</h3>
+      <h3 style="text-transform:uppercase;">{{ $ds['ten'] }}</h3>
         <div class="row" style="padding-bottom:20px;">
           <div class="col-12 text-right">
             @if(isset($ds['views']))<i class="fa fa-eye"></i> {{ $ds['views'] }} @endif

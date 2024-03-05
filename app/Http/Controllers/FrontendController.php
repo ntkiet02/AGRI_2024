@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use App\Http\Controllers\ObjectControler;
 use App\Models\KhoaLuanTotNghiep;
-use App\Models\NganhDaoTao;
+use App\Models\DaoTao;
 use App\Models\BieuMau;
 use Illuminate\Support\Facades\Config;
 class FrontendController extends Controller
@@ -27,8 +27,8 @@ class FrontendController extends Controller
     //
     function index(Request $request, $locale = '') {
         $danhsach_tin_tuc_su_kien = TinTucSuKien::where('locale', '=', $locale)->orderBy('date_post', 'desc')->paginate(9);
-        $danhsach_nganh_dao_tao = NganhDaoTao::where('locale', '=', $locale)->orderBy('date_post', 'desc')->paginate(6);
-        return view('Frontend.index')->with(compact('danhsach_nganh_dao_tao','danhsach_tin_tuc_su_kien'));
+        $danhsach_dao_tao = DaoTao::where('locale', '=', $locale)->orderBy('date_post', 'desc')->paginate(6);
+        return view('Frontend.index')->with(compact('danhsach_dao_tao','danhsach_tin_tuc_su_kien'));
     }
     function nhiem_vu_khoa_hoc_cong_nghe(Request $request, $locale = '') {
         $danhsach = NghienCuuKhoaHoc::where('locale', '=', $locale)->orderBy('updated_at', 'desc')->paginate(20);
@@ -52,19 +52,19 @@ class FrontendController extends Controller
         $danhsach = DuAn::where('locale', '=', $locale)->orderBy('updated_at', 'desc')->paginate(7);
         return view('Frontend.du-an-ct')->with(compact('danhsach','ds'));
     }
-    function nganh_dao_tao(Request $request, $locale = '') {
-        $danhsach = NganhDaoTao::where('locale', '=', $locale)->orderBy('date_post', 'desc')->paginate(6);
-        return view('Frontend.nganh-dao-tao')->with(compact('danhsach'));
+    function dao_tao(Request $request, $locale = '') {
+        $danhsach = DaoTao::where('locale', '=', $locale)->orderBy('date_post', 'desc')->paginate(6);
+        return view('Frontend.dao-tao')->with(compact('danhsach'));
     }
-    function nganh_dao_tao_ct(Request $request, $locale = '', $slug = '') {
-        $ds = NganhDaoTao::where('locale', '=', $locale)->where('slug', '=', $slug)->first();
-        $danhsach = NganhDaoTao::where('tags','=',$ds['tags'])->where('locale', '=', $locale)->paginate(7);
-        return view('Frontend.nganh-dao-tao-ct')->with(compact('danhsach', 'ds'));
+    function dao_tao_ct(Request $request, $locale = '', $slug = '') {
+        $ds = DaoTao::where('locale', '=', $locale)->where('slug', '=', $slug)->first();
+        $danhsach = DaoTao::where('tags','=',$ds['tags'])->where('locale', '=', $locale)->paginate(7);
+        return view('Frontend.dao-tao-ct')->with(compact('danhsach', 'ds'));
     }
-    function nganh_dao_tao_tag(Request $request, $locale = '', $key = 0) {
-        $tags = NganhDaoTaoController::get_tags();
-        $danhsach = NganhDaoTao::where('locale', '=', $locale)->where('tags','=',$tags[$key])->orderBy('date_post', 'desc')->paginate(9);
-        return view('Frontend.nganh-dao-tao')->with(compact('danhsach'));
+    function dao_tao_tag(Request $request, $locale = '', $key = 0) {
+        $tags = DaoTaoController::get_tags();
+        $danhsach = DaoTao::where('locale', '=', $locale)->where('tags','=',$tags[$key])->orderBy('date_post', 'desc')->paginate(9);
+        return view('Frontend.dao-tao')->with(compact('danhsach'));
     }
     function tin_tuc_su_kien(Request $request, $locale = '') {
         $danhsach = TinTucSuKien::where('locale', '=', $locale)->orderBy('date_post', 'desc')->paginate(6);
@@ -246,8 +246,6 @@ class FrontendController extends Controller
         return view('Frontend.tim-kiem')->with(compact('danhsach','q'));
     }
 
-    function dao_tao(Request $request, $locale = 'vi', $slug = '') {
-        echo storage_path();
-    }
+
    
 }
