@@ -7,7 +7,7 @@
 @section('body')
 <div class="row">
     <div class="col-12 card-box">
-        <h3 class="m-t-0"><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/{{ $tags }}/add" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> {{ __('Thêm mới') }}</a> @if($tags == 'nhan-su') {{ __('Nhân sự') }} @else {{ __('Chuyên gia') }} @endif</h3>
+        <h3 class="m-t-0"><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/{{ $tags }}/add" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> {{ __('Thêm mới') }}</a> {{ __('Nhân sự') }} </h3>
         <hr />
         @if($danhsach)
         <table class="table table-border table-bordered table-striped table-sm">
@@ -17,6 +17,8 @@
                     <th>{{ __('Hình') }}</th>
                     <th>{{ __('Họ tên') }}</th>
                     <th>{{ __('Chức vụ') }}</th>
+                    <th>{{ __('Học vị') }}</th>
+                    <th>{{ __('Chuyên ngành') }}</th>
                     <th>{{ __('Điện thoại') }}</th>
                     <th>{{ __('Email') }}</th>
                     <th>{{ __('Thứ tự') }}</th>
@@ -43,6 +45,8 @@
                     </td>
                     <td>{{ $ds['ho_ten'] }}</td>
                     <td>{{ $ds['chuc_vu'] }}</td>
+                    <td>{{ $ds['hoc_vi'] }}</td>
+                    <td>{{ $ds['chuyen_nganh'] }}</td>
                     <td>{{ $ds['dien_thoai'] }}</td>
                     <td>{{ $ds['email'] }}</td>
                     <td>{{ $ds['thu_tu'] }}</td>
@@ -74,11 +78,36 @@
             @endforeach
             </tbody>
         </table>
+        <hr />
         @endif
+        @if(Session::get('msg') != null && Session::get('msg'))
+            <div class="alert alert-danger"><h3><i class="fas fa-save"></i> {{ Session::get('msg') }}</h3></div>
+        @endif
+        <hr />
+        <div class="card-box">
+            <h3 class="m-t-0"><i class="far fa-file-alt text-primary"></i> {{ __('Giới thiệu tổng quan') }}</h3>
+            @if(Session::get('msg') != null && Session::get('msg'))
+                <div class="alert alert-danger"><h3><i class="fas fa-save"></i> {{ Session::get('msg') }}</h3></div>
+            @endif
+            <hr />
+            <form action="{{ env('APP_URL').app()->getLocale() }}/admin/nhan-su/tong-quan/{{$tags}}/update" method="post" id="dinhkemform" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <div class="row form-group">
+                    <div class="col-md-12">
+                        <textarea name="noi_dung" id="noi_dung" style="height:150px;" class="form-control" placeholder="Nội dung">{{ $noi_dung }}</textarea>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <a href="{{ env('APP_URL').app()->getLocale() }}" class="btn btn-light"><i class="fa fa-reply-all"></i> {{ __('Trở về') }}</a>
+                    <button type="submit" class="btn btn-info"> <i class="fa fa-check"></i> {{ __('Cập nhật') }}</button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 @endsection
 @section('js')
+    <script src="{{ env('APP_URL') }}assets/backend/libs/ckeditor/ckeditor.js"></script>
     <script src="{{ env('APP_URL') }}assets/backend/libs/jquery-toast/jquery.toast.min.js"></script>
     <script type="text/javascript" src="{{ env('APP_URL') }}assets/backend/libs/isotope/isotope.pkgd.min.js"></script>
     <script type="text/javascript" src="{{ env('APP_URL') }}assets/backend/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
@@ -100,7 +129,15 @@
                     navigateByImgClick: true,
                     preload: [0,1] // Will preload 0 - before current, and 1 after the current image
                 }
-            });
+            });     
+            var options = {
+                filebrowserImageBrowseUrl: '{{ env('APP_URL') }}laravel-filemanager?type=Images',
+                filebrowserImageUploadUrl: '{{ env('APP_URL') }}laravel-filemanager/upload?type=Images&_token=',
+                filebrowserBrowseUrl: '{{ env('APP_URL') }}laravel-filemanager?type=Files',
+                filebrowserUploadUrl: '{{ env('APP_URL') }}laravel-filemanager/upload?type=Files&_token=',
+                height: '400px'
+            };
+            CKEDITOR.replace('noi_dung', options);
         });
     </script>
 @endsection

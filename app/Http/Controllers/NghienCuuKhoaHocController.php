@@ -16,6 +16,16 @@ use App\Models\TranslatePath;
 class NghienCuuKhoaHocController extends Controller
 {
     //
+    const TAGS = array(
+                        'de-tai-cap-co-so'=>'Đề tài cấp Cơ sở',
+                        'de-tai-cap-truong'=>'Đề tài cấp Trường',
+                        'de-tai-cap-dhqg'=>'Đề tài cấp ĐHQG',
+                        'de-tai-cap-tinh'=> 'Đề tài cấp Tỉnh');
+
+    static function get_tags(){
+        return self::TAGS;
+    }
+
     function list(Request $request, $locale = '') {
         $danhsach = NghienCuuKhoaHoc::where('locale','=',$locale)->get();
         return view('Admin.NghienCuuKhoaHoc.list')->with(compact('danhsach'));
@@ -29,7 +39,8 @@ class NghienCuuKhoaHocController extends Controller
         } else {
             $ds = '';
         }
-        return view('Admin.NghienCuuKhoaHoc.add')->with(compact('ds','trans_id', 'trans_lang'));
+        $tags = self::TAGS;
+        return view('Admin.NghienCuuKhoaHoc.add')->with(compact('ds','trans_id', 'trans_lang','tags'));
     }
 
     function create(Request $request, $locale = '') {
@@ -40,24 +51,23 @@ class NghienCuuKhoaHocController extends Controller
         if ($validator->fails()) {
           return redirect(env('APP_URL').$locale.'/admin/nghien-cuu-khoa-hoc/add')->withErrors($validator)->withInput();
         }
-        $db = new NghienCuuKhoaHoc();
+        $arr_dinhkem = array();
+        if(isset($data['file_aliasname']) && $data['file_aliasname']){
+            foreach($data['file_aliasname'] as $k => $v){
+              array_push($arr_dinhkem, array('aliasname' => $v, 'filename' => $data['file_filename'][$k], 'title' => $data['file_title'][$k], 'size' => $data['file_size'][$k], 'type' => $data['file_type'][$k]));
+            }
+        }
         $id = ObjectController::Id();
+        $id_user = $request->session()->get('user._id');
+        $db = new NghienCuuKhoaHoc();
         $db->_id = $id;
-        $db->ma_so_nhiem_vu = $data['ma_so_nhiem_vu'];
-        $db->so_dang_ky_ket_qua = $data['so_dang_ky_ket_qua'];
         $db->ten_nhiem_vu = $data['ten_nhiem_vu'];
-        $db->to_chuc_chu_tri = $data['to_chuc_chu_tri'];
-        $db->co_quan_chu_quan = $data['co_quan_chu_quan'];
-        $db->cap_quan_ly = $data['cap_quan_ly'];
         $db->chu_nhiem_nhiem_vu = $data['chu_nhiem_nhiem_vu'];
-        $db->cac_thanh_vien_tham_gia = $data['cac_thanh_vien_tham_gia'];
-        $db->linh_vuc_nghien_cuu = $data['linh_vuc_nghien_cuu'];
         $db->thoi_gian_thuc_hien = $data['thoi_gian_thuc_hien'];
-        //$db->so_trang = $data['so_trang'];
-        $db->tom_tat = $data['tom_tat'];
-        $db->tu_khoa = $data['tu_khoa'];
+        $db->tags = $data['tags'];
+        $db->attachments = $arr_dinhkem;
         $db->locale = $locale;
-        $db->slug = $id;
+        $db->id_user = ObjectController::ObjectId($id_user);
         $db->save();
 
         //cập nhật translate path
@@ -80,8 +90,15 @@ class NghienCuuKhoaHocController extends Controller
             $trans->collection = 'nghien_cuu_khoa_hoc';
             $trans->save();
         }
-
+        $logQuery = array (
+            'action' => 'Thêm Thông tin ['.$data['ten_nhiem_vu'].']',
+            'id_collection' => $id,
+            'collection' => 'nghien_cuu_khoa_hoc',
+            'data' => $data
+        );
+        LogController::addLog($logQuery);
         Session::flash('msg', 'Cập nhật thành công');
+        if($trans_lang) return redirect(env('APP_URL') .$trans_lang.'/admin/nghien-cuu-khoa-hoc');
         return redirect(env('APP_URL').$locale.'/admin/nghien-cuu-khoa-hoc');
     }
 
@@ -89,10 +106,11 @@ class NghienCuuKhoaHocController extends Controller
         $trans_id = $request->input('trans_id');
         $trans_lang = $request->input('trans_lang');
         $ds = NghienCuuKhoaHoc::find($id);
-        return view('Admin.NghienCuuKhoaHoc.edit')->with(compact('ds','trans_id', 'trans_lang'));
+        $tags = self::TAGS;
+        return view('Admin.NghienCuuKhoaHoc.edit')->with(compact('ds','trans_id', 'trans_lang','tags'));
     }
 
-    function update(Request $request, $locale = '') {
+    function update(Request $request, $locale = '',$id='') {
         $data = $request->all();
         $validator = Validator::make($data, [
             'ten_nhiem_vu' => 'required:unique:nghien_cuu_khoa_hoc,_id,'.$data['id']
@@ -100,25 +118,24 @@ class NghienCuuKhoaHocController extends Controller
         if ($validator->fails()) {
           return redirect(env('APP_URL').$locale.'/admin/nghien-cuu-khoa-hoc/edit/'.$data['id'].'?trans_id='.$data['trans_id'].'&trans_lang='.$data['trans_lang'])->withErrors($validator)->withInput();
         }
+        $arr_dinhkem = array();
+        if(isset($data['file_aliasname']) && $data['file_aliasname']){
+            foreach($data['file_aliasname'] as $k => $v){
+              array_push($arr_dinhkem, array('aliasname' => $v, 'filename' => $data['file_filename'][$k], 'title' => $data['file_title'][$k], 'size' => $data['file_size'][$k], 'type' => $data['file_type'][$k]));
+            }
+        }
+        $id_user = $request->session()->get('user._id');
         $db = NghienCuuKhoaHoc::find($data['id']);
-        $db->ma_so_nhiem_vu = $data['ma_so_nhiem_vu'];
-        $db->so_dang_ky_ket_qua = $data['so_dang_ky_ket_qua'];
         $db->ten_nhiem_vu = $data['ten_nhiem_vu'];
-        $db->to_chuc_chu_tri = $data['to_chuc_chu_tri'];
-        $db->co_quan_chu_quan = $data['co_quan_chu_quan'];
-        $db->cap_quan_ly = $data['cap_quan_ly'];
         $db->chu_nhiem_nhiem_vu = $data['chu_nhiem_nhiem_vu'];
-        $db->cac_thanh_vien_tham_gia = $data['cac_thanh_vien_tham_gia'];
-        $db->linh_vuc_nghien_cuu = $data['linh_vuc_nghien_cuu'];
         $db->thoi_gian_thuc_hien = $data['thoi_gian_thuc_hien'];
-        //$db->so_trang = $data['so_trang'];
-        $db->tom_tat = $data['tom_tat'];
-        $db->tu_khoa = $data['tu_khoa'];
+        $db->tags = $data['tags'];
+        $db->attachments = $arr_dinhkem;
         $db->locale = $locale;
-        $db->slug = ObjectController::ObjectId($data['id']);
+        $db->id_user = ObjectController::ObjectId($id_user);
         $db->save();
 
-        //update translatepath
+        //update translate path
         $trans_lang = $data['trans_lang'];
         $trans_id = $data['trans_id'];
         $id_path = ObjectController::ObjectId($data['id']);
@@ -128,12 +145,31 @@ class NghienCuuKhoaHocController extends Controller
         $trans->{"slug_$locale"} = ObjectController::ObjectId($data['id']);
         $trans->collection = 'nghien_cuu_khoa_hoc';
         $trans->save();
+        $logQuery = array (
+            'action' => 'Thêm Thông tin ['.$data['ten_nhiem_vu'].']',
+            'id_collection' => $data['id'],
+            'collection' => 'nghien_cuu_khoa_hoc',
+            'data' => $data
+        );
+        LogController::addLog($logQuery);
         Session::flash('msg', 'Cập nhật thành công');
         if($trans_lang) return redirect(env('APP_URL') .$trans_lang.'/admin/nghien-cuu-khoa-hoc');
         return redirect(env('APP_URL') .$locale.'/admin/nghien-cuu-khoa-hoc');
     }
 
     function delete(Request $request, $locale='', $id = '') {
+        $data = NghienCuuKhoaHoc::find($id);
+        $logQuery = array (
+            'action' => 'Xóa nghiên cứu khoa học ['.$data['ten_nhiệm vụ'].']',
+            'id_collection' => $id,
+            'collection' => 'nghien_cuu_khoa_hoc',
+            'data' => $data
+        );
+        if($data['photos']){
+            foreach($data['photos'] as $p){
+                ImageController::remove($p['aliasname']);
+            }
+        }
         NghienCuuKhoaHoc::destroy($id);
         $id_path = ObjectController::ObjectId($id);
         $trans = TranslatePath::where('id_'.$locale, '=', $id_path)->first();

@@ -1,6 +1,7 @@
 @extends('Admin.layout')
 @section('title', __('Thêm Khóa luận tốt nghiệp'))
 @section('css')
+<link href="{{ env('APP_URL') }}assets/backend/libs/select2/select2.min.css" rel="stylesheet" type="text/css" /> 
 <link href="{{ env('APP_URL') }}assets/backend/libs/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
 @endsection
 @section('body')
@@ -24,32 +25,20 @@
                         </div>
                     @endif
                     @php
-                        if(old('ma_so_sinh_vien') != null) {
-                            $ma_so_sinh_vien = old('ma_so_sinh_vien');
-                            $ten_sinh_vien = old('ten_sinh_vien');
-                            $ten_de_tai = old('ten_de_tai');
-                            $slug = old('slug');
-                            $lop= old('lop');
-                            $giang_vien_huong_dan = old('giang_vien_huong_dan');
-                            $nam = old('cap_nam');
-
-                            $date_post = old('date_post');
-                            //$so_trang = old('so_trang');
-                        } else if(isset($ds['ma_so_sinh_vien']) && $ds['ma_so_sinh_vien']) {
-                            $ma_so_sinh_vien = $ds['ma_so_sinh_vien'];
-                            $ten_sinh_vien = $ds['ten_sinh_vien'];
-                            $ten_de_tai = $ds['ten_de_tai'];
-                            $slug = $ds['slug'];
-                            $lop= $ds['lop'];
-                            $giang_vien_huong_dan = $ds['giang_vien_huong_dan'];
-                            $date_post = $ds['date_post'];
-                            $nam = $ds['nam'];
-
-                            
+                        if(old('tieu_de') != null) {
+                            $tieu_de = old('tieu_de');
+                        } else if (isset($ds['tieu_de']) && $ds['tieu_de']) {
+                            $tieu_de = $ds['tieu_de'];           
                         } else {
-                            $ma_so_sinh_vien =''; $ten_sinh_vien='';$ten_de_tai='';$slug=''; $lop=''; $giang_vien_huong_dan=''; $nam=''; $date_post = App\Http\Controllers\ObjectController::setDate();
+                           $tieu_de='';
                         }
                     @endphp
+                    <div class="row form-group">
+                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Tiêu đề') }}</label>
+                        <div class="col-md-4">
+                            <input type="text" id="tieu_de" name="tieu_de" class="form-control" placeholder="{{ __('Tiêu dề') }}" value="{{ $tieu_de }}" />
+                        </div>
+                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Thuộc loại') }}</label>
                         <div class="col-md-4">
                             <select name="tags" id="tags" class="form-control select2" required>
                                 <option value="">Chọn phân loại</option>
@@ -58,47 +47,9 @@
                                 @endforeach
                             </select>
                         </div>
-                    <div class="form-group row">
-                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Mã số sinh viên') }}</label>
-                        <div class="col-md-4">
-                            <input type="text" id="ma_so_sinh_vien" name="ma_so_sinh_vien" class="form-control" placeholder="{{ __('Mã số sinh viên') }}" value="{{ $ma_so_sinh_vien }}" />
-                        </div>
-                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Tên sinh viên') }}</label>
-                        <div class="col-md-4">
-                            <input type="text" id="ten_sinh_vien" name="ten_sinh_vien" class="form-control" placeholder="Tên sinh viên" value="{{ $ten_sinh_vien }}"  />
-                        </div>
-                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Lớp') }}</label>
-                        <div class="col-md-4">
-                            <input type="text" id="lop" name="lop" class="form-control" placeholder="{{ __('Lớp') }}" value="{{ $lop }}" />
-                        </div>
-                        
-                    </div>       
-                    <div class="row form-group">
-                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Tên đề tài') }}</label>
-                        <div class="col-md-4">
-                            <input type="text" id="ten_de_tai" name="ten_de_tai" class="form-control" placeholder="{{ __('Tên khóa luận') }}" value="{{ $ten_de_tai }}"  />
-                        </div>
-                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Slug') }}</label>
-                        <div class="col-md-4">
-                            <input type="text" id="slug" name="slug" class="form-control" placeholder="{{ __('slug') }}" value="{{ $slug }}" required />
-                        </div> 
                     </div>
-                    <div class="row form-group">
-                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Năm') }}</label>
-                        <div class="col-md-4">
-                            <input type="text" id="nam" name="nam" class="form-control" placeholder="{{ __('Năm') }}" value="{{ $nam }}" />
-                        </div>
-                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Giảng viên hướng dẫn') }}</label>
-                        <div class="col-md-4">
-                            <input type="text" id="giang_vien_huong_dan" name="giang_vien_huong_dan" class="form-control" placeholder="{{ __('Giảng viên hướng dẫn') }}" value="{{ $giang_vien_huong_dan }}" />
-                        </div>
-                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Ngày tạo') }}</label>
-                        <div class="col-md-2">
-                            <input type="text" id="date_post" name="date_post" class="form-control" placeholder="{{ __('Ngày tạo') }}" value="{{ $date_post }}" required />
-                        </div>
-                    </div>
-               </div>
-               <div class="progress m-b-20" id="progressbar">
+             
+                    <div class="progress m-b-20" id="progressbar">
                         <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
                     <div class="card-box" style="background-color:#eee;">

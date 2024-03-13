@@ -16,7 +16,21 @@ use App\Http\Controllers\FileController;
 class DaoTaoController extends Controller
 {
     const TAGS = array('dai-hoc'=>'Đại học','thac-sy'=>'Thạc sỹ');
-   
+    // protected $arr_dao_tao = array(
+    //     'dh-cong-nghe-thuc-pham' => 'Công nghệ Thực phẩm',
+    //     'dh-dam-bao-chat-luong-va-attp'=>'Đảm bảo chất lượng và ATTP',
+    //     'dh-nuoi-trong-thuy-san' => 'Nuôi trồng thủy sản',
+    //     'dh-cong-nghe-sinh-hoc' => 'Công nghệ Sinh Học',
+    //     'dh-chan-nuoi' => 'Chăn nuôi',
+    //     'dh-thu-y'=>'Thú y',
+    //     'dh-khoa-hoc-cay-trong' => 'Khoa học Cây trồng',
+    //     'dh-bao-ve-thuc-vat'=>'Bảo vệ thực vật',
+    //     'dh-phat-trien-nong-thon-va-qltntn' => 'Phát triển Nông thôn và QLTNTN',
+    //     'ts-khoa-hoc-cay-trong' => 'Khoa học Cây trồng',
+    //     'ts-bao-ve-thuc-vat'=>'Bảo vệ thực vật',
+    //     'ts-cong-nghe-sinh-hoc' => 'Công nghệ Sinh Học',
+    //     'ts-chan-nuoi' => 'Chăn nuôi',
+    // );
 
     static function get_tags(){
         return self::TAGS;

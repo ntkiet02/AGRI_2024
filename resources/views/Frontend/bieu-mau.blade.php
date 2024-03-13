@@ -21,19 +21,32 @@
     </style>
 @endsection
 @section('body')
+<div class="col-12">
+  <div class="inner-banner contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12 col-md-12">
+                <div class="content" style="width:100%;">     
+                    <h2>Biểu mẫu</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  </div>
 {{-- @include('Frontend.widget_banner') --}}
 <section class="news-wrapper padding-xs">
     <div class="container">
         <div class="row">
           <div class="col-12 col-md-12">
-            <h1 class="text-center">{{ __('Biểu mẫu') }}</h1>
+            <h1 style="color: #058B3C;" class="text-center">{{ __('Biểu mẫu') }}</h1>
             @foreach($cats as $cat)
                 @php
                     $locale = app()->getLocale();
                     $danhsach = App\Models\BieuMau::where('locale', '=', $locale)->where('id_cat', $cat)->get();
                 @endphp
             @if($danhsach && $danhsach->count() > 0)
-                <h3 style="padding:20px;"><i class="fa fa-file-text-o" aria-hidden="true"></i> {{ $cat }}</h3>
+                <h3 style="padding:20px;color: #058B3C;"><i class="fa fa-file-text-o" aria-hidden="true"></i> {{ $cat }}</h3>
                 <div class="card-box">
                     <div class="row">
                         <div class="col-md-12 bai-lien-quan">
@@ -42,12 +55,17 @@
                             @if($ds['attachments'])
                             <!-- foreach($ds['attachments'] as $key => $dk) -->
                                 <li>   
-                                    <a href="{{ env('APP_URL').app()->getLocale() }}/bieu-mau-ct/{{$ds['slug']}}">
+                                    <a style="color: #058B3C;" href="{{ env('APP_URL').app()->getLocale() }}/bieu-mau-ct/{{$ds['slug']}}">
                                         {{ $ds['ten'] }}
                                     </a>
                                 </li>
                             <!-- endforeach -->
                             @endif
+                            <li>   
+                                <a style="color: #058B3C;" href="{{$ds['mo_ta']}}">
+                                    {{ $ds['ten'] }}
+                                </a>
+                            </li>
                             @endforeach
                             </ul>
                         </div>

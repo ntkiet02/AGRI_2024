@@ -1,3 +1,4 @@
+
 @extends('Frontend.layout')
 @section('title', 'Giới thiệu - Nhân sự')
 @section('css')
@@ -7,118 +8,255 @@
     color: #27316b;
     margin-top: 10px;
     margin-bottom: 10px;
-    text-align:center;
+    text-align:center;  
   }
+  .noi-dung h3 {
+      padding: 5px;
+      text-align: center;
+      color: #4472c4;
+    }
+    span{color:black; font-style: normal;}
+    .ava{
+      display: block; width:100%;height:100%;
+    }
+
 </style>
 @endsection
 @section('body')
+<div class="col-12">
+  <div class="inner-banner contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12 col-md-12">
+                <div class="content" style="width:100%; text-align:center">
+                  @if($tamp =='ban-lanh-dao-khoa')
+                    <h2 style="color: #058B3C;">  
+                    {{ __('Lãnh Đạo Khoa') }}
+                  </h2>
+                  @elseif($tamp =='van-phong-khoa')
+                  <h2 style="color: #058B3C;">  
+                    {{ __('Văn Phòng Khoa') }}
+                  </h2>
+                  @elseif($tamp =='bo-mon-cong-nghe-thuc-pham')
+                  <h2 style="color: #058B3C;">  
+                    {{ __('Bộ môn Công nghệ Thực phẩm') }}
+                  </h2>
+                  @elseif($tamp =='bo-mon-nuoi-trong-thuy-san')
+                  <h2 style="color: #058B3C;">  
+                    {{ __('Bộ môn Nuôi trồng Thủy sản') }}
+                  </h2>
+                  @elseif($tamp =='bo-mon-cong-nghe-sinh-hoc')
+                  <h2 style="color: #058B3C;">  
+                    {{ __('Bộ môn Công nghệ Sinh Học') }}
+                  </h2>
+                  @elseif($tamp =='bo-mon-chan-nuoi-thu-y')
+                  <h2 style="color: #058B3C;">  
+                    {{ __('Bộ môn Chăn nuôi Thú y') }}
+                  </h2>
+                  @elseif($tamp =='bo-mon-khoa-hoc-cay-trong')
+                  <h2 style="color: #058B3C;">  
+                    {{ __('Bộ môn Khoa học Cây trồng') }}
+                  </h2>
+                  @elseif($tamp =='bo-mon-phat-trien-nong-thon-va-qltntn')
+                  <h2 style="color: #058B3C;">  
+                    {{ __('Bộ môn Phát triển Nông thôn và QLTNTN') }}
+                  </h2>
+                  @else
+                  <h2 style="color: #058B3C;">  
+                  {{ __('Tổng quan') }}
+                  </h2>
+                  @endif  
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>
+<section >
+  <div class="container noi-dung">
+    <h2 style="color: #058B3C; font-style:bold">{{ __('Tổng quan') }}</h2>
+    <br/>
+    {!! $noi_dung !!}
+  </div>
+</section>
 <section class="testimonial-outer">
   <div class="container noi-dung">
-    <h2>{{ __('Nhân sự') }}</h2>
-    <hr />
-    @if($danhsach)
-    <ul class="row testimonials" style="position: relative;">
-      @foreach($danhsach as $ds)
+    <h2 style="color: #058B3C; font-style:bold">{{ __('Nhân sự') }}</h2>
+    <br />
+      @if($danhsach_lanh_dao)
+        @foreach($danhsach_lanh_dao as $ds)
+          <ul class="row testimonials" style="position: relative; height: 3876px;">
+              @if($ds['thu_tu']>=1 && $ds['thu_tu']<=2)
+                @php
+                  $image = isset($ds['photos'][0]['aliasname'])  ? $ds['photos'][0]['aliasname'] : '';
+                @endphp
+                <li class="col-xs-12 col-sm-13 col-md-12 grid-item" >
+                    <div class="quotblock">
+                      <div style=" width: 100px;height: 100px;border-radius: 50%;overflow: hidden; margin-bottom: 10px;text-align:center;margin-left:auto;margin-right:auto;">
+                        <div style="height: 100%;object-fit: cover;width:100%; ">
+                          @if($image)
+                            <img src="{{ env('APP_URL') }}storage/images/origin/{{ $image }}"  class="ava" title="{{ $ds['ho_ten'] }}">     
+                          @endif
+                        </div>
+                      </div>
+                        {{ $ds['title'] }}       
+                        <h3>{{ $ds['ho_ten'] }}</h3></a>
+                        @if($ds['chuc_vu'])
+                          <span class="desig">{{ __('Chức vụ') }}: {{ $ds['chuc_vu'] }}</span>  
+                          @else
+                          <span class="desig" >{{ __('Chức vụ') }}: Giảng viên</span>
+                        @endif
+                        @if($ds['hoc_vi'])
+                          <span class="desig">{{ __('Học vị') }}: {{ $ds['hoc_vi'] }}</span>
+                          @else
+                          <span class="desig">{{ __('Học vị') }}:</span>
+                        @endif
+                        @if($ds['chuyen_nganh'])
+                          <span class="desig">{{ __('Chuyên ngành') }}: {{ $ds['chuyen_nganh'] }}</span>
+                          @else
+                          <span class="desig">{{ __('Chuyên ngành') }}: </span>
+                        @endif
+                        @if($ds['email'])
+                          <span class="desig">{{ __('Email') }}: <a style="color: black;" href="mailto:{{ $ds['email'] }}">{{ $ds['email'] }}</a></span>
+                          @else
+                          <span class="desig">{{ __('Email') }}: </span>
+                        @endif  
+                        @if($ds['dien_thoai'])
+                          <span class="desig">{{ __('Điện thoại') }}: <a style="color: black;"  href="tel:{{ $ds['dien_thoai'] }}">{{ $ds['dien_thoai'] }}</a></span>
+                          @else
+                          <span class="desig">{{ __('Điện thoại') }}: </span>        
+                          <span class="desig">&nbsp;</span>
+                        @endif
+                        <a style="color:black;"  href="{{ env('APP_URL').app()->getLocale() }}/nhan-su/xem-truc-tuyen/{{$ds['_id']}}/0" data-toggle="modal" data-target="#xemdinhkem" class="view_online">{{ __('Lý lịch khoa học') }}</a></span>
+                    </div>
+                </li>
+              @endif 
+          </ul>
+        @endforeach
+      @endif
+      <ul class="row testimonials" style="position: relative; height: 3876px;">
+        @foreach($danhsach_lanh_dao as $ds)
+          @if($ds['thu_tu']>2 && $ds['thu_tu']<=5)
+          @php
+            $image = isset($ds['photos'][0]['aliasname'])  ? $ds['photos'][0]['aliasname'] : '';
+          @endphp
+            <li class="col-xs-6 col-sm-6 col-md-6 grid-item">
+              <div class="quotblock">
+                <div style=" width: 100px;height: 100px;border-radius: 50%;overflow: hidden; margin-bottom: 10px;text-align:center;margin-left:auto;margin-right:auto;">
+                  <div style="height: 100%;object-fit: cover;width:100%; ">
+                    @if($image)
+                      <img src="{{ env('APP_URL') }}storage/images/origin/{{ $image }}"  class="ava" title="{{ $ds['ho_ten'] }}">     
+                    @endif
+                  </div>
+                </div>
+                  {{ $ds['title'] }}       
+                  <h3>{{ $ds['ho_ten'] }}</h3></a>
+                  @if($ds['chuc_vu'])
+                    <span class="desig">{{ __('Chức vụ') }}: {{ $ds['chuc_vu'] }}</span>  
+                    @else
+                    <span class="desig" >{{ __('Chức vụ') }}: Giảng viên</span>
+                  @endif
+                  @if($ds['hoc_vi'])
+                    <span class="desig">{{ __('Học vị') }}: {{ $ds['hoc_vi'] }}</span>
+                    @else
+                    <span class="desig">{{ __('Học vị') }}: </span>
+                  @endif
+                  @if($ds['chuyen_nganh'])
+                    <span class="desig">{{ __('Chuyên ngành') }}: {{ $ds['chuyen_nganh'] }}</span>
+                    @else
+                    <span class="desig">{{ __('Chuyên ngành') }}: </span>
+                  @endif
+                  @if($ds['email'])
+                    <span class="desig">{{ __('Email') }}: <a style="color: black;" href="mailto:{{ $ds['email'] }}">{{ $ds['email'] }}</a></span>
+                    @else
+                    <span class="desig">{{ __('Email') }}: </span>
+                  @endif  
+                  @if($ds['dien_thoai'])
+                    <span class="desig">{{ __('Điện thoại') }}: <a style="color: black;"  href="tel:{{ $ds['dien_thoai'] }}">{{ $ds['dien_thoai'] }}</a></span>
+                    @else
+                    <span class="desig">{{ __('Điện thoại') }}: </span>
+                      
+                    <span class="desig">&nbsp;</span>
+                  @endif
+                  <a style="color:black;"  href="{{ env('APP_URL').app()->getLocale() }}/nhan-su/xem-truc-tuyen/{{$ds['_id']}}/0" data-toggle="modal" data-target="#xemdinhkem" class="view_online">{{ __('Lý lịch khoa học') }}</a></span> 
+              </div>
+            </li>
+          @endif
+        @endforeach
+      </ul>    
+    @if($danhsach_giang_vien)
+    <br/>
+    <ul class="row testimonials" style="position: relative;height:5006px;">
+      @foreach($danhsach_giang_vien as $ds)
       @php
         $image = isset($ds['photos'][0]['aliasname'])  ? $ds['photos'][0]['aliasname'] : '';
       @endphp
       <li class="col-xs-6 col-sm-6 col-md-4 grid-item">
-        <div class="quotblock">
+        <div >
+          <div style=" width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-bottom: 10px;
+        text-align:center;
+        margin-left:auto;
+        margin-right:auto;
+        ">
+        <div style="height: 100%;object-fit: cover;width:100%; ">
           @if($image)
-            <img src="{{ env('APP_URL') }}storage/images/origin/{{ $image }}" class="img-responsive" title="{{ $ds['ho_ten'] }}">
-          @endif
-          <h3>{{ $ds['ho_ten'] }}</h3>
+            <img src="{{ env('APP_URL') }}storage/images/origin/{{ $image }}" class="ava" title="{{ $ds['ho_ten'] }}">     
+          @endif</div></div>
+          {{ $ds['title'] }}       
+          <h3>{{ $ds['ho_ten'] }}</h3></a>
           @if($ds['chuc_vu'])
             <span class="desig">{{ __('Chức vụ') }}: {{ $ds['chuc_vu'] }}</span>
+            @else
+            <span class="desig">{{ __('Chức vụ') }}: Giảng viên</span>
+          @endif
+          @if($ds['hoc_vi'])
+            <span class="desig">{{ __('Học vị') }}: {{ $ds['hoc_vi'] }}</span>
+            @else
+            <span class="desig">{{ __('Học vị') }}: </span>
+          @endif
+          @if($ds['chuyen_nganh'])
+            <span class="desig">{{ __('Chuyên ngành') }}: {{ $ds['chuyen_nganh'] }}</span>
+            @else
+            <span class="desig">{{ __('Chuyên ngành') }}: </span>
           @endif
           @if($ds['email'])
-            <span class="desig">{{ __('Email') }}: <a href="mailto:{{ $ds['email'] }}">{{ $ds['email'] }}</a></span>
-          @endif
+            <span class="desig">{{ __('Email') }}: <a style="color:black;" href="mailto:{{ $ds['email'] }}">{{ $ds['email'] }}</a></span>
+            @else
+            <span class="desig">{{ __('Email') }}: </span>
+          @endif  
            @if($ds['dien_thoai'])
-            <span class="desig">{{ __('Điện thoại') }}: <a href="tel:{{ $ds['dien_thoai'] }}">{{ $ds['dien_thoai'] }}</a></span>
-          @else
+            <span class="desig">{{ __('Điện thoại') }}: <a style="color:black;" href="tel:{{ $ds['dien_thoai'] }}">{{ $ds['dien_thoai'] }}</a></span>
+            @else
+            <span class="desig">{{ __('Điện thoại') }}: </span> 
             <span class="desig">&nbsp;</span>
           @endif
+          <a style="color:black;"  href="{{ env('APP_URL').app()->getLocale() }}/nhan-su/xem-truc-tuyen/{{$ds['_id']}}/0" data-toggle="modal" data-target="#xemdinhkem" class="view_online">{{ __('Lý lịch khoa học') }}</a></span>
         </div>
-      </li>
+      </li>   
       @endforeach
     </ul>
     @endif
-    <br />
-    {{--
-    <h3>Nghiên cứu viên</h3>
-    <hr />
-    <ul class="row testimonials" style="position: relative; height: 3876px;">
-      <li class="col-xs-6 col-sm-4 grid-item">
-        <div class="quotblock"><img src="{{ env('APP_URL') }}assets/frontend/images/nhansu/ddduong.jpg" class="img-responsive" title="Đàm Đức Dương">
-          <h3>Ths. ĐÀM ĐỨC DƯƠNG</h3>
-          <span class="desig">Chức vụ: Nghiên cứu Viên</span>
-          <span class="desig">Di động: <a href="tel:0943 158 240">0943 158 240</a></span>
-          <span class="desig">Email: <a href="mailto:ddduong@agu.edu.vn">ddduong@agu.edu.vn</a></span>
-          <span class="desig"><a href="{{ env('APP_URL') }}assets/frontend/pdf/ly-lich-khoa-hoc/dam-duc-duong.pdf" class="ly-lich-khoa-hoc">Lý lịch khoa học</a></span>
-        </div>
-      </li>
-      <li class="col-xs-6 col-sm-4 grid-item">
-        <div class="quotblock"><img src="{{ env('APP_URL') }}assets/frontend/images/nhansu/qthong.jpg" class="img-responsive" title="Quách Thị Hồng">
-          <h3>Ths. QUÁCH THỊ HỒNG</h3>
-          <span class="desig">Chức vụ: Nghiên cứu viên</span>
-          <span class="desig">Di động: <a href="tel:0918 607 123">0918 607 123</a></span>
-          <span class="desig">Email: <a href="mailto:qthong@agu.edu.vn">qthong@agu.edu.vn</a></span>
-          <span class="desig"><a href="{{ env('APP_URL') }}assets/frontend/pdf/ly-lich-khoa-hoc/quach-thi-hong.pdf" class="ly-lich-khoa-hoc">Lý lịch khoa học</a></span>
-        </div>
-      </li>
-      <li class="col-xs-6 col-sm-4 grid-item">
-        <div class="quotblock"><img src="{{ env('APP_URL') }}assets/frontend/images/nhansu/mtvan.jpg" class="img-responsive" title="Mai Thị Vân">
-          <h3>Ths. MAI THỊ VÂN</h3>
-          <span class="desig">Chức vụ: Nghiên cứu viên</span>
-          <span class="desig">Di động: <a href="tel:0988 975 788">0988 975 788</a></span>
-          <span class="desig">Email: <a href="mailto:mtvan@agu.edu.vn">mtvan@agu.edu.vn</a></span>
-          <span class="desig"><a href="{{ env('APP_URL') }}assets/frontend/pdf/ly-lich-khoa-hoc/mai-thi-van.pdf" class="ly-lich-khoa-hoc">Lý lịch khoa học</a></span>
-        </div>
-      </li>
-      <li class="col-xs-6 col-sm-4 grid-item">
-        <div class="quotblock"><img src="{{ env('APP_URL') }}assets/frontend/images/nhansu/lxgioi.jpg" class="img-responsive" title="Lê Xuân Giới">
-          <h3>CN. LÊ XUÂN GIỚI</h3>
-          <span class="desig">Chức vụ: Nghiên cứu viên</span>
-          <span class="desig">Di động: <a href="tel:0989 584 858">0989 584 858</a></span>
-          <span class="desig">Email: <a href="mailto:lxgioi@agu.edu.vn">lxgioi@agu.edu.vn</a></span>
-          <span class="desig"><a href="#" class="ly-lich-khoa-hoc"></a></span>
-        </div>
-      </li>
-      <li class="col-xs-6 col-sm-4 grid-item">
-        <div class="quotblock"><img src="{{ env('APP_URL') }}assets/frontend/images/nhansu/lthhanh.jpg" class="img-responsive" title="Lê Thị Hồng Hạnh">
-          <h3>Ths. LÊ THỊ HỒNG HẠNH</h3>
-          <span class="desig">Chức vụ: Nghiên cứu viên</span>
-          <span class="desig">Di động: <a href="tel:0974 828 916">0974 828 916</a></span>
-          <span class="desig">Email: <a href="mailto:lthhanh@agu.edu.vn">lthhanh@agu.edu.vn</a></span>
-          <span class="desig"><a href="{{ env('APP_URL') }}assets/frontend/pdf/ly-lich-khoa-hoc/le-thi-hong-hanh.pdf" class="ly-lich-khoa-hoc">Lý lịch khoa học</a></span>
-        </div>
-      </li>
-      <li class="col-xs-6 col-sm-4 grid-item">
-        <div class="quotblock"><img src="{{ env('APP_URL') }}assets/frontend/images/nhansu/ntnha.jpg" class="img-responsive" title="Nguyễn Thái Ngọc Hà">
-          <h3>Ths. NGUYỄN THÁI NGỌC HÀ</h3>
-          <span class="desig">Chức vụ: Nghiên cứu viên</span>
-          <span class="desig">Di động: <a href="tel:0973 023 705">0973 023 705</a></span>
-          <span class="desig">Email: <a href="mailto:ntnha@agu.edu.vn">ntnha@agu.edu.vn</a></span>
-          <span class="desig"><a href="{{ env('APP_URL') }}assets/frontend/pdf/ly-lich-khoa-hoc/nguyen-thai-ngoc-ha.pdf" class="ly-lich-khoa-hoc">Lý lịch khoa học</a></span>
-        </div>
-      </li>
-    </ul>
-    <br />
-    <h3>Kế toán</h3>
-    <hr />
-    <ul class="row testimonials" style="position: relative; height: 3876px;">
-      <li class="col-xs-6 col-sm-4 grid-item">
-        <div class="quotblock"><img src="{{ env('APP_URL') }}assets/frontend/images/nhansu/dttam.jpg" class="img-responsive" title="Đinh Thị Tâm">
-          <h3>CN. ĐINH THỊ TÂM</h3>
-          <span class="desig">Chức vụ: Kế toán</span>
-          <span class="desig">Email: <a href="mailto:dinhthitam@agu.edu.vn">dinhthitam@agu.edu.vn</a></span>
-        </div>
-      </li>
-    </ul> --}}
-  </div>
+    <br /> 
 </section>
-
+<div id="xemdinhkem" class="modal fade bs-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" style="width:95%;">
+        <div class="modal-content" style="height:800px !important;">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myExtraLargeModalLabel">{{ __('Thông tin chi tiết') }}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="chitiet" class="modal-body" style="height:700px; overflow:hidden;">
+                {{ __('Xin chào') }}
+            </div>
+        </div><!-- /.modal-content -->
+    </div>
+</div>
 @endsection
 @section('js')
 <script type="text/javascript" src="{{ env('APP_URL') }}assets/frontend/libs/masonry/js/masonry.min.js"></script>

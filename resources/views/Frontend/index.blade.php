@@ -1,53 +1,46 @@
 @extends('Frontend.layout')
 @section('title', 'Trang chủ')
 @section('body')
+
 <!-- Start Banner Carousel -->
 @include('Frontend.widget_banner')
 <section class="news-wrapper padding-xs">
   <div class="container">
     <div class="row">
       <div class="col-8 col-md-8">
-        <h3 style="padding-bottom:20px;text-transform:uppercase;color:#27316b;"><i class="fa fa-newspaper-o"></i> {{ __('Tin tức') }}</h3>
+        <h3 style="padding-bottom:20px;text-transform:uppercase;color: #058B3C;"><i class="fa fa-newspaper-o"></i> {{ __('Tin tức') }}</h3>
       </div>
     </div>
-    @if($danhsach_tin_tuc_su_kien)
+    @if($danhsach_category)
         <ul class="row news-listing" style="position: relative; height: 5035.97px;">
-          @foreach($danhsach_tin_tuc_su_kien as $ds)
+          @foreach($danhsach_category as $ds)
             <li class="col-xs-6 col-sm-4 grid-item" style="position: absolute; left: 0%; top: 0px;">
               <div class="inner">
                 @if(isset($ds['tin_moi']) && $ds['tin_moi'])
                   <img src="{{ env('APP_URL') }}assets/frontend/images/news.gif" alt="{{ $ds['ten'] }}" title="{{ $ds['ten'] }}" class="news_icon">
                 @endif
-                  @if(isset($ds['tags']) && $ds['tags'])
-                    <span class="tags">{{ $ds['tags'] }}</span>
-                  @else
-                    <span class="tags">{{ __('Tin tổng hợp') }}</span>
+                  @if(isset($ds['id_cat']) && $ds['id_cat'])
+                    <span class="tags">{{ implode(" / ", $ds['id_cat']) }}</span>
                   @endif
                 @if($ds['photos'] && isset($ds['photos'][0]['aliasname']) && $ds['photos'][0]['aliasname'])
                     <img src="{{ env('APP_URL') }}storage/images/thumb_360x200/{{ $ds['photos'][0]['aliasname'] }}" class="img-responsive" alt="" style="width:360px;height:200px;">
                 @else
                     <img src="{{ env('APP_URL') }}assets/frontend/images/default_thumb.jpg" class="img-responsive" alt="">
                 @endif
-                  <div class="cnt-block">
-                    {{-- <ul class="post-detail">
-                      <li><span class="icon-date-icon ico"></span> <span class="bold">{{ App\Http\Controllers\ObjectController::getDate($ds['date_post'], "d/m/Y H:i") }}</li>
-                    </ul> --}}
+                <div class="cnt-block">
                     <ul class="post-detail">
-                      <li>
-                        <span><i class="fa fa-calendar-o"></i></span> 
-                        <span>{{$ds->date_post}}</span>
-                      </li>
+                      <li><span class="icon-date-icon ico"></span> <span class="bold">{{ App\Http\Controllers\ObjectController::getDate($ds['date_post'], "d/m/Y H:i") }}</li>
                     </ul>
-                    <h2 style="height:130px;overflow:hidden;"><a href="{{ env('APP_URL').app()->getLocale() }}/tin-tuc-su-kien/{{ $ds['slug'] }}" title="{{ $ds['ten'] }}">{{ Str::limit($ds['ten'],100) }}</a></h2>
+                    <h2 style="height:130px;overflow:hidden;"><a href="{{ env('APP_URL').app()->getLocale() }}/category/{{ $ds['slug'] }}/ct" title="{{ $ds['ten'] }}">{{ Str::limit($ds['ten'],100) }}</a></h2>
                     <p  style="height:100px;overflow:hidden;">{{ $ds['mo_ta'] }}</p>
                     <br />
-                    <a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/tin-tuc-su-kien/{{ $ds['slug'] }}" class="read-more"><span class="icon-play-icon"></span>{{ __('Xem thêm') }}</a>
+                    <a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/category/{{ $ds['slug'] }}/ct" class="read-more"><span class="icon-play-icon"></span>{{ __('Xem thêm') }}</a>
                 </div>
             </div>
           </li>
           @endforeach
         </ul>
-        {{ $danhsach_tin_tuc_su_kien->withPath(env('APP_URL').app()->getLocale() . '/tin-tuc-su-kien') }}
+        {{ $danhsach_category->withPath(env('APP_URL').app()->getLocale() . '/tin-tuc-su-kien') }}
     @endif
   </div>
 </section>
@@ -56,20 +49,25 @@
   <div class="container">
     <div class="row">
       <div class="col-8 col-md-8">
-        <h3 style="padding-bottom:20px;text-transform:uppercase;color:#27316b;"><i class="fa fa-newspaper-o"></i> {{ __('Ngành đào tạo') }}</h3>
+        <h3 style="padding-bottom:20px;text-transform:uppercase;color: #058B3C;"><i class="fa fa-newspaper-o"></i> {{ __('Ngành đào tạo') }}</h3>
       </div>
     </div>     
-        @if($danhsach_dao_tao)
+        @if($danhsach_dao_tao)  
         <ul class="row">
         @foreach($danhsach_dao_tao as $ds)
         <li class="col-sm-4" style="margin-top: 25px;">
           <div class="overly">
-            <div class="cnt-block">
-              <a style="color:aliceblue; font-style:bold; font-size:25px" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/dao-tao/{{ $ds['slug'] }}"> {{$ds->ten}} </a>
-              <p style="font-size: 20px;">{{$ds->tags}}</p>
+            <div class="cnt-block ">
+              <a style="color:#06b429; font-style:bold; font-size:18px" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/dao-tao/{{ $ds['slug'] }}"> {{$ds->ten}} </a>
+              <p style="font-size: 16px;">{{$ds->tags}}</p>
             </div>
           </div>
-          <figure><img src="{{ env('APP_URL') }}storage/images/thumb_360x200/{{ $ds['photos'][0]['aliasname'] }}" class="img-responsive" alt="" style="width:360px;height:200px;"></figure>
+          @if($ds['photos'])
+          <figure><img src="{{ env('APP_URL') }}storage/images/thumb_360x200/{{ $ds['photos'][0]['aliasname']}}" class="img-responsive" alt="" style="width:360px;height:200px;"></figure>
+          @else
+          <figure><img src="{{ env('APP_URL') }}assets/frontend/images/default_thumb.jpg" class="img-responsive" alt="" style="width:360px;height:200px;"></figure>
+          @endif
+
         </li>
         @endforeach
       </ul>
@@ -79,32 +77,24 @@
 <!-- section   hình ảnh hoạt động -->
 <section class="campus-tour padding-lg">
   <div class="container">
-    <h2>Hình ảnh hoạt động</h2>
+    <h2 style="color: #058B3C;">Hình ảnh hoạt động</h2>
   </div>
-  <ul class="gallery clearfix">
-    <li>
-      <div class="overlay">
-        <h3>Lorem ipsum</h3>
-        <p>Lorem ipsum</p>
-        <a class="galleryItem" href="images/tour-lg1.jpg"><span class="icon-enlarge-icon"></span></a> <a href="gallery.html" class="more"><span class="icon-gallery-more-arrow"></span></a> </div>
-      <figure><img src="{{ env('APP_URL') }}assets/frontend/images/default_thumb.jpg" class="img-responsive" alt=""></figure>
-    </li>
-    <li>
-      <div class="overlay">
-        <h3>Lorem ipsum</h3>
-        <p>Lorem ipsum</p>
-        <a class="galleryItem" href="images/tour-lg2.jpg"><span class="icon-enlarge-icon"></span></a> <a href="gallery.html" class="more"><span class="icon-gallery-more-arrow"></span></a> </div>
-      <figure><img src="{{ env('APP_URL') }}assets/frontend/images/default_thumb.jpg" class="img-responsive" alt=""></figure>
-    </li>
-    <li>
-      <div class="overlay">
-        <h3>Lorem ipsum</h3>
-        <p>Lorem ipsum</p>
-        <a class="galleryItem" href="images/tour-lg3.jpg"><span class="icon-enlarge-icon"></span></a> <a href="gallery.html" class="more"><span class="icon-gallery-more-arrow"></span></a> </div>
-      <figure><img src="{{ env('APP_URL') }}assets/frontend/images/default_thumb.jpg" class="img-responsive" alt=""></figure>
-    </li>
+  <ul style=" display:block; margin-left: 5%;margin-right:5%;" class="gallery clearfix">
+    @foreach($danhsach_hinh_anh_hoat_dong as $b)
+      @if($b['photos'])
+        @foreach($b['photos'] as $p)
+        <li>
+          <div class="overlay">
+            <a class="galleryItem" href="{{ env('APP_URL') }}storage/images/origin/{{ $p['aliasname'] }}"><span class="icon-enlarge-icon"></span></a> 
+          </div>
+          <figure><img style="height: 250px;width:300px; margin-left:13px;margin-top: 13px; margin-right:13px;" src="{{ env('APP_URL') }}storage/images/origin/{{ $p['aliasname'] }}" alt="{{ $b['title'] }}" title="{{ $b['title'] }}"" class="img-responsive" alt=""></figure>
+        </li>
+        @endforeach
+      @endif
+    @endforeach
   </ul>
 </section>
+
 <!-- End Campus Tour Section -->
 {{--
 <section class="about inner padding-lg">

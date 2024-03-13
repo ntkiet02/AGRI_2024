@@ -20,39 +20,61 @@
     </style>
 @endsection
 @section('body')
-{{-- @include('Frontend.widget_banner') --}}
-<section class="news-wrapper padding-xs">
+<div class="col-12">
+  <div class="inner-banner contact">
     <div class="container">
         <div class="row">
-          <div class="col-12 col-md-12">
-            <h3 style="padding-bottom:20px;"><i class="fa fa-envira"></i> {{ __('Khóa luận tốt nghiệp') }}</h3>
-            <div class="card-box">                         
-                <div class="row">
-                    <table class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-                        <thead> 
-                            <tr>
-                                <th width="45%">{{ __('Tên đề tài') }}:</th>
-                                <th width="45%">{{ __('Tên sinh viên') }}:</th>
-                                <th width="10%"> {{ __('Năm') }}:</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($danhsach as $ds)
-                            <tr>
-                                <th><a href="#">{{ $ds['ten_de_tai']}}</a></th>
-                                <th>{{ $ds['ten_sinh_vien']}}</th>
-                                <th>{{ $ds['nam']}}</th>
-                            </tr>@endforeach
-                        </tbody>
-                    </table>
+            <div class="col-sm-12 col-lg-12 col-md-12">
+                <div class="content" style="width:100%;">     
+                    <h2 style="color: #058B3C;">Khoá luận</h2>
                 </div>
             </div>
-            
-          </div>
         </div>
-        <br />
-        {{ $danhsach->withPath(env('APP_URL').app()->getLocale().'/khoa-luan-tot-nghiep') }}
+      </div>
+  </div>
+</div>
+<section class="about">
+  <div class="container noi-dung"> 
+    @foreach($danhsach as $ds)
+      @if($ds['attachments'])
+      <br />
+      <div class="row">
+        <div class="col-md-12">
+          <h4><i class="fa fa-file-code-o" aria-hidden="true"></i> {{$ds['tieu_de']}}</h4> <br />
+
+              @foreach($ds['attachments'] as $key => $dk)
+                  <a href="{{ env('APP_URL').app()->getLocale() }}/khoa-luan-tot-nghiep/xem-truc-tuyen/{{ $ds['_id'] }}/{{ $key }}" data-toggle="modal" data-target="#xemdinhkem" class="view_online">
+                    {{ $dk['title'] }}
+                  </a>     
+                  <a href="{{ env('APP_URL').app()->getLocale() }}/khoa-luan-tot-nghiep/tai-ve/{{ $ds['_id'] }}/{{ $key }}">
+                    <img src="{{ env('APP_URL') }}assets/frontend/images/download.svg" height="20" />
+                  </a>
+                  <embed src=" {{env('APP_URL')}}storage/files/{{$ds['attachments'][$key]['aliasname']}}" style="width:100%;min-height:80vh;height:100% !important;" />
+              @endforeach
+        </div>
+      </div>
+      @endif 
+      <div style="width: 100%; height: 20px;color:black"> 
+        <br/>
+      </div>  
+      @endforeach
+  </div>
+</section>
+<div id="xemdinhkem" class="modal fade bs-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl" style="width:95%;">
+        <div class="modal-content" style="height:800px !important;">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myExtraLargeModalLabel">{{ __('Thông tin chi tiết') }}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div id="chitiet" class="modal-body" style="height:700px; overflow:hidden;">
+                {{ __('Xin chào') }}
+            </div>
+        </div><!-- /.modal-content -->
     </div>
+</div>
 </section>
 @endsection
 @section('js')

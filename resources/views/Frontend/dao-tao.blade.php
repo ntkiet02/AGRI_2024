@@ -2,11 +2,23 @@
 @extends('Frontend.layout')
 @section('title', __('Đào tạo'))
 @section('body')
+<div class="col-12">
+  <div class="inner-banner contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12 col-md-12">
+                <div class="content" style="width:100%;">     
+                    <h2 style="color: #058B3C;">Đào tạo</h2>
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
 <section class="news-wrapper padding-xs how-study padding-lg">
   <div class="container">
     <div class="row">
       <div class="col-8 col-md-8">
-        <h3 style="padding-bottom:20px;text-transform:uppercase;color:#27316b;"><i class="fa fa-newspaper-o"></i> {{ __('Đào tạo') }}</h3>
+        <h3 style="padding-bottom:20px;text-transform:uppercase;color: #058B3C;"><i class="fa fa-newspaper-o"></i> {{ __('Đào tạo') }}</h3>
       </div>
     </div>     
         @if($danhsach)

@@ -10,6 +10,19 @@
   </style>
 @endsection
 @section('body')
+<div class="col-12">
+  <div class="inner-banner contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12 col-md-12">
+                <div class="content" style="width:100%; text-align:center">     
+                    <h2 style="color: #058B3C;">Khoa Nông nghiệp tài nguyên thiên nhiên</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  </div>
 <section class="about inner padding-lg">
   <div class="container noi-dung">
     {!! $noi_dung !!}

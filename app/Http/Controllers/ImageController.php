@@ -31,7 +31,7 @@ class ImageController extends Controller
                   <a href="'.env('APP_URL').'storage/images/origin/'.$filename.'" class="image-popup">
                     <div class="portfolio-masonry-box">
                       <div class="portfolio-masonry-img">
-                        <img src="'.env('APP_URL').'/app/pubic/images/thumb_360x200/'.$filename.'" class="thumb-img img-fluid" alt="'.$filename.'">
+                        <img src="'.env('APP_URL').'storage/images/thumb_360x200/'.$filename.'" class="thumb-img img-fluid" alt="'.$filename.'">
                       </div>
                       <div class="portfolio-masonry-detail">
                         <p>'.$realname.'</p>

@@ -21,14 +21,19 @@ use App\Http\Controllers\ObjectControler;
 use App\Models\KhoaLuanTotNghiep;
 use App\Models\DaoTao;
 use App\Models\BieuMau;
+use App\Models\Category;
+use App\Models\HinhAnhHoatDong;
 use Illuminate\Support\Facades\Config;
+
 class FrontendController extends Controller
 {
     //
     function index(Request $request, $locale = '') {
         $danhsach_tin_tuc_su_kien = TinTucSuKien::where('locale', '=', $locale)->orderBy('date_post', 'desc')->paginate(9);
-        $danhsach_dao_tao = DaoTao::where('locale', '=', $locale)->orderBy('date_post', 'desc')->paginate(6);
-        return view('Frontend.index')->with(compact('danhsach_dao_tao','danhsach_tin_tuc_su_kien'));
+        $danhsach_dao_tao = DaoTao::where('locale', '=', $locale)->where('tags','=','Đại học')->orderBy('date_post', 'desc')->paginate(30);
+        $danhsach_hinh_anh_hoat_dong=HinhAnhHoatDong::where('locale', '=', $locale)->orderBy('date_post', 'desc')->paginate(10);        
+        $danhsach_category=Category::where('locale', '=', $locale)->orderBy('date_post', 'desc')->paginate(9);
+        return view('Frontend.index')->with(compact('danhsach_dao_tao','danhsach_tin_tuc_su_kien','danhsach_hinh_anh_hoat_dong','danhsach_category'));
     }
     function nhiem_vu_khoa_hoc_cong_nghe(Request $request, $locale = '') {
         $danhsach = NghienCuuKhoaHoc::where('locale', '=', $locale)->orderBy('updated_at', 'desc')->paginate(20);
@@ -46,6 +51,44 @@ class FrontendController extends Controller
     function khoa_luan_tot_nghiep(Request $request, $locale = '') {
         $danhsach = KhoaLuanTotNghiep::where('locale', '=', $locale)->orderBy('updated_at', 'desc')->paginate(7);
         return view('Frontend.khoa-luan-tot-nghiep')->with(compact('danhsach'));
+    }
+    function khoa_luan_tot_nghiep_tags(Request $request, $locale = '', $key = 0) {
+        $tags = KhoaLuanTotNghiepController::get_tags();
+        $danhsach = KhoaLuanTotNghiep::where('locale', '=', $locale)->where('tags','=',$tags[$key])->orderBy('date_post', 'desc')->paginate(9);
+        return view('Frontend.khoa-luan-tot-nghiep')->with(compact('danhsach'));
+    }
+    function khoa_luan_tot_nghiep_xtt(Request $request, $locale = '', $id = '', $key = 0) {
+        $ds = KhoaLuanTotNghiep::find($id);
+        $key = intval($key);
+        echo '<embed src="'.env('APP_URL').'storage/files/'.$ds['attachments'][$key]['aliasname'].'" style="width:100%;min-height:80vh;height:100% !important;" />';
+    }
+    function khoa_luan_tot_nghiep_tv(Request $request, $locale='', $id = '', $key = 0) {
+        $ds = KhoaLuanTotNghiep::find($id);
+        $key = intval($key);
+        $file_path = 'public/files/' . $ds['attachments'][$key]['aliasname'];
+        $name  = Str::slug($ds['attachments'][$key]['title'], '-') . '.' . $ds['attachments'][$key]['type'];
+        return Storage::download($file_path, $name);
+    }
+    function nghien_cuu_khoa_hoc(Request $request, $locale = '') {
+        $danhsach = NghienCuuKhoaHoc::where('locale', '=', $locale)->orderBy('updated_at', 'desc')->paginate(9);
+        return view('Frontend.nghien-cuu-khoa-hoc')->with(compact('danhsach'));
+    }
+    function nghien_cuu_khoa_hoc_cats(Request $request, $locale = '', $key = 0) {
+        $cats = NghienCuuKhoaHocController::get_tags();
+        $danhsach = NghienCuuKhoaHoc::where('locale', '=', $locale)->where('tags','=',$cats[$key])->orderBy('date_post', 'desc')->paginate(9);
+        return view('Frontend.nghien-cuu-khoa-hoc')->with(compact('danhsach'));
+    }
+    // function nghien_cuu_khoa_hoc_xtt(Request $request, $locale = '', $id = '', $key = 0) {
+    //     $ds = NghienCuuKhoaHoc::find($id);
+    //     $key = intval($key);
+    //     echo '<embed src="'.env('APP_URL').'storage/files/'.$ds['attachments'][$key]['aliasname'].'" style="width:100%;min-height:80vh;height:100% !important;" />';
+    // }
+    function nghien_cuu_khoa_hoc_tv(Request $request, $locale='', $id = '', $key = 0) {
+        $ds = NghienCuuKhoaHoc::find($id);
+        $key = intval($key);
+        $file_path = 'public/files/' . $ds['attachments'][$key]['aliasname'];
+        $name  = Str::slug($ds['attachments'][$key]['title'], '-') . '.' . $ds['attachments'][$key]['type'];
+        return Storage::download($file_path, $name);
     }
     function du_an_ct(Request $request, $locale = '', $slug='') {
         $ds = DuAn::where('locale', '=', $locale)->where('slug','=',ObjectController::ObjectId($slug))->first();
@@ -66,6 +109,19 @@ class FrontendController extends Controller
         $danhsach = DaoTao::where('locale', '=', $locale)->where('tags','=',$tags[$key])->orderBy('date_post', 'desc')->paginate(9);
         return view('Frontend.dao-tao')->with(compact('danhsach'));
     }
+    function dao_tao_xtt(Request $request, $locale = '', $id = '', $key = 0) {
+        $ds = DaoTao::find($id);
+        $key = intval($key);
+        echo '<embed src="'.env('APP_URL').'storage/files/'.$ds['attachments'][$key]['aliasname'].'" style="width:100%;min-height:80vh;height:100% !important;" />';
+    }
+    function dao_tao_tv(Request $request, $locale='', $id = '', $key = 0) {
+        $ds = DaoTao::find($id);
+        $key = intval($key);
+
+        $file_path = 'public/files/' . $ds['attachments'][$key]['aliasname'];
+        $name  = Str::slug($ds['attachments'][$key]['title'], '-') . '.' . $ds['attachments'][$key]['type'];
+        return Storage::download($file_path, $name);
+    }
     function tin_tuc_su_kien(Request $request, $locale = '') {
         $danhsach = TinTucSuKien::where('locale', '=', $locale)->orderBy('date_post', 'desc')->paginate(6);
         return view('Frontend.tin-tuc-su-kien')->with(compact('danhsach'));
@@ -73,7 +129,7 @@ class FrontendController extends Controller
     function tin_tuc_su_kien_tag(Request $request, $locale = '', $key = 0) {
         $tags = TinTucSuKienController::get_tags();
         $danhsach = TinTucSuKien::where('locale', '=', $locale)->where('tags','=',$tags[$key])->orderBy('date_post', 'desc')->paginate(9);
-        return view('Frontend.tin-tuc-su-kien')->with(compact('danhsach'));
+        return view('Frontend.tin-tuc-su-kien')->with(compact('danhsach','tags'));
     }
     function tin_tuc_su_kien_ct(Request $request, $locale = '', $slug = '') {
         $ds = TinTucSuKien::where('locale', '=', $locale)->where('slug', '=', $slug)->first();
@@ -153,6 +209,7 @@ class FrontendController extends Controller
         $name  = Str::slug($ds['attachments'][$key]['title'], '-') . '.' . $ds['attachments'][$key]['type'];
         return Storage::download($file_path, $name);
     }
+   
     // function cong_bo_khoa_hoc(Request $request, $locale = '') {
     //     $danhsach = CongBoKhoaHoc::where('locale', '=', $locale)->orderBy('updated_at', 'desc')->paginate(20);
     //     return view('Frontend.cong-bo-khoa-hoc')->with(compact('danhsach'));
@@ -183,6 +240,7 @@ class FrontendController extends Controller
             return view('Frontend.'.$locale.'.overview')->with(compact('noi_dung'));
         }
     }
+
     function chuyen_gia(Request $request, $locale = '') {
         $danhsach = NhanSu::where('locale','=',$locale)->where('tags','=','chuyen-gia')->orderBy('thu_tu', 'asc')->get();
         if($locale == 'vi'){
@@ -193,14 +251,25 @@ class FrontendController extends Controller
         }
     }
 
-    function nhan_su(Request $request, $locale = '') {
-        $danhsach = NhanSu::where('locale','=',$locale)->where('tags','=','nhan-su')->orderBy('thu_tu', 'asc')->get();
+    function nhan_su(Request $request, $locale = '', $tags='') {
+        $file_path = base_path('resources/lang/') . $locale .('/tong-quan-') .$tags. ('.txt');
+        $noi_dung = file_get_contents($file_path);
+        $danhsach_lanh_dao = NhanSu::where('thu_tu','<',5)->where('locale','=',$locale)->where('tags','=',$tags)->orderBy('thu_tu', 'asc')->get();
+        $danhsach_giang_vien = NhanSu::where('thu_tu','=',0)->where('locale','=',$locale)->where('tags','=',$tags)->orderBy('thu_tu', 'asc')->get();
+        $tamp=$tags;
         if($locale == 'vi') {
-            return view('Frontend.'.$locale.'.nhan-su')->with(compact('danhsach'));
+            return view('Frontend.'.$locale.'.nhan-su')->with(compact('danhsach_lanh_dao','noi_dung','danhsach_giang_vien','tamp'));
         }
         if($locale == 'en') {
-            return view('Frontend.'.$locale.'.organizational-structure')->with(compact('danhsach'));
+            return view('Frontend.'.$locale.'.organizational-structure')->with(compact('danhsach_lanh_dao','noi_dung','danhsach_giang_vien','tamp' ));
         }
+    }
+
+
+    function nhan_su_xtt(Request $request, $locale = '', $id = '', $tags=0) {
+        $ds = NhanSu::find($id);
+        $key = intval($tags);
+        echo '<embed src="'.env('APP_URL').'storage/files/'.$ds['attachments'][$key]['aliasname'].'" style="width:100%;min-height:80vh;height:100% !important;" />';
     }
 
     // function dich_vu(Request $request, $locale = '', $slug = '') {
@@ -234,10 +303,10 @@ class FrontendController extends Controller
     //     $danhsach = HinhAnh::where('locale', '=', $locale)->orderBy('date_post', 'desc')->paginate(9);
     //     return view('Frontend.hinh-anh-hoat-dong')->with(compact('danhsach'));
     // }
-    // function hinh_anh_hoat_dong_ct(Request $request, $locale = '', $slug = '') {
-    //     $ds = HinhAnh::where('locale', '=', $locale)->where('slug', '=', $slug)->first();
-    //     $danhsach = HinhAnh::where('locale', '=', $locale)->paginate(9);
-    //     return view('Frontend.hinh-anh-hoat-dong-ct')->with(compact('danhsach', 'ds'));
+    // function hinh_anh_hoat_dong_ct(Request $request, $locale = '', $id= '') {
+    //     $ds = HinhAnhHoatDong::where('locale', '=', $locale)->where('id', '=', $id)->first();
+    //     $danhsach = HinhAnhHoatDong::where('locale', '=', $locale)->paginate(9);
+    //     return view('Frontend.index')->with(compact('danhsach', 'ds'));
     // }
 
     function search(Request $request, $locale = 'vi') {
@@ -245,7 +314,38 @@ class FrontendController extends Controller
         $danhsach = TinTucSuKien::where('locale', '=', $locale)->where('ten', 'regexp', '/.*'.$q.'/i')->orderBy('date_post', 'desc')->paginate(9);
         return view('Frontend.tim-kiem')->with(compact('danhsach','q'));
     }
+    function category(Request $request, $locale = '') {
+        $cats = CategoryController::get_cats(); 
+        return view('Frontend.category')->with(compact('cats'));
+    }
+    function category_cats(Request $request, $locale = '', $key = 0) {
+        $cats = CategoryController::get_cats();
+        $danhsach = Category::where('locale', '=', $locale)->where('id_cat','=',$cats[$key])->orderBy('date_post', 'desc')->paginate(9);
+        return view('Frontend.category')->with(compact('danhsach'));
+    }
+    function category_ct(Request $request, $locale = '', $slug = '') {
+       
+        $ds = Category::where('locale', '=', $locale)->where('slug', '=', $slug)->first();
+        $danhsach = Category::where('id_cat','=',$ds['id_cat'])->where('locale', '=', $locale)->paginate(7);
+        return view('Frontend.category-ct')->with(compact('danhsach', 'ds'));
+    }
+    function category_xtt(Request $request, $locale = '', $id = '', $key = 0) {
+        $ds = Category::find($id);
+        $key = intval($key);
+        echo '<embed src="'.env('APP_URL').'storage/files/'.$ds['attachments'][$key]['aliasname'].'" style="width:100%;min-height:80vh;height:100% !important;" />';
+    }
+    function category_tv(Request $request, $locale='', $id = '', $key = 0) {
+        $ds = Category::find($id);
+        $key = intval($key);
+        $file_path = 'public/files/' . $ds['attachments'][$key]['aliasname'];
+        $name  = Str::slug($ds['attachments'][$key]['title'], '-') . '.' . $ds['attachments'][$key]['type'];
+        return Storage::download($file_path, $name);
+    }
 
-
+    function hinh_anh_hoat_dong(Request $request, $locale = '')
+    {
+        $danhsach = HinhAnhHoatDong::where('locale', '=', $locale)->orderBy('date_post', 'desc')->paginate(20);
+        return view('Frontend.hinh-anh-hoat-dong')->with(compact('danhsach'));
+    }
    
 }

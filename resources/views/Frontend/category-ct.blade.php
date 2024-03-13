@@ -16,32 +16,20 @@
     margin-bottom: 20px;
   }
   .tags {
-    background: #27316b;
+    background: #058B3C;
     color:#fff;
     padding: 5px 20px;
   }
 </style>
-@endsection
-
-@section('body')
-<div class="col-12">
-  <div class="inner-banner contact">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-lg-12 col-md-12">
-                <div class="content" style="width:100%;text-align:center ;">
-                    <p style="font-size:35px;color: #058B3C;">{{ __('Trang chủ') }}  <i class="fa fa-angle-double-right" aria-hidden="true"></i>  {{ __('Tin tức') }}<i class="fa fa-angle-double-right" aria-hidden="true"></i>  {{ $ds['tags'] }}</p>     
-                </div>
-            </div>
-        </div>
-      </div>
-  </div>
-</div>
+@endsection 
+@section('body')  
 <!-- Start About -->
 <section class="about">
     <div class="container noi-dung">
+       <h2 style="color: black;">{{ $ds['ten'] }} </h2>
+        <span class="tags">{{ implode(" / ", $ds['id_cat']) }}</span><br />
+        <span class="icon-date-icon ico"></span> <span class="italic">{{ App\Http\Controllers\ObjectController::getDate($ds['date_post'], "d/m/Y H:i") }}
         <div class="row" style="padding-bottom:20px;">                    
-        <h2 style="color: black;">{{ $ds['ten'] }}</h2>
           <div class="col-12 text-right">
             @if(isset($ds['views']))<i class="fa fa-eye"></i> {{ $ds['views'] }} @endif
           </div>
@@ -88,12 +76,12 @@
                 <tr>
                   <td>{{ $key+1 }}</td>
                   <td>
-                    <a href="{{ env('APP_URL').app()->getLocale() }}/tin-tuc-su-kien/xem-truc-tuyen/{{ $ds['_id'] }}/{{ $key }}" data-toggle="modal" data-target="#xemdinhkem" class="view_online">
+                    <a href="{{ env('APP_URL').app()->getLocale() }}/category/xem-truc-tuyen/{{ $ds['_id'] }}/{{ $key }}" data-toggle="modal" data-target="#xemdinhkem" class="view_online">
                       {{ $dk['title'] }}
                     </a>
                   </td>
                   <td>
-                    <a href="{{ env('APP_URL').app()->getLocale() }}/tin-tuc-su-kien/tai-ve/{{ $ds['_id'] }}/{{ $key }}">
+                    <a href="{{ env('APP_URL').app()->getLocale() }}/category/tai-ve/{{ $ds['_id'] }}/{{ $key }}">
                       <img src="{{ env('APP_URL') }}assets/frontend/images/download.svg" height="20" />
                     </a>
                   </td>
@@ -111,7 +99,7 @@
             <h4><i class="fa fa-link" aria-hidden="true"></i> {{ __('Xem thêm') }}</h4>
             <ul class="list-quy-che">
               @foreach($danhsach as $r)
-                <li class="rtejustify"><a href="{{ env('APP_URL').app()->getLocale() }}/tin-tuc-su-kien/{{ $r['slug'] }}">{{ $r['ten'] }}</a></li>
+                <li class="rtejustify"><a href="{{ env('APP_URL').app()->getLocale() }}/category/{{ $r['slug'] }}/ct">{{ $r['ten'] }}</a></li>
               @endforeach
             </ul>
           </div>

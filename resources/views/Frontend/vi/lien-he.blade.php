@@ -14,7 +14,7 @@
 @section('body')
 <section class="our-impotance have-question padding-lg">
   <div class="container noi-dung">
-    <h2>LIÊN HỆ</h2>
+    <h2 style="color: #058B3C;" >LIÊN HỆ</h2>
     {!! $noi_dung !!}
     {{-- <p>Chi tiết vui lòng liên hệ: TRUNG TÂM NGHIÊN CỨU KHOA HỌC XÃ HỘI VÀ NHÂN VĂN</p> --}}
     {{-- <ul class="row">

@@ -12,11 +12,10 @@
             <thead>
                 <tr>
                     <th>{{ __('STT') }}</th>
-                    <th>{{ __('Mã số nhiệm vụ') }}</th>
-                    <th>{{ __('Số đăng ký kết quả') }}</th>
-                    <th>{{ __('Tên nhiệm vụ') }}</th>
-                    <th>{{ __('Tổ chức chủ trì') }}</th>
-                    <th>{{ __('Chủ nhiệm nhiệm vụ') }}</th>
+                    <th>{{ __('Cấp') }}</th>
+                    <th>{{ __('Tên đề tài') }}</th>
+                    <th>{{ __('Chủ nhiệm đề tài') }}</th>
+                    <th>{{ __('Năm nghiệm thu') }}</th>
                     <th class="text-center">#</th>
                     @foreach($arr_lang as $klang => $vlang)
                         @if($klang != app()->getLocale())
@@ -30,11 +29,10 @@
                 @foreach($danhsach as $k => $ds)
                     <tr>
                         <td class="text-center">{{ ($k+1) }}</td>
-                        <td class="text-center">{{ $ds['ma_so_nhiem_vu'] }}</td>
-                        <td>{{ $ds['so_dang_ky_ket_qua'] }}</td>
+                        <td class="text-center"> {{$ds['tags'] }}</td>
                         <td>{{ $ds['ten_nhiem_vu'] }}</td>
-                        <td>{{ $ds['to_chuc_chu_tri'] }}</td>
                         <td>{{ $ds['chu_nhiem_nhiem_vu'] }}</td>
+                        <td>{{ $ds['thoi_gian_thuc_hien'] }}</td>
                         <td class="text-center">
                             <a href="{{ env('APP_URL').$ds['locale'] }}/admin/nghien-cuu-khoa-hoc/delete/{{$ds['_id']}}" onclick="return confirm('Are you sure?')"><i class="fa fa-trash text-danger"></i></a>
                             <a href="{{ env('APP_URL').$ds['locale'] }}/admin/nghien-cuu-khoa-hoc/edit/{{$ds['_id']}}"><i class="fas fa-pencil-alt"></i></a>
@@ -69,16 +67,34 @@
 </div>
 @endsection
 @section('js')
-    <script src="{{ env('APP_URL') }}assets/backend/libs/jquery-toast/jquery.toast.min.js"></script>
+<script src="{{ env('APP_URL') }}assets/backend/libs/select2/select2.min.js" type="text/javascript"></script>
+    <script src="{{ env('APP_URL') }}assets/backend/libs/magnific-popup/jquery.magnific-popup.min.js"></script>
+    <script src="{{ env('APP_URL') }}assets/backend/js/drag-arrange.min.js" type="text/javascript"></script>
+    <script src="{{ env('APP_URL') }}assets/backend/libs/ckeditor/ckeditor.js"></script>
+    <script src="{{ env('APP_URL') }}assets/backend/libs/switchery/switchery.min.js"></script>
+    <script src="{{ env('APP_URL') }}assets/backend/js/script.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(document).ready(function(){
-            @if(Session::get('msg') != null && Session::get('msg'))
-            $.toast({
-                heading:"Thông báo",
-                text:"{{ Session::get('msg') }}",
-                loaderBg:"#3b98b5",icon:"info", hideAfter:3e3,stack:1,position:"top-right"
+            delete_file();$(".select2").select2();
+            var options = {
+                filebrowserImageBrowseUrl: '{{ env('APP_URL') }}laravel-filemanager?type=Images',
+                filebrowserImageUploadUrl: '{{ env('APP_URL') }}laravel-filemanager/upload?type=Images&_token=',
+                filebrowserBrowseUrl: '{{ env('APP_URL') }}laravel-filemanager?type=Files',
+                filebrowserUploadUrl: '{{ env('APP_URL') }}laravel-filemanager/upload?type=Files&_token='
+            };
+
+            upload_files("{{ env('APP_URL') }}{{ app()->getLocale() }}/file/uploads");
+            upload_hinhanh("{{ env('APP_URL') }}{{ app()->getLocale() }}/image/uploads");
+            $("#ten").change(function(){
+                var title = $(this).val();
+                $.get("{{ env('APP_URL') }}{{ app()->getLocale() }}/slug/" + title, function(slug){
+                    $("#slug").val(slug);
+                });
             });
-            @endif
+            $("#progressbar").hide();
+            $('.js-switch').each(function() {
+                new Switchery($(this)[0], $(this).data());
+            });
         });
     </script>
 @endsection

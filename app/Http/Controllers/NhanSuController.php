@@ -9,7 +9,7 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\TranslatePathController;
 use App\Models\NhanSu;
-use App\Models\TranslatePath;
+use App\Models\TranslatePath;   
 use Illuminate\Support\Facades\Session; use Illuminate\Support\Facades\Validator;
 class NhanSuController extends Controller
 {
@@ -24,11 +24,15 @@ class NhanSuController extends Controller
         'bo-mon-khoa-hoc-cay-trong' => 'Bộ môn Khoa học Cây trồng',
         'bo-mon-phat-trien-nong-thon-va-qltntn' => 'Bộ môn Phát triển Nông thôn và QLTNTN',
     );
-
+    
     function list(Request $request, $locale = '', $tags = ''){
+        // $file_path = base_path('resources/lang/') . $locale . '/tong-quan-'.$tags.'.txt';
+        // $noi_dung = file_get_contents($file_path);
+        $file_path = base_path('resources/lang/') . $locale .('/tong-quan-') .$tags. ('.txt');
+        $noi_dung = file_get_contents($file_path);
         $keywords = $request->input('keywords');
         $danhsach = NhanSu::where('tags','=',$tags)->where('locale','=',$locale)->where('locale','=',$locale)->orderBy('updated_at', 'desc')->paginate(30);
-        return view('Admin.NhanSu.list')->with(compact('danhsach','tags'));
+        return view('Admin.NhanSu.list')->with(compact('danhsach','tags','noi_dung'));
     }
 
     function add(Request $request, $locale = '', $tags = ''){
@@ -56,18 +60,26 @@ class NhanSuController extends Controller
             array_push($arr_photo, array('aliasname' => $value, 'filename' => $data['hinhanh_filename'][$key], 'title' => $data['hinhanh_title'][$key]));
           }
         }
-
+        $arr_dinhkem = array();
+        if(isset($data['file_aliasname']) && $data['file_aliasname']){
+            foreach($data['file_aliasname'] as $k => $v){
+              array_push($arr_dinhkem, array('aliasname' => $v, 'filename' => $data['file_filename'][$k], 'title' => $data['file_title'][$k], 'size' => $data['file_size'][$k], 'type' => $data['file_type'][$k]));
+            }
+        }
         $id = ObjectController::Id();
         $id_user = $request->session()->get('user._id');
         $db = new NhanSu();
         $db->_id = $id;
         $db->ho_ten = $data['ho_ten'];
         $db->chuc_vu = $data['chuc_vu'];
+        $db->hoc_vi = $data['hoc_vi'];
+        $db->chuyen_nganh = $data['chuyen_nganh'];
         $db->dien_thoai = $data['dien_thoai'];
         $db->email = $data['email'];
         $db->mo_ta = $data['mo_ta'];
         $db->thu_tu = isset($data['thu_tu']) ? intval($data['thu_tu']) : 0;
         $db->photos = $arr_photo;
+        $db->attachments = $arr_dinhkem;
         $db->tags = $tags;
         $db->locale = $locale;
         $db->id_user = ObjectController::ObjectId($id_user);
@@ -104,11 +116,10 @@ class NhanSuController extends Controller
         return redirect(env('APP_URL') .$locale.'/admin/nhan-su/'.$tags);
     }
 
-    function edit(Request $request, $locale = '', $id = ''){
+    function edit(Request $request, $locale = '',$tags='', $id = ''){
         $trans_id = $request->input('trans_id');
         $trans_lang = $request->input('trans_lang');
         $ds = NhanSu::find($id);
-        $tags = $ds['tags'];
         return view('Admin.NhanSu.edit')->with(compact('ds','trans_id', 'trans_lang','tags'));
     }
 
@@ -126,16 +137,24 @@ class NhanSuController extends Controller
             array_push($arr_photo, array('aliasname' => $value, 'filename' => $data['hinhanh_filename'][$key], 'title' => $data['hinhanh_title'][$key]));
           }
         }
-
+        $arr_dinhkem = array();
+        if(isset($data['file_aliasname']) && $data['file_aliasname']){
+            foreach($data['file_aliasname'] as $k => $v){
+              array_push($arr_dinhkem, array('aliasname' => $v, 'filename' => $data['file_filename'][$k], 'title' => $data['file_title'][$k], 'size' => $data['file_size'][$k], 'type' => $data['file_type'][$k]));
+            }
+        }
         $id_user = $request->session()->get('user._id');
         $db = NhanSu::find($data['id']);
         $db->ho_ten = $data['ho_ten'];
         $db->chuc_vu = $data['chuc_vu'];
+        $db->hoc_vi = $data['hoc_vi'];
+        $db->chuyen_nganh = $data['chuyen_nganh'];
         $db->dien_thoai = $data['dien_thoai'];
         $db->email = $data['email'];
         $db->mo_ta = $data['mo_ta'];
         $db->thu_tu = isset($data['thu_tu']) ? intval($data['thu_tu']) : 0;
         $db->photos = $arr_photo;
+        $db->attachments = $arr_dinhkem;
         $db->tags = $tags;
         $db->locale = $locale;
         $db->id_user = ObjectController::ObjectId($id_user);
@@ -163,7 +182,7 @@ class NhanSuController extends Controller
         return redirect(env('APP_URL') .$locale.'/admin/nhan-su/'.$tags);
     }
 
-    function delete(Request $request, $locale = '', $id = ''){
+    function delete(Request $request, $locale = '',$tags='', $id = ''){
         $data = NhanSu::find($id);
         $tags = $data['tags'];
         $logQuery = array (
@@ -186,6 +205,14 @@ class NhanSuController extends Controller
         }
         LogController::addLog($logQuery);
         Session::flash('msg', 'Xóa thành công');
+        return redirect(env('APP_URL').$locale.'/admin/nhan-su/'.$tags);
+    }
+
+    function tong_quan_update (Request $request, $locale = 'vi', $tags='') {
+        $file_path = base_path('resources/lang/') . $locale .('/tong-quan-') .$tags. ('.txt');
+        $noi_dung = $request->input('noi_dung');
+        file_put_contents($file_path, $noi_dung);
+        Session::flash('msg', 'Cập nhật thành công.');
         return redirect(env('APP_URL').$locale.'/admin/nhan-su/'.$tags);
     }
 }

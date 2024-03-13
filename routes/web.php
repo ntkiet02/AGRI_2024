@@ -43,7 +43,7 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     Route::get('tong-quan', 'FrontendController@tong_quan')->name('gioi-thieu-tong-quan');
     Route::get('overview', 'FrontendController@tong_quan')->name('introduction-overview');
     Route::get('nhan-su/{slug}', 'FrontendController@nhan_su')->name('gioi-thieu-nhan-su');
-
+    Route::get('nhan-su/xem-truc-tuyen/{id}/{key}', 'FrontendController@nhan_su_xtt')->name('nhan-su-xem-truc-tuyen');
 
     Route::get('tin-tuc-su-kien/tag/{key}', 'FrontendController@tin_tuc_su_kien_tag');
     Route::get('tin-tuc-su-kien', 'FrontendController@tin_tuc_su_kien');
@@ -59,10 +59,11 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     Route::get('dao-tao', 'FrontendController@dao_tao');
     Route::get('dao-tao/tag/{tags}', 'FrontendController@dao_tao_tag');
     Route::get('dao-tao/{slug}', 'FrontendController@dao_tao_ct');
+    Route::get('dao-tao/xem-truc-tuyen/{id}/{key}', 'FrontendController@dao_tao_xtt')->name('dao-tao-xem-truc-tuyen');
+    Route::get('dao-tao/tai-ve/{id}/{key}', 'FrontendController@dao_tao_tv')->name('dao-tao-tai-ve');
 
     Route::get('du-an','FrontendController@du_an')->name('du-an');
-    Route::get('khoa-luan-tot-nghiep','FrontendController@khoa_luan_tot_nghiep')->name('khoa-luan-tot-nghiep');
-    
+
     Route::get('van-ban','FrontendController@van_ban')->name('van-ban');
     Route::get('van-ban-ct/{slug}','FrontendController@van_ban_ct')->name('van-ban-ct');
     Route::get('van-ban/tai-ve/{id}/{key}','FrontendController@van_ban_tv')->name('van-ban-tai-ve');
@@ -70,8 +71,25 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     Route::get('bieu-mau','FrontendController@bieu_mau')->name('bieu_mau');
     Route::get('bieu-mau-ct/{slug}','FrontendController@bieu_mau_ct')->name('bieu-mau-ct');
     Route::get('bieu-mau/tai-ve/{id}/{key}','FrontendController@bieu_mau_tv')->name('bieu-mau-tai-ve');
-    
 
+    Route::get('khoa-luan-tot-nghiep','FrontendController@khoa_luan_tot_nghiep')->name('khoa-luan-tot-nghiep');
+    Route::get('khoa-luan-tot-nghiep/{tags}','FrontendController@khoa_luan_tot_nghiep_tags');
+    Route::get('khoa-luan-tot-nghiep/xem-truc-tuyen/{id}/{key}', 'FrontendController@khoa_luan_tot_nghiep_xtt')->name('khoa-luan-tot-nghiep-xem-truc-tuyen');
+    Route::get('khoa-luan-tot-nghiep/tai-ve/{id}/{key}', 'FrontendController@khoa_luan_tot_nghiep_tv')->name('khoa-luan-tot-nghiep-tai-ve');
+    
+    Route::get('nghien-cuu-khoa-hoc','FrontendController@nghien_cuu_khoa_hoc')->name('nghien-cuu-khoa-hoc');
+    Route::get('nghien-cuu-khoa-hoc/{cats}','FrontendController@nghien_cuu_khoa_hoc_cats');
+    Route::get('nghien-cuu-khoa-hoc/tai-ve/{id}/{key}', 'FrontendController@nghien_cuu_khoa_hoc_tv')->name('nghien-cuu-khoa-hoc-tai-ve');
+    
+    
+    Route::get('category', 'FrontendController@category');
+    Route::get('category/{cats}', 'FrontendController@category_cats');
+    Route::get('category/{slug}/ct', 'FrontendController@category_ct');
+    Route::get('category/xem-truc-tuyen/{id}/{key}', 'FrontendController@category_xtt')->name('category-xem-truc-tuyen');
+    Route::get('category/tai-ve/{id}/{key}', 'FrontendController@category_tv')->name('category-tai-ve');
+    
+    Route::get('hinh-anh-hoat-dong','FrontendController@hinh_anh_hoat_dong');
+    
     Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
         Route::get('/', 'AuthController@admin')->middleware('checkauth')->name('admin');
         Route::get('banner', 'BannerController@list')->middleware('role:Admi,Manager,Updater')->name('admin-banner');
@@ -87,15 +105,19 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
         Route::get('lien-he', 'BannerController@lien_he')->middleware('role:Admi,Manager,Updater')->name('admin-banner-lien-he');
         Route::post('lien-he/update', 'BannerController@lien_he_update')->middleware('role:Admi,Manager,Updater')->name('admin-banner-lien-he-update');
 
-        Route::get('nhan-su/{arr_bo_phan}', 'NhanSuController@list')->middleware('role:Admi,Manager,Updater')->name('admin-nhan-su');
-        Route::get('nhan-su/{arr_bo_phan}/add', 'NhanSuController@add')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-add');
-        Route::post('nhan-su/{arr_bo_phan}/create', 'NhanSuController@create')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-create');
+        Route::get('nhan-su/{tags}', 'NhanSuController@list')->middleware('role:Admi,Manager,Updater')->name('admin-nhan-su');
+        Route::get('nhan-su/{tags}/add', 'NhanSuController@add')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-add');
+        Route::post('nhan-su/{tags}/create', 'NhanSuController@create')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-create');
+        Route::get('nhan-su/{tags}/edit/{id}', 'NhanSuController@edit')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-edit-id');     
+        Route::post('nhan-su/{tags}/update', 'NhanSuController@update')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-update');   
+        Route::get('nhan-su/{tags}/delete/{id}', 'NhanSuController@delete')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-delete-id');
+        Route::post('nhan-su/tong-quan/{tags}/update', 'NhanSuController@tong_quan_update')->middleware('role:Admi,Manager,Updater')->name('admin-nhan-su-tong-quan-update');
+
         Route::get('nhan-su/nhan-su/edit/{id}', 'NhanSuController@edit')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-edit-id');
-        Route::get('nhan-su/chuyen-gia/edit/{id}', 'NhanSuController@edit')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-edit-id');
-        Route::post('nhan-su/{arr_bo_phan}/update', 'NhanSuController@update')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-update');
+        Route::get('nhan-su/chuyen-gia/edit/{id}', 'NhanSuController@edit')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-edit-id');    
         Route::get('nhan-su/nhan-su/delete/{id}', 'NhanSuController@delete')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-delete');
         Route::get('nhan-su/chuyen-gia/delete/{id}', 'NhanSuController@delete')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-delete');
-
+        
         Route::get('tin-tuc-su-kien', 'TinTucSuKienController@list')->middleware('role:Admi,Manager,Updater')->name('admin-tin-tuc-su-kien');
         Route::get('tin-tuc-su-kien/add', 'TinTucSuKienController@add')->middleware('role:Admin,Manager,Updater')->name('admin-tin-tuc-su-kien-add');
         Route::post('tin-tuc-su-kien/create', 'TinTucSuKienController@create')->middleware('role:Admin,Manager,Updater')->name('admin-tin-tuc-su-kien-create');
@@ -181,6 +203,21 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
         Route::get('bieu-mau/edit/{id}', 'BieuMauController@edit')->middleware('role:Admin,Manager,Updater')->name('admin-bieu-mau-edit');
         Route::post('bieu-mau/update', 'BieuMauController@update')->middleware('role:Admin,Manager,Updater')->name('admin-bieu-mau-update');
         Route::get('bieu-mau/delete/{id}', 'BieuMauController@delete')->middleware('role:Admin,Manager,Updater')->name('admin-bieu-mau-delete');
+
+        Route::get('hinh-anh-hoat-dong', 'HinhAnhHoatDongController@list')->middleware('role:Admi,Manager,Updater')->name('admin-hinh-anh-hoat-dong');
+        Route::get('hinh-anh-hoat-dong/add', 'HinhAnhHoatDongController@add')->middleware('role:Admin,Manager,Updater')->name('admin-hinh-anh-hoat-dong-add');
+        Route::post('hinh-anh-hoat-dong/create', 'HinhAnhHoatDongController@create')->middleware('role:Admin,Manager,Updater')->name('admin-hinh-anh-hoat-dong-create');
+        Route::get('hinh-anh-hoat-dong/edit/{id}', 'HinhAnhHoatDongController@edit')->middleware('role:Admin,Manager,Updater')->name('admin-hinh-anh-hoat-dong-edit');
+        Route::post('hinh-anh-hoat-dong/update', 'HinhAnhHoatDongController@update')->middleware('role:Admin,Manager,Updater')->name('admin-hinh-anh-hoat-dong-update');
+        Route::get('hinh-anh-hoat-dong/delete/{id}', 'HinhAnhHoatDongController@delete')->middleware('role:Admin,Manager,Updater')->name('admin-hinh-anh-hoat-dong-delete');
+
+        Route::get('category', 'CategoryController@list')->middleware('role:Admi,Manager,Updater')->name('admin-category');
+        Route::get('category/add', 'CategoryController@add')->middleware('role:Admin,Manager,Updater')->name('admin-category-add');
+        Route::post('category/create', 'CategoryController@create')->middleware('role:Admin,Manager,Updater')->name('admin-category-create');
+        Route::get('category/edit/{id}', 'CategoryController@edit')->middleware('role:Admin,Manager,Updater')->name('admin-category-edit');
+        Route::post('category/update', 'CategoryController@update')->middleware('role:Admin,Manager,Updater')->name('admin-category-update');
+        Route::get('category/delete/{id}', 'CategoryController@delete')->middleware('role:Admin,Manager,Updater')->name('admin-category-delete');
+      
 
     });
 });

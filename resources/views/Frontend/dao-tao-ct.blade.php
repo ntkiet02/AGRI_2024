@@ -10,13 +10,14 @@
     text-transform: none;
     line-height: 40px;
     margin-top: 20px;
+    color:#058B3C;
   }
   .about .noi-dung ul {
     margin-left: 10px;
     margin-bottom: 20px;
   }
   .tags {
-    background: #27316b;
+    background: #058B3C;
     color:#fff;
     padding: 5px 20px;
   }
@@ -24,6 +25,19 @@
 @endsection
 
 @section('body')
+<div class="col-12">
+  <div class="inner-banner contact">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-lg-12 col-md-12">
+                <div class="content" style="width:100%; text-align:center;">     
+                    <h2 style="color: #058B3C;">Đào tạo</h2>
+                </div>
+            </div>
+        </div>
+      </div>
+  </div>
+  </div>
 <!-- Start About -->
 <section class="about">
     <div class="container noi-dung">
@@ -77,12 +91,12 @@
                 <tr>
                   <td>{{ $key+1 }}</td>
                   <td>
-                    <a href="{{ env('APP_URL').app()->getLocale() }}/tin-tuc-su-kien/xem-truc-tuyen/{{ $ds['_id'] }}/{{ $key }}" data-toggle="modal" data-target="#xemdinhkem" class="view_online">
+                    <a href="{{ env('APP_URL').app()->getLocale() }}/dao-tao/xem-truc-tuyen/{{ $ds['_id'] }}/{{ $key }}" data-toggle="modal" data-target="#xemdinhkem" class="view_online">
                       {{ $dk['title'] }}
                     </a>
                   </td>
                   <td>
-                    <a href="{{ env('APP_URL').app()->getLocale() }}/tin-tuc-su-kien/tai-ve/{{ $ds['_id'] }}/{{ $key }}">
+                    <a href="{{ env('APP_URL').app()->getLocale() }}/dao-tao/tai-ve/{{ $ds['_id'] }}/{{ $key }}">
                       <img src="{{ env('APP_URL') }}assets/frontend/images/download.svg" height="20" />
                     </a>
                   </td>
@@ -100,7 +114,7 @@
             <h4><i class="fa fa-link" aria-hidden="true"></i> {{ __('Xem thêm') }}</h4>
             <ul class="list-quy-che">
               @foreach($danhsach as $r)
-                <li class="rtejustify"><a href="{{ env('APP_URL').app()->getLocale() }}/tin-tuc-su-kien/{{ $r['slug'] }}">{{ $r['ten'] }}</a></li>
+                <li class="rtejustify"><a href="{{ env('APP_URL').app()->getLocale() }}/dao-tao/{{ $r['slug'] }}">{{ $r['ten'] }}</a></li>
               @endforeach
             </ul>
           </div>

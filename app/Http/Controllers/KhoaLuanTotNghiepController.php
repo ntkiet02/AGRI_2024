@@ -43,9 +43,7 @@ class KhoaLuanTotNghiepController extends Controller
     function create(Request $request, $locale = '') {
         $data = $request->all();
         $validator = Validator::make($data, [
-            'slug' => 'required|unique:khoa_luan_tot_nghiep',
-            'ten_de_tai'=>'required',
-            'ma_so_sinh_vien'=>'required'
+            'tieu_de' => 'required|unique:khoa_luan_tot_nghiep',
         ]);
         if ($validator->fails()) {
           return redirect(env('APP_URL').$locale.'/admin/khoa_luan_tot_nghiep/add')->withErrors($validator)->withInput();
@@ -62,16 +60,9 @@ class KhoaLuanTotNghiepController extends Controller
         $id_user = $request->session()->get('user._id');
         $db = new KhoaLuanTotNghiep();
         $db->_id = $id;
-        $db->ten_de_tai = $data['ten_de_tai'];
-        $db->slug = $data['slug'];
-        $db->ten_sinh_vien = $data['ten_sinh_vien'];
-        $db->ma_so_sinh_vien = $data['ma_so_sinh_vien'];
-        $db->lop=$data['lop'];
-        $db->giang_vien_huong_dan = $data['giang_vien_huong_dan'];
+        $db->tieu_de = $data['tieu_de'];
         $db->tags = $data['tags'];
-        $db->nam = $data['nam'];
         $db->attachments = $arr_dinhkem;
-        $db->date_post = $data['date_post'];
         $db->locale = $locale;
         $db->id_user = ObjectController::ObjectId($id_user);
         $db->save();
@@ -97,7 +88,7 @@ class KhoaLuanTotNghiepController extends Controller
             $trans->save();
         }
         $logQuery = array (
-            'action' => 'Thêm Thông tin ['.$data['ten_de_tai'].']',
+            'action' => 'Thêm Thông tin ['.$data['tieu_de'].']',
             'id_collection' => $id,
             'collection' => 'khoa_luan_tot_nghiep',
             'data' => $data
@@ -119,9 +110,7 @@ class KhoaLuanTotNghiepController extends Controller
     function update(Request $request, $locale = '', $id='') {
         $data = $request->all();
         $validator= Validator::make($data,[
-        'slug'=>'required|unique:khoa_luan_tot_nghiep, _id,'.$data['id'],
-        'ten_de_tai'=>'required',
-        'ma_so_sinh_vien'=>'required'
+        'tieu_de'=>'required|unique:khoa_luan_tot_nghiep, _id,'.$data['id'],
         ]);
         
         if ($validator->fails()) {
@@ -135,16 +124,9 @@ class KhoaLuanTotNghiepController extends Controller
         }
         $id_user = $request->session()->get('user._id');
         $db = KhoaLuanTotNghiep::find($data['id']);
-        $db->ten_de_tai = $data['ten_de_tai'];
-        $db->slug = $data['slug'];
-        $db->ten_sinh_vien = $data['ten_sinh_vien'];
-        $db->ma_so_sinh_vien = $data['ma_so_sinh_vien'];
-        $db->lop=$data['lop'];
-        $db->giang_vien_huong_dan = $data['giang_vien_huong_dan'];
+        $db->tieu_de = $data['tieu_de'];
         $db->tags = $data['tags'];
-        $db->nam = $data['nam'];
         $db->attachments = $arr_dinhkem;
-        $db->date_post = $data['date_post'];
         $db->locale = $locale;
         $db->id_user = ObjectController::ObjectId($id_user);
         $db->save();
@@ -160,7 +142,7 @@ class KhoaLuanTotNghiepController extends Controller
         $trans->collection = 'khoa_luan_tot_nghiep';
         $trans->save();
         $logQuery = array (
-            'action' => 'Chỉnh sửa Khóa Luận tốt nghiệp ['.$data['ten_de_tai'].']',
+            'action' => 'Chỉnh sửa Khóa Luận tốt nghiệp ['.$data['tieu_de'].']',
             'id_collection' => $data['id'],
             'collection' => 'khoa_luan_tot_nghiep',
             'data' => $data

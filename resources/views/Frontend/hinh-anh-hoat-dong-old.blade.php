@@ -1,23 +1,21 @@
 @extends('Frontend.layout')
-@section('title', __('Tin tức Sự kiện'))
+@section('title', __('Hình ảnh hoạt động'))
+@section('css')
+  <style type="text/css" media="screen">
+    .inner .news_icon {
+      position: absolute;
+      width: 80px;
+      top: 10px; left: 30px;
+      border-radius: 60px;
+    }
+  </style>
+@endsection
 @section('body')
-<div class="col-12">
-  <div class="inner-banner contact">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-lg-12 col-md-12">
-                <div class="content" style="width:100%;text-align:center ;">
-                    <p style="font-size:35px;color: #058B3C;">{{ __('Tin tức và Sự kiện') }}</p>    
-                </div>
-            </div>
-        </div>
-      </div>
-  </div>
-</div>
 <section class="news-wrapper padding-xs">
   <div class="container">
     <div class="row">
       <div class="col-8 col-md-8">
+        <h3 style="padding-bottom:20px;"><i class="fa fa-picture-o"></i> {{ __('Hình ảnh hoạt động') }}</h3>
       </div>
     </div>
     @if($danhsach)
@@ -28,9 +26,6 @@
                 @if(isset($ds['tin_moi']) && $ds['tin_moi'])
                   <img src="{{ env('APP_URL') }}assets/frontend/images/news.gif" alt="{{ $ds['ten'] }}" title="{{ $ds['ten'] }}" class="news_icon">
                 @endif
-                  @if(isset($ds['tags']) && $ds['tags'])
-                    <span class="tags">{{ $ds['tags'] }}</span>
-                  @endif
                 @if($ds['photos'] && isset($ds['photos'][0]['aliasname']) && $ds['photos'][0]['aliasname'])
                     <img src="{{ env('APP_URL') }}storage/images/thumb_360x200/{{ $ds['photos'][0]['aliasname'] }}" class="img-responsive" alt="" style="width:360px;height:200px;">
                 @else
@@ -40,16 +35,15 @@
                     <ul class="post-detail">
                       <li><span class="icon-date-icon ico"></span> <span class="bold">{{ App\Http\Controllers\ObjectController::getDate($ds['date_post'], "d/m/Y H:i") }}</li>
                     </ul>
-                    <h2 style="height:130px;overflow:hidden;"><a href="{{ env('APP_URL').app()->getLocale() }}/tin-tuc-su-kien/{{ $ds['slug'] }}" title="{{ $ds['ten'] }}">{{ Str::limit($ds['ten'],100) }}</a></h2>
-                    <p  style="height:100px;overflow:hidden;">{{ $ds['mo_ta'] }}</p>
-                    <br />
-                    <a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/tin-tuc-su-kien/{{ $ds['slug'] }}" class="read-more"><span class="icon-play-icon"></span>{{ __('Xem thêm') }}</a>
+                    <h2 style="height:80px;overflow:hidden;"><a href="{{ env('APP_URL').app()->getLocale() }}/hinh-anh-hoat-dong/{{ $ds['slug'] }}" title="{{ $ds['ten'] }}">{{ Str::limit($ds['ten'],100) }}</a></h2>
+
+                    <a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/hinh-anh-hoat-dong/{{ $ds['slug'] }}" class="read-more"><span class="icon-play-icon"></span>{{ __('Xem thêm') }}</a>
                 </div>
             </div>
           </li>
           @endforeach
         </ul>
-        {{ $danhsach->withPath(env('APP_URL').app()->getLocale() . '/tin-tuc-su-kien') }}
+        {{ $danhsach->withPath(env('APP_URL').app()->getLocale() . '/hinh-anh-hoat-dong') }}
     @endif
   </div>
 </section>

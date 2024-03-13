@@ -70,12 +70,12 @@
 <div style="color: #fff; height:40px"></div>
 <footer class="footer">
   <!-- Start Footer Bottom -->
-  <div class="bottom" style="background:#005a25;">
+  <div class="bottom" style="background:#058B3C;">
     <div class="container">
       <div class="row">
         <div class="col-sm-12 col-md-5 clearfix">
             <h3 style="padding-bottom:5px;color:#fff;">{{ __('KHOA NÔNG NGHIỆP TÀI NGUYÊN THIÊN NHIÊN') }}</h3> 
-            <p style="color:#fff;margin-top:13px;"><i class="fa fa-map-marker" style="font-size:17px;color:white;"></i><a href="{{ env('APP_URL') }}vi/lien-he"> {{ __('18 Ung Văn Khiêm, P. Đông xuyên, TP. Long Xuyên, An Giang') }}</a></p>
+            <p><i class="fa fa-map-marker"></i> <a href="{{ env('APP_URL') }}vi/lien-he" style="color:#fff;">18 Ung Văn Khiêm, P. Đông xuyên, TP. Long Xuyên, An Giang</a></p>
             <p><i class="fa fa-envelope"></i> <a href="mailto:agri@agu.edu.vn" style="color:#fff;">agri@agu.edu.vn</a></p>
             <p><i class="fa fa-phone" aria-hidden="true" style="font-size:17px;"></i> <a href="tel:02963943695" style="color:#fff;">02963.943.695</a></p>
           </div>

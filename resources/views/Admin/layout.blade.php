@@ -15,6 +15,7 @@
         <link href="{{ env('APP_URL') }}assets/backend/css/icons.min.css" rel="stylesheet" type="text/css" />
         <link href="{{ env('APP_URL') }}assets/backend/css/app.min.css" rel="stylesheet" type="text/css" />
         <link href="{{ env('APP_URL') }}assets/backend/css/style.css" rel="stylesheet" type="text/css" />
+        
     </head>
     <body>
         <!-- Navigation Bar-->
@@ -97,39 +98,62 @@
                     <div id="navigation">
                         <!-- Navigation Menu-->
                         <ul class="navigation-menu">
-                            <li>
-                                <a href="{{ env('APP_URL') . app()->getLocale() }}/admin/banner"><i class="far fa-images"></i> {{ __('Banner') }}</a>
+                            <li class="has-submenu"> <a href="#"><i class="far fa-file-alt"></i> {{ __('Hình ảnh - Banner') }} <div class="arrow-down"></div> </a>
+                                <ul class="submenu">
+                                    <li><a href="{{ env('APP_URL') . app()->getLocale() }}/admin/banner"><i class="far fa-images"></i> {{ __('Banner') }}</a></li>
+                                    <li><a href="{{ env('APP_URL') . app()->getLocale() }}/admin/hinh-anh-hoat-dong"><i class="far fa-images"></i> {{ __('Hình ảnh hoạt động') }}</a></li>
+                                </ul>
                             </li>
+
                             <li class="has-submenu">
-                                <a href="#"><i class="far fa-file-alt"></i> {{ __('Giới thiệu') }} <div class="arrow-down"></div> </a>
+                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-layout-text-sidebar-reverse" viewBox="0 0 16 16">
+  <path d="M12.5 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zm0 3a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1zm.5 3.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0 0 1h5a.5.5 0 0 0 .5-.5m-.5 2.5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1 0-1z"/>
+  <path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zM4 1v14H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1zm1 0h9a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5z"/>
+</svg> {{ __('Giới thiệu') }} <div class="arrow-down"></div> </a>
                                 <ul class="submenu">
                                     <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/tong-quan">{{ __('Tổng quan') }}</a></li>
-                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/nhan-su">{{ __('Nhân sự') }}</a></li>
+                                    <!-- <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/nhan-su">{{ __('Nhân sự') }}</a></li> -->
                                     {{-- <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/chuyen-gia">{{ __('Chuyên gia') }}</a></li> --}}
                                     <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/lien-he">{{ __('Liên hệ') }}</a></li>
                                 </ul>
                             </li>
                             <li class="has-submenu">
-                                <a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/nhan-su"><i class="far fa-file-alt"></i> {{ __('Nhân sự') }} <div class="arrow-down"></div> </a>
+                                <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-vcard" viewBox="0 0 16 16">
+  <path d="M5 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4m4-2.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5M9 8a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4A.5.5 0 0 1 9 8m1 2.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3a.5.5 0 0 1-.5-.5"/>
+  <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H8.96q.04-.245.04-.5C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 1 1 12z"/>
+</svg>      {{ __('Nhân sự') }} <div class="arrow-down"></div> </a>
                                 <ul class="submenu">
-                                    <li><a href="#">{{ __('Văn phòng khoa') }}</a></li>
-                                    <li><a href="#">{{ __('Ban lãnh đạo khoa') }}</a></li>
+                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/ban-lanh-dao-khoa">Ban Lãnh đạo khoa</a></li>
+                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/van-phong-khoa">Văn phòng khoa</a></li>
+                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/bo-mon-cong-nghe-thuc-pham">Bộ môn Công nghệ Thực phẩm</a></li>
+                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/bo-mon-nuoi-trong-thuy-san">Bộ môn Nuôi trồng Thủy sản</a></li>
+                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/bo-mon-cong-nghe-sinh-hoc">Bộ môn Công nghệ Sinh học</a></li>
+                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/bo-mon-chan-nuoi-thu-y">Bộ môn Chăn nuôi Thú y</a></li>
+                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/bo-mon-khoa-hoc-cay-trong">Bộ môn Khoa học Cây trồng</a></li>
+                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/bo-mon-phat-trien-nong-thon-va-qltntn">Bộ môn Phát triển Nông thôn và QLTNTN</a></li>  
                                 </ul>
                             </li>
-                            <li >
-                                <a href="{{ env('APP_URL') . app()->getLocale() }}/admin/tin-tuc-su-kien"><i class="far fa-newspaper"></i> {{ __('Tin tức - Sự kiện') }}</a>
+                            <!-- <li >
+                                <a href="{{ env('APP_URL') . app()->getLocale() }}/admin/tin-tuc-su-kien">{{ __('Tin tức - Sự kiện') }}</a>
     
-                            </li>
+                            </li> -->
+                            <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/category"><i class="far fa-newspaper"></i> {{ __('Category') }}</a></li>
                             <li>
-                                <a href="{{ env('APP_URL') . app()->getLocale() }}/admin/dao-tao"><i class="fab fa-xbox"></i> {{ __('Đào tạo') }} <div class="arrow-down"></div></a>
-  
+                                <a href="{{ env('APP_URL') . app()->getLocale() }}/admin/dao-tao"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+</svg> {{ __('Đào tạo') }}</a>
                             </li>
                         
                             <li class="has-submenu">
-                                <a href="#"><i class="fab fa-xbox"></i> {{ __('Nghiên cứu') }} <div class="arrow-down"></div></a>
+                                <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+</svg></i> {{ __('Nghiên cứu') }} <div class="arrow-down"></div></a>
                                 <ul class="submenu">
-                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nghien-cuu-khoa-hoc">{{ __('Nhiệm vụ Khoa học Công nghệ') }}</a></li>
+                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nghien-cuu-khoa-hoc">{{ __('Nghiên cứu khoa học') }}</a></li>
                                     <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/khoa-luan-tot-nghiep">{{ __('Khóa luận tốt nghiệp') }}</a></li>
+                                    
                                     <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/du-an">{{ __('Dự án') }}</a></li>
                                     <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/hoi-nghi-hoi-thao">{{ __('Hội nghị - Hội thảo') }}</a></li>
                                     <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/doi-tac">{{ __('Đối tác') }}</a></li>
@@ -171,7 +195,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        &copy; 2022 {{ __('Đại học Quốc gia TPHCM Trường Đại học An Giang') }}
+                        &copy; 2023 {{ __('Đại học Quốc gia TPHCM Trường Đại học An Giang') }}
                     </div>
                 </div>
             </div>

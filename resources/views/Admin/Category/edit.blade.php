@@ -1,16 +1,18 @@
 @extends('Admin.layout')
-@section('title', __('Thêm mới Nhân sự'))
+@section('title', __('Sửa Category'))
 @section('css')
     <link href="{{ env('APP_URL') }}assets/backend/libs/select2/select2.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="{{ env('APP_URL') }}assets/backend/libs/magnific-popup/magnific-popup.css"/>
+    <link href="{{ env('APP_URL') }}assets/backend/libs/switchery/switchery.min.css" rel="stylesheet" type="text/css" />
 @endsection
 @section('body')
 <div class="row">
     <div class="col-12">
         <div class="card-box">
-            <h3 class="m-t-0"><a href="{{ env('APP_URl') }}{{ app()->getLocale() }}/admin/nhan-su/{{ $tags }}" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Thêm mới') }} @if($tags == 'nhan-su') {{ __('Nhân sự') }} @else {{ __('Chuyên gia') }} @endif</h3>
-            <form action="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/{{ $tags }}/create" method="post" id="dinhkemform" enctype="multipart/form-data">
+            <h3 class="m-t-0"><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/category" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Sửa Category') }}</h3>
+            <form action="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/category/update" method="post" id="dinhkemform" enctype="multipart/form-data">
                 {{ csrf_field() }}
+                <input type="hidden" name="id" id="id" value="{{ $ds['_id'] }}" placeholder="">
                 <input type="hidden" name="trans_id" id="trans_id" value="{{ $trans_id }}" placeholder="">
                 <input type="hidden" name="trans_lang" id="trans_lang" value="{{ $trans_lang }}" placeholder="">
                 <div class="form-body">
@@ -25,60 +27,28 @@
                         </div>
                     @endif
                     @php
-                        if(old('ho_ten') != null){
-                            $ho_ten = old('ten');
-                            $chuc_vu = old('chuc_vu');
-                            $hoc_vi = old('hoc_vi');
-                            $chuyen_nganh = old('chuyen_nganh');
-                            $dien_thoai = old('dien_thoai');
-                            $email = old('email');
-                            $mo_ta = old('mo_ta');$thu_tu = old('thu_tu');
-                        } else if(isset($ds['ho_ten']) && $ds['ho_ten']){
-                            $ho_ten = $ds['ho_ten'];
-                            $chuc_vu = $ds['chuc_vu'];
-                            $hoc_vi = $ds['hoc_vi'];
-                            $chuyen_nganh= $ds['chuyen_nganh'];
-                            $dien_thoai = $ds['dien_thoai'];
-                            $email = $ds['email'];
-                            $mo_ta = $ds['mo_ta']; $thu_tu = $ds['thu_tu'];
+                        if(old('ten') != null){
+                            $ten = old('ten'); $noi_dung = old('noi_dung');$slug = old('slug');
+                            $thu_tu = old('thu_tu'); $mo_ta = old('mo_ta');
+                            $date_post = old('date_post');$tin_moi = old('tin_moi');$id_cat = old('id_cat');
+                           
+                        } else if(isset($ds['ten']) && $ds['ten']){
+                            $ten = $ds['ten']; $noi_dung = $ds['noi_dung'];$slug = $ds['slug'];
+                            $thu_tu = $ds['thu_tu']; $mo_ta = $ds['mo_ta'];$date_post = $ds['date_post'];$tin_moi = $ds['tin_moi'];$id_cat = $ds['id_cat'];
                         } else {
-                            $ho_ten='';$chuc_vu='';$hoc_vi='';$chuyen_nganh='';$dien_thoai='';$email='';$mo_ta='';$thu_tu =0;
+                            $ten = '';$noi_dung = '';$slug='';$thu_tu=0;$mo_ta = ''; $date_post = App\Http\Controllers\ObjectController::setDate();$tin_moi=0; $id_cat=array();
                         }
                     @endphp
                     <div class="form-group row">
-                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Họ tên') }}</label>
-                        <div class="col-md-4">
-                            <input type="text" id="ho_ten" name="ho_ten" class="form-control" placeholder="{{ __('Họ tên') }}" value="{{ $ho_ten }}" required />
-                        </div>
-                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Chức vụ') }}</label>
-                        <div class="col-md-4">
-                            <input type="text" id="chuc_vu" name="chuc_vu" class="form-control" placeholder="{{ __('Chức vụ') }}" value="{{ $chuc_vu }}" />
+                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Tên') }}</label>
+                        <div class="col-md-10">
+                            <input type="text" id="ten" name="ten" class="form-control" placeholder="{{ __('Tên') }}" value="{{ $ten }}" required />
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Điện thoại') }}</label>
-                        <div class="col-md-4">
-                            <input type="text" id="dien_thoai" name="dien_thoai" class="form-control" placeholder="{{ __('Điện thoại') }}" value="{{ $dien_thoai }}" />
-                        </div>
-                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Email') }}</label>
-                        <div class="col-md-4">
-                            <input type="email" id="email" name="email" class="form-control" placeholder="{{ __('Email') }}" value="{{ $email }}" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Học vị') }}</label>
-                        <div class="col-md-4">
-                            <input type="text" id="hoc_vi" name="hoc_vi" class="form-control" placeholder="{{ __('Học vị') }}" value="{{$hoc_vi}}" required />
-                        </div>
-                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Chuyên ngành') }}</label>
-                        <div class="col-md-4">
-                            <input type="text" id="chuyen_nganh" name="chuyen_nganh" class="form-control" placeholder="{{ __('Chuyên ngành') }}" value="{{$chuyen_nganh}}" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Thứ tự') }}</label>
-                        <div class="col-md-4">
-                            <input type="number" id="thu_tu" name="thu_tu" class="form-control" placeholder="{{ __('Thứ tự') }}" value="{{ $thu_tu }}" />
+                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Slug') }}</label>
+                        <div class="col-md-10">
+                            <input type="text" id="slug" name="slug" class="form-control" placeholder="{{ __('slug') }}" value="{{ $slug }}" required />
                         </div>
                     </div>
                     <div class="form-group row">
@@ -86,6 +56,37 @@
                         <div class="col-12 col-md-10">
                             <textarea name="mo_ta" id="mo_ta" class="form-control" required placeholder="{{ __('Mô tả nội dung') }}" style="height:100px;">{{ $mo_ta }}</textarea>
                         </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Nội dung') }}</label>
+                        <div class="col-md-10">
+                            <textarea name="noi_dung" id="noi_dung" class="form-control" required>{{ $noi_dung }}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Ngày tạo') }}</label>
+                        <div class="col-md-2">
+                            <input type="text" id="date_post" name="date_post" class="form-control" placeholder="{{ __('Ngày tạo') }}" value="{{ $date_post }}" required />
+                        </div>
+                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Thứ tự') }}</label>
+                        <div class="col-md-1">
+                            <input type="text" id="thu_tu" name="thu_tu" class="form-control" placeholder="{{ __('Thứ tự') }}" value="{{ $thu_tu }}" required />
+                        </div>
+                        <div class="col-md-2 switchery-demo">
+                            <b>{{ __('Tin mới') }}: </b>
+                            <input type="checkbox" name="tin_moi" id="tin_moi" class="js-switch" data-plugin="switchery" data-color="#009efb" value="1" @if($tin_moi) checked @endif/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Thuộc phân mục') }}</label>
+                        <div class="col-12 col-md-10">
+                            <select name="id_cat[]" id="id_cat" multiple class="form-control select2" required data-placeholder="Chọn phân loại">
+                                <option value="">{{ __('Chọn phân loại') }}</option>
+                                @foreach($cats as $cat)
+                                    <option value="{{ $cat }}" @if(in_array($cat, $id_cat)) selected @endif>{{ __($cat) }}</option>
+                                @endforeach
+                        </select>
+                    </div>
                     </div>
                     <div class="card-box bg-light">
                         <div class="row">
@@ -208,7 +209,7 @@
                     </div>
                 </div>
                 <div class="form-actions">
-                    <a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/{{ $tags }}" class="btn btn-light"><i class="fa fa-reply-all"></i> {{ __('Trở về') }}</a>
+                    <a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/category" class="btn btn-light"><i class="fa fa-reply-all"></i> {{ __('Trở về') }}</a>
                     <button type="submit" class="btn btn-info"> <i class="fa fa-check"></i> {{ __('Cập nhật') }}</button>
               </div>
             </form>
@@ -232,8 +233,8 @@
                 filebrowserBrowseUrl: '{{ env('APP_URL') }}laravel-filemanager?type=Files',
                 filebrowserUploadUrl: '{{ env('APP_URL') }}laravel-filemanager/upload?type=Files&_token='
             };
+
             upload_files("{{ env('APP_URL') }}{{ app()->getLocale() }}/file/uploads");
-            CKEDITOR.replace('mo_ta', options);
             upload_hinhanh("{{ env('APP_URL') }}{{ app()->getLocale() }}/image/uploads");
             $("#ten").change(function(){
                 var title = $(this).val();
@@ -245,6 +246,7 @@
             $('.js-switch').each(function() {
                 new Switchery($(this)[0], $(this).data());
             });
+            CKEDITOR.replace('noi_dung', options);
         });
     </script>
 @endsection
