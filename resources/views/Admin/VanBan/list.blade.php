@@ -15,7 +15,7 @@
                 <tr>
                     <th>{{ __('STT') }}</th>
                     <th>{{ __('Tên') }}</th>
-                    <th>{{ __('Phân mục') }}</th>
+                    <th>{{ __('Loại') }}</th>
                     <th style="width:55px;">#</th>
                     @foreach($arr_lang as $klang => $vlang)
                         @if($klang != app()->getLocale())
@@ -29,7 +29,7 @@
                 <tr>
                     <td class="text-center">{{ $key+1 }}</td>
                     <td>
-                        <a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/@if(app()->getLocale() == 'vi'){{ 'chi-tiet-van-ban' }}@else{{ ('detail-news-and-events') }}@endif/{{ $ds['slug'] }}" target="_blank"><strong>{{ $ds['ten'] }}</strong></a>
+                        <a target="_blank"><strong>{{ $ds['ten'] }}</strong></a>
                         <span class="badge badge-info"><small>{{ App\Http\Controllers\ObjectController::getDate($ds['date_post'],"d/m/Y H:i") }}</small></span>
                     </td>
                     <td>

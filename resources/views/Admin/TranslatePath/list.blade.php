@@ -67,7 +67,7 @@
                 </tbody>
             </table>
             @php
-                $q = isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUUERY_STRING'] : '';
+                $q = isset($_SERVER['QUERY_STRING']) ? $_SERVER['QUERY_STRING'] : '';
 
             @endphp
             {{ $danhsach->withPath(env('APP_URL') . app()->getLocale() . '/admin/translate-path?'.$q) }}

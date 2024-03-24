@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Validator;
 class BannerController extends Controller
 {
     function list(Request $request, $locale = ''){
-        $danhsach = Banner::where('locale','=',$locale)->orderBy('order', 'asc')->orderBy('updated_at', 'desc')->get();
+        $danhsach = Banner::orderBy('order', 'asc')->orderBy('updated_at', 'desc')->get();
         return view('Admin.Banner.list')->with(compact('danhsach'));
     }
 

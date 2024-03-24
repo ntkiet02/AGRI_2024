@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-12">
         <div class="card-box">
-            <h3 class="m-t-0"><a href="{{ env('APP_URl') }}{{ app()->getLocale() }}/admin/nhan-su/{{ $tags }}" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Thêm mới') }} @if($tags == 'nhan-su') {{ __('Nhân sự') }} @else {{ __('Chuyên gia') }} @endif</h3>
+            <h3 class="m-t-0"><a href="{{ env('APP_URl') }}{{ app()->getLocale() }}/admin/nhan-su/{{ $tags }}" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Chỉnh sửa') }} {{ __('Nhân sự') }}</h3>
             <form action="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/{{ $tags }}/update" method="post" id="dinhkemform" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input type="hidden" name="id" id="id" value="{{ $ds['_id'] }}" placeholder="">

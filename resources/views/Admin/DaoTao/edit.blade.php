@@ -7,7 +7,7 @@
 <div class="row">
   <div class="col-12">
         <div class="card-box">
-            <h3 class="m-t-0"><a href="{{ env('APP_URL').app()->getLocale() }}/admin/dao-tao" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Sửa mới Ngành đào tạo') }}</h3>
+            <h3 class="m-t-0"><a href="{{ env('APP_URL').app()->getLocale() }}/admin/dao-tao" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Chỉnh sửa') }} {{ __('Ngành đào tạo') }}</h3>
             <form action="{{ env('APP_URL').app()->getLocale() }}/admin/dao-tao/update" method="post" id="dinhkemform" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input type="hidden" name="id" id="id" value="{{ $ds['_id'] }}" placeholder="">
@@ -46,7 +46,7 @@
                         </div>
                         <div class="col-md-3">
                             <select name="tags" id="tags" class="form-control select2" required>
-                                <option value="">Chọn phân loại</option>
+                                <option value="">{{ __('Chọn phân loại') }}</option>
                                 @foreach($tags as $tag)
                                     <option value="{{ $tag }}">{{ __($tag) }}</option>
                                 @endforeach

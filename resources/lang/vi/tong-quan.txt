@@ -1,3 +1,5 @@
+<p>&nbsp;</p>
+
 <div class="row">
 <div class="col-md-12" style="text-align:justify">
 <p>Khoa N&ocirc;ng nghiệp v&agrave; T&agrave;i nguy&ecirc;n Thi&ecirc;n nhi&ecirc;n được th&agrave;nh lập theo quyết định số 241 / QĐ-UB-TC của Chủ tịch Ủy ban nh&acirc;n d&acirc;n tỉnh An Giang, k&yacute; ng&agrave;y 21 th&aacute;ng 02 năm 2001 l&agrave; đơn vị trực thuộc Trường với tầm nh&igrave;n v&agrave; nhiệm vụ:</p>
@@ -10,17 +12,11 @@
 
 <p>Phấn đấu đến năm 2030, Khoa trở th&agrave;nh trung t&acirc;m đ&agrave;o tạo đa ng&agrave;nh với c&aacute;c chuy&ecirc;n ng&agrave;nh như: Khoa học c&acirc;y trồng, Bảo vệ thực vật, Chăn nu&ocirc;i, Th&uacute; y, Nu&ocirc;i trồng thủy sản,C&ocirc;ng nghệ thực phẩm, C&ocirc;ng nghệ sinh học v&agrave; Ph&aacute;t triển n&ocirc;ng th&ocirc;n; trở th&agrave;nh một trong những Khoa mạnh về đ&agrave;o tạo, nghi&ecirc;n cứu v&agrave; chuyển giao c&ocirc;ng nghệ phục vụ cộng đồng được quốc tế c&ocirc;ng nhận. Năng lực, phẩm chất v&agrave; tr&igrave;nh độ chuy&ecirc;n m&ocirc;n của đội ngũ giảng vi&ecirc;n được n&acirc;ng l&ecirc;n tầm khu vực v&agrave; quốc tế.</p>
 
-<p>&nbsp;</p>
-
 <p><strong>Cơ cấu tổ chức v&agrave; nh&acirc;n sự</strong></p>
 
 <p>Cho đến th&aacute;ng 6/2023, Khoa c&oacute; 76 giảng vi&ecirc;n (Nữ: 40). Giảng vi&ecirc;n c&oacute; PGS: 01<strong>&nbsp;(</strong>tỷ lệ 1,3%); Tiến sĩ: 33 (tỷ lệ 43,5%); Thạc sĩ: 40 (tỷ lệ 52,6%); Đại học: 2 (tỷ lệ 2,6%). Khoa c&oacute; Ban chủ nhiệm Khoa, 06 Bộ m&ocirc;n v&agrave; Văn ph&ograve;ng Khoa.</p>
 
-<figure><a href="https://agri.agu.edu.vn/wp-content/uploads/2021/12/CV-Loan-VN.pdf" rel="noopener" target="_blank"><img alt="" decoding="async" fetchpriority="high" height="213" sizes="(max-width: 586px) 100vw, 586px" src="https://agri.agu.edu.vn/wp-content/uploads/2021/11/pploan-hinhcv.jpg" srcset="https://agri.agu.edu.vn/wp-content/uploads/2021/11/pploan-hinhcv.jpg 523w, https://agri.agu.edu.vn/wp-content/uploads/2021/11/pploan-hinhcv-300x109.jpg 300w" width="586" /></a></figure>
-
-<figure><a href="https://agri.agu.edu.vn/wp-content/uploads/2021/11/cv-nguyen-duy-tan-vietnamese.pdf" rel="noopener" target="_blank"><img alt="" decoding="async" height="205" sizes="(max-width: 592px) 100vw, 592px" src="https://agri.agu.edu.vn/wp-content/uploads/2021/11/ndtan-hinhcv.jpg" srcset="https://agri.agu.edu.vn/wp-content/uploads/2021/11/ndtan-hinhcv.jpg 530w, https://agri.agu.edu.vn/wp-content/uploads/2021/11/ndtan-hinhcv-300x104.jpg 300w" width="592" /></a></figure>
-
-<figure><img alt="" decoding="async" height="553" sizes="(max-width: 904px) 100vw, 904px" src="https://agri.agu.edu.vn/wp-content/uploads/2023/06/So-do-to-chuc-2023.jpg" srcset="https://agri.agu.edu.vn/wp-content/uploads/2023/06/So-do-to-chuc-2023.jpg 917w, https://agri.agu.edu.vn/wp-content/uploads/2023/06/So-do-to-chuc-2023-300x184.jpg 300w, https://agri.agu.edu.vn/wp-content/uploads/2023/06/So-do-to-chuc-2023-768x471.jpg 768w" width="904" /></figure>
+<p><img alt="" src="https://agri.agu.edu.vn//storage/photos/65e82eb0d9df722c6edd1e4b/So-do-to-chuc-2023.jpg" style="width: 100%; height: 100%; float: left;" /></p>
 
 <p><strong>Đ&agrave;o tạo</strong></p>
 

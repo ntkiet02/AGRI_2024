@@ -45,7 +45,7 @@
                         </div>
                         <label class="control-label col-md-2 text-right p-t-10">{{ __('Năm nghiệm thu') }}</label>
                         <div class="col-md-4">
-                            <input type="text" id="thoi_gian_thuc_hien" name="thoi_gian_thuc_hien" class="form-control" placeholder="Năm nghiệm thu" value="{{ $thoi_gian_thuc_hien }}" />
+                            <input type="text" id="thoi_gian_thuc_hien" name="thoi_gian_thuc_hien" class="form-control" placeholder="{{ __('Năm nghiệm thu') }}" value="{{ $thoi_gian_thuc_hien }}" />
                         </div>
                     </div>
                     <div class="row form-group">   
@@ -53,10 +53,10 @@
                         <div class="col-md-4">
                             <input type="text" id="chu_nhiem_nhiem_vu" name="chu_nhiem_nhiem_vu" class="form-control" placeholder="{{ __('Chủ nhiệm đề tài') }}" value="{{ $chu_nhiem_nhiem_vu }}" />
                         </div>
-                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Thuộc Cấp') }}</label>
+                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Cấp') }}</label>
                         <div class="col-md-4">
                             <select name="tags" id="tags" class="form-control select2" required>
-                                <option value="">Chọn phân loại</option>
+                                <option value="">{{__('Chọn')}}</option>
                                 @foreach($tags as $tag)
                                     <option value="{{ $tag }}">{{ __($tag) }}</option>
                                 @endforeach
@@ -73,7 +73,7 @@
                                     <div class="col-md-4">
                                         <label class="btn btn-info">
                                             <input type="file" name="dinhkem_files[]" class="dinhkem_files btn btn-primary" multiple accept="*" placeholder="Chọn tập tin đính kèm" style="display:none;" />
-                                            <i class="mdi mdi mdi-attachment"></i> {{ __('Chọn Đính kèm') }} : (pdf, xlsx, docx, pptx, zip, ....)
+                                            <i class="mdi mdi mdi-attachment"></i> {{ __('Đính kèm') }} : (pdf, xlsx, docx, pptx, zip, ....)
                                         </label>
                                     </div>
                                 </div>

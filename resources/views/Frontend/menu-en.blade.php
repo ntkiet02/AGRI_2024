@@ -13,6 +13,10 @@
       $path_vi = env('APP_URL') . 'vi';
       $path_en = env('APP_URL') . 'en';
   }
+  $tags_dao_tao = App\Http\Controllers\DaoTaoController::get_tags();
+  $tags_khoa_luan=App\Http\Controllers\KhoaLuanTotNghiepController::get_tags();
+  $tags_nghien_cuu_khoa_hoc=App\Http\Controllers\NghienCuuKhoaHocController::get_tags();
+  $cats_catelory=App\Http\Controllers\CategoryController::get_cats();
 @endphp
 <header>
   <div class="header-top">
@@ -34,7 +38,7 @@
   <div class="container header-middle">
     <div class="row">
       <span class="col-xs-7 col-md-4 col-sm-8">
-        <a href="{{ env('APP_URL') }}">
+        <a href="{{ env('APP_URL').app()->getLocale()  }}">
           <img src="{{ env('APP_URL') }}assets/frontend/images/logo_{{ app()->getLocale() }}.png" class="" alt="Trung tâm Nghiên cứu Xã hội và Nhân văn Trường Đại học An Giang" title="Trung tâm Nghiên cứu Xã hội và Nhân văn Trường Đại học An Giang" style="width:120%;">
         </a>
       </span>
@@ -54,7 +58,7 @@
   </div>
   <!-- End Header Middle -->
   <!-- Start Navigation -->
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-inverse" style="background:#008f3b;" >
     <div class="container">
       <div class="navbar-header">
         <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
@@ -65,73 +69,96 @@
           <button class="search-btn"><span class="icon-search-icon"></span></button>
         </form> --}}
         <ul class="nav navbar-nav">
-          <li class="dropdown"><a data-toggle="dropdown"  href="#">Introduction <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+          <li class="dropdown"><a data-toggle="dropdown" href="#">{{ __('Giới thiệu') }} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
             <ul class="dropdown-menu">
-              <li><a href="{{ env('APP_URL') }}en/overview">Overview</a></li>
-              <li><a href="{{ env('APP_URL') }}en/organizational-structure">Organizational Structure</a></li>
-              <li><a href="{{ env('APP_URL') }}en/experts">Experts</a></li>
-              <li><a href="{{ env('APP_URL') }}en/partners">Partners</a></li>
+              <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/overview" >{{ __('Tổng quan') }}</a></li> 
+              <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/personnel/faculty-leaders">{{ __('Ban Lãnh đạo khoa') }}</a></li>
+              <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/personnel/faculty-office">{{ __('Văn phòng khoa') }}</a></li>
+              <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/personnel/department-of-food-technology">{{ __('Bộ môn Công nghệ Thực phẩm') }}</a></li>
+              <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/personnel/department-of-aquaculture">{{ __('Bộ môn Nuôi trồng Thủy sản') }}</a></li>
+              <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/personnel/department-of-biotechnology">{{ __('Bộ môn Công nghệ Sinh học') }}</a></li>
+              <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/personnel/department-of-animal-husbandry-and-veterinary-medicine">{{ __('Bộ môn Chăn nuôi Thú y') }}</a></li>
+              <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/personnel/department-of-crop-science">{{ __('Bộ môn Khoa học Cây trồng') }}</a></li>
+              <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/personnel/department-of-rural-development-and-natural-resource-management">{{ __('Bộ môn Phát triển Nông thôn và QLTNTN')}} </a></li>
             </ul>
           </li>
-          <li class="dropdown"><a href="{{ env('APP_URL') }}en/news-and-events"  data-toggle="dropdown" >News and Events <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+          <li class="dropdown"><a href="#"  data-toggle="dropdown" >{{ __('Tin tức') }} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
             <ul class="dropdown-menu">
-              @foreach($tags as $ktag => $tag)
-              <li><a href="{{ env('APP_URL') }}en/news-and-events/tag/{{ $ktag }}">{{ __($tag) }}</a></li>
-              @endforeach
-              <li><a href="{{ env('APP_URL') }}en/pictures">{{ __('Hình ảnh hoạt động') }}</a></li>
+              <li><a class="fonta"  href="{{ env('APP_URL') }}{{ app()->getLocale() }}/category">{{ __('Tất cả tin tức') }}</a></li>
+              <li><a class="fonta"  href="{{ env('APP_URL') }}{{ app()->getLocale() }}/category/thong-bao">{{ __('Thông báo') }}</a></li>
+              <li><a class="fonta"  href="{{ env('APP_URL') }}{{ app()->getLocale() }}/category/su-kien">{{ __('Sự kiện') }}</a></li>
+              <li><a class="fonta"  href="{{ env('APP_URL') }}{{ app()->getLocale() }}/category/nghien-cuu-khoa-hoc">{{ __('Nghiên cứu khoa học') }}</a></li>
+              <li><a class="fonta"  href="{{ env('APP_URL') }}{{ app()->getLocale() }}/hinh-anh-hoat-dong">{{ __('Hình ảnh hoạt động') }}</a></li>
             </ul>
           </li>
-          <li class="dropdown"><a  data-toggle="dropdown" href="">Research <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+          <li class="dropdown"><a href="#"  data-toggle="dropdown" >{{ __('Đào tạo') }} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+            <ul class="dropdown-menu">
+              <li><a class="fontli" >{{ __('Đại học') }}</a></li>
+                <ul> 
+                  <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/training/university-programs/food-technology"> {{ __('Công nghệ thực phẩm') }}</a></li>
+                  <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/training/university-programs/ensuring-quality-&-food-safety">{{ __('Đảm bảo chất lượng & ATVSTP') }}</a></li>
+                  <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/training/university-programs/aquaculture">{{ __('Nuôi trồng Thuỷ sản')  }}</a></li>
+                  <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/training/university-programs/biotechnology">{{ __('Công nghệ Sinh học') }}</a></li>
+                  <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/training/university-programs/breed">{{ __('Chăn nuôi') }}</a></li>
+                  <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/training/university-programs/veterinary-medicine">{{ __('Thú y') }}</a></li>
+                  <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/training/university-programs/crop-science">{{ __('Khoa học Cây trồng') }}</a></li>
+                  <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/training/university-programs/plant-protection">{{ __('Bảo vệ Thực vật') }}</a></li>
+                  <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/training/university-programs/rural-development-&-natural-resource-management">{{ __('Phát triển Nông thôn & QLTNTN') }}</a></li>
+                </ul>
+              <li><a class="fontli">{{ __('Thạc sỹ') }}</a></li>
+                <ul >
+                  <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/training/masters-programs/breed">{{ __('Chăn nuôi') }}</a></li>
+                  <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/training/masters-programs/crop-science">{{ __('Khoa học Cây trồng') }}</a></li>
+                  <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/training/masters-programs/food-technology">{{ __('Công nghệ thực phẩm') }}</a></li>
+                  <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/training/masters-programs/biotechnology">{{ __('Công nghệ Sinh học') }}</a></li>
+                </ul>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"  data-toggle="dropdown" >{{ __('Nghiên cứu khoa học') }} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+            <ul class="dropdown-menu">
+              <li><a class="fontli" >{{ __('Giảng viên') }}</a></li>
+                <ul>
+                    <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/nghien-cuu-khoa-hoc/de-tai-cap-co-so">{{ __('Đề tài cấp Cơ sở') }}</a></li>  
+                    <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/nghien-cuu-khoa-hoc/de-tai-cap-truong">{{ __('Đề tài cấp Trường') }}</a></li> 
+                    <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/nghien-cuu-khoa-hoc/de-tai-cap-dhqg">{{ __('Đề tài cấp ĐHQG') }}</a></li> 
+                    <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/nghien-cuu-khoa-hoc/de-tai-cap-tinh">{{ __('Đề tài cấp Tỉnh') }}</a></li> 
+                </ul>
+              <li><a class="fontli">{{ __('Sinh viên') }}</a></li>
+                <ul>
+                    <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/khoa-luan-tot-nghiep/khoa-luan-tot-nghiep">{{ __('Khóa luận tốt nghiệp') }}</a></li> 
+                    <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/khoa-luan-tot-nghiep/chuyen-de-tot-nghiep">{{ __('Chuyên đề tốt nghiệp') }}</a></li> 
+                </ul>
+            </ul>
+          </li>
+          <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/category/hop-tac-quoc-te" >{{ __('Hợp tác quốc tế') }}</a>
+          </li>
+          <li class="dropdown"><a href="#"  data-toggle="dropdown" >{{ __('Văn bản - Biểu mẫu') }} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+            <ul class="dropdown-menu">
+              <li><a class="fontla" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/van-ban">{{ __('Văn bản') }}</a></li>
+              <li><a class="fontla" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/bieu-mau">{{ __('Biểu mẫu') }}</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a href="#"  data-toggle="dropdown" >{{ __('Đoàn thể') }} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+            <ul class="dropdown-menu">
+              <li><a class="fontla" href="https://cpv.agu.edu.vn/">{{ __('Công tác Đảng') }}</a></li>
+              <li><a class="fontla" href="https://youth.agu.edu.vn/">{{ __('Đoàn thanh niên') }}</a></li>
+              <li><a class="fontla" href="https://youth.agu.edu.vn/">{{ __('Hội sinh viên') }}</a></li>
+              <li><a class="fontla" href="https://union.agu.edu.vn/">{{ __('Công đoàn') }}</a></li>
+            </ul>
+          </li>
+
+          <!-- <li class="dropdown"><a  data-toggle="dropdown" href="">Research <i class="fa fa-angle-down" aria-hidden="true"></i></a>
             <ul class="dropdown-menu">
               <li><a href="{{ env('APP_URL') }}en/science-and-technology-misson">Science and Technology misson</a></li>
               <li><a href="{{ env('APP_URL') }}en/projects">Projects</a></li>
               <li><a href="{{ env('APP_URL') }}en/scientific-publication">Scientific Publication</a></li>
               <li><a href="{{ env('APP_URL') }}en/documents">Documents</a></li>
             </ul>
-          </li>
-          @php
-            $dich_vu = App\Models\DichVu::where('locale', '=', app()->getLocale())->get();
-          @endphp
-          <li class="dropdown"><a data-toggle="dropdown" href="{{ env('APP_URL') }}en/services">Services <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-            @if($dich_vu)
-            <ul class="dropdown-menu">
-              @foreach($dich_vu as $dv)
-                <li><a href="{{ env('APP_URL') }}en/services/{{ $dv['slug'] }}">{{ $dv['ten'] }}</a></li>
-              @endforeach
-            </ul>
-            @endif
-          </li>
-          {{-- <li><a href="{{ env('APP_URL') }}pictures">Pictures</a></li> --}}
-          {{--
-          @php
-            $dich_vu = App\Models\DichVu::orderBy('order', 'asc')->get();
-          @endphp
-          @if($dich_vu)
-          <li class="dropdown"> <a data-toggle="dropdown" href="#">Dịch vụ <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-            <ul class="dropdown-menu">
-              @foreach($dich_vu as $dv)
-                <li><a href="{{ env('APP_URL') }}dich-vu/{{ $dv['slug'] }}">{{ $dv['title'] }}</a></li>
-              @endforeach
-            </ul>
-          </li>
-          @endif --}}
-          {{--
-          @php
-            $arr_thongtin = Config::get('app.arr_thongtin');
-          @endphp
-          <li class="dropdown"> <a data-toggle="dropdown" href="#">Thông tin <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-            <ul class="dropdown-menu">
-              @foreach($arr_thongtin as $ktt => $vtt)
-                <li><a href="{{ env('APP_URL') }}thong-tin/{{ $ktt }}">{{ $vtt }}</a></li>
-              @endforeach
-                <li><a href="{{ env('APP_URL') }}tra-cuu-chung-chi">Tra cứu Chứng chỉ</a></li>
-                <li><a href="{{ env('APP_URL') }}danh-ba-dien-thoai">Danh bạ điện thoại</a></li>
-            </ul>
-          </li> --}}
-          <li> <a href="{{ env('APP_URL') }}en/contacts">Contacts</a></li>
+          </li> -->
+          
+                
         </ul>
       </div>
     </div>
-  </nav>
   <!-- End Navigation -->
 </header>

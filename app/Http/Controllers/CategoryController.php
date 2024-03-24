@@ -15,7 +15,7 @@ class CategoryController extends Controller
 {
     //
     protected const CATS = array(
-        'nghien-cuu-khoa-hoc'=>'Nghiên cứu khoa học',
+        'nghien-cuu-khoa-hoc'=>'__("Nghiên cứu khoa học")',
         'hop-tac-quoc-te'=>'Hợp tác quốc tế',
         'doan-the'=>'Đoàn thể',
         'hoat-dong-doi-ngoai'=>'Hoạt động đối ngoại',

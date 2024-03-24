@@ -26,7 +26,7 @@
         <div class="row">
             <div class="col-sm-12 col-lg-12 col-md-12">
                 <div class="content" style="width:100%;">     
-                    <h2 style="color: #058B3C;">Nghiên cứu</h2>
+                    <h2 style="color: #058B3C;">{{ __('Nghiên cứu') }}</h2>
                 </div>
             </div>
         </div>

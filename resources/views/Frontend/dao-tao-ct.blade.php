@@ -31,7 +31,7 @@
         <div class="row">
             <div class="col-sm-12 col-lg-12 col-md-12">
                 <div class="content" style="width:100%; text-align:center;">     
-                    <h2 style="color: #058B3C;">Đào tạo</h2>
+                    <h2 style="color: #058B3C;">{{__('Đào tạo')}}</h2>
                 </div>
             </div>
         </div>
@@ -41,9 +41,9 @@
 <!-- Start About -->
 <section class="about">
     <div class="container noi-dung">
-      <p>{{ __('Trang chủ') }} <i class="fa fa-angle-double-right" aria-hidden="true"></i> <strong>{{ __('Ngành đào tạo') }}</strong></p>
-      <span class="tags">{{ $ds['tags'] }}</span><br />
-      <h3 style="text-transform:uppercase;">{{ $ds['ten'] }}</h3>
+      <!-- <p>{{ __('Trang chủ') }} <i class="fa fa-angle-double-right" aria-hidden="true"></i> <strong>{{ __('Ngành đào tạo') }}</strong></p> -->
+      <span class="tags">{{ __($ds['tags'])}}</span><br />
+      <h3 style="text-transform:uppercase;">{{ __($ds['ten']) }}</h3>
         <div class="row" style="padding-bottom:20px;">
           <div class="col-12 text-right">
             @if(isset($ds['views']))<i class="fa fa-eye"></i> {{ $ds['views'] }} @endif
@@ -91,12 +91,12 @@
                 <tr>
                   <td>{{ $key+1 }}</td>
                   <td>
-                    <a href="{{ env('APP_URL').app()->getLocale() }}/dao-tao/xem-truc-tuyen/{{ $ds['_id'] }}/{{ $key }}" data-toggle="modal" data-target="#xemdinhkem" class="view_online">
+                    <a href="{{ env('APP_URL').app()->getLocale() }}/dao-tao/{{$ds['slugtags']}}/{{$ds['slug']}}/xem-truc-tuyen/{{ $ds['_id'] }}/{{ $key }}" data-toggle="modal" data-target="#xemdinhkem" class="view_online">
                       {{ $dk['title'] }}
                     </a>
                   </td>
                   <td>
-                    <a href="{{ env('APP_URL').app()->getLocale() }}/dao-tao/tai-ve/{{ $ds['_id'] }}/{{ $key }}">
+                    <a href="{{ env('APP_URL').app()->getLocale() }}/dao-tao/{{$ds['slugtags']}}/{{$ds['slug']}}/tai-ve/{{ $ds['_id'] }}/{{ $key }}">
                       <img src="{{ env('APP_URL') }}assets/frontend/images/download.svg" height="20" />
                     </a>
                   </td>
@@ -114,7 +114,7 @@
             <h4><i class="fa fa-link" aria-hidden="true"></i> {{ __('Xem thêm') }}</h4>
             <ul class="list-quy-che">
               @foreach($danhsach as $r)
-                <li class="rtejustify"><a href="{{ env('APP_URL').app()->getLocale() }}/dao-tao/{{ $r['slug'] }}">{{ $r['ten'] }}</a></li>
+                <li class="rtejustify"><a href="{{ env('APP_URL').app()->getLocale() }}/dao-tao/{{$r['slugtags']}}/{{ $r['slug'] }}">{{ $r['ten'] }}</a></li>
               @endforeach
             </ul>
           </div>

@@ -20,6 +20,7 @@
     color:#fff;
     padding: 5px 20px;
   }
+
 </style>
 @endsection 
 @section('body')  
@@ -27,7 +28,7 @@
 <section class="about">
     <div class="container noi-dung">
        <h2 style="color: black;">{{ $ds['ten'] }} </h2>
-        <span class="tags">{{ implode(" / ", $ds['id_cat']) }}</span><br />
+        <span class="tags">{{ __(implode(" / ", $ds['id_cat'])) }}</span><br />
         <span class="icon-date-icon ico"></span> <span class="italic">{{ App\Http\Controllers\ObjectController::getDate($ds['date_post'], "d/m/Y H:i") }}
         <div class="row" style="padding-bottom:20px;">                    
           <div class="col-12 text-right">
@@ -40,21 +41,25 @@
               {!! $ds['noi_dung'] !!}
             </div>
         </div>
-        @if($ds['photos'] && count($ds['photos']) > 1)
-        <br />
-        <div class="row campus-tour">
+
+         @if($ds['photos'] && count($ds['photos']) > 1)
+         <br />
+         <div class="row">
           <div class="col-md-12">
-            <h4><i class="fa fa-picture-o" aria-hidden="true"></i> {{ __('HÌNH ẢNH') }}</h4><br />
-            <ul class="gallery clearfix">
-              @foreach($ds['photos'] as $h)
-              <li>
-                  <div class="overlay">
-                      <a class="galleryItem" href="{{ env('APP_URL') }}storage/images/origin/{{ $h['aliasname'] }}" title="{{ $h['title'] }}"> <span class="icon-enlarge-icon"></span></a>
-                  </div>
-                  <figure><img src="{{ env('APP_URL') }}storage/images/thumb_360x200/{{ $h['aliasname'] }}" class="img-gallery" alt=""></figure>
-              </li>
+            <h4><i class="fa fa-picture-o" aria-hidden="true"></i></i> {{ __('HÌNH ẢNH') }}</h4> <br />
+          <ul class="gallery clearfix isotopeContainer">
+          @foreach($danhsach as $b)
+            @if($b['photos'])
+              @foreach($b['photos'] as $p)
+                <li style="font-size: 0px;" class="isotopeSelector contest">
+                    <a class="galleryItem" href="{{ env('APP_URL') }}storage/images/origin/{{ $p['aliasname'] }}">
+                      <figure><img style="object-fit: cover;height: 200px;width:250px; margin-left:5px; margin-top:5px "src="{{ env('APP_URL') }}storage/images/origin/{{ $p['aliasname'] }}" class="img-responsive" alt=""></figure>
+                    </a>
+                </li>
               @endforeach
-            </ul>
+            @endif
+          @endforeach
+          </ul>
           </div>
         </div>
         @endif

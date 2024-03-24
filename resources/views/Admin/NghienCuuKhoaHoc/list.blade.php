@@ -29,7 +29,7 @@
                 @foreach($danhsach as $k => $ds)
                     <tr>
                         <td class="text-center">{{ ($k+1) }}</td>
-                        <td class="text-center"> {{$ds['tags'] }}</td>
+                        <td class="text-center"> {{__($ds['tags'])}}</td>
                         <td>{{ $ds['ten_nhiem_vu'] }}</td>
                         <td>{{ $ds['chu_nhiem_nhiem_vu'] }}</td>
                         <td>{{ $ds['thoi_gian_thuc_hien'] }}</td>

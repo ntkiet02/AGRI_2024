@@ -11,14 +11,14 @@
 @endphp
 <div class="row">
     <div class="col-12 card-box">
-        <h3 class="m-t-0"><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/category/add" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> {{ __('Thêm mới') }}</a> {{ __('Category') }}</h3>
+        <h3 class="m-t-0"><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/category/add" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i> {{ __('Thêm mới') }}</a> {{ __('Bài viết') }}</h3>
         <hr />
         @if($danhsach)
         <table class="table table-border table-bordered table-striped table-sm">
             <thead>
                 <tr>
                     <th style="width:55px;">{{ __('STT') }}</th>
-                    <th style="width:55px;">{{ __('Hình') }}</th>
+                    <th style="width:55px;">{{ __('HÌNH') }}</th>
                     <th>{{ __('Tên') }}</th>
                     <th>{{ __('Loại') }}</th>
                     <th  style="width:100px;">#</th>
@@ -51,7 +51,7 @@
 
                     </td>
                     <td>
-                        {{ implode(",", $ds['id_cat']) }}
+                        {{__(implode(",", $ds['id_cat']) ) }}
                     </td>
                     <td class="text-center">
                         <a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/category/delete/{{ $ds['_id'] }}" onclick="return confirm('Chắc chắc xóa?')"><i class="fas fa-trash text-danger"></i></a>&nbsp;

@@ -26,14 +26,14 @@
     <div class="container">
         <div class="row">
           <div class="col-12 col-md-12">
-            <h1 class="text-center">{{ __('Văn bản') }}</h1>
+            <h1 style="color: #058B3C;" class="text-center">{{ __('Văn bản') }}</h1>
             @foreach($cats as $cat)
                 @php
                     $locale = app()->getLocale();
-                    $danhsach = App\Models\VanBan::where('locale', '=', $locale)->where('id_cat', $cat)->get();
+                    $danhsach = App\Models\VanBan::where('id_cat', $cat)->get();
                 @endphp
             @if($danhsach && $danhsach->count() > 0)
-                <h3 style="padding:20px;"><i class="fa fa-file-text-o" aria-hidden="true"></i> {{ $cat }}</h3>
+                <h3 style="padding:20px;color: #058B3C;"><i class="fa fa-file-text-o" aria-hidden="true"></i> {{ $cat }}</h3>
                 <div class="card-box">
                     <div class="row">
                         <div class="col-md-12 bai-lien-quan">

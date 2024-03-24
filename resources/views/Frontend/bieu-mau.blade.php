@@ -21,19 +21,6 @@
     </style>
 @endsection
 @section('body')
-<div class="col-12">
-  <div class="inner-banner contact">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-lg-12 col-md-12">
-                <div class="content" style="width:100%;">     
-                    <h2>Biểu mẫu</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-  </div>
 {{-- @include('Frontend.widget_banner') --}}
 <section class="news-wrapper padding-xs">
     <div class="container">
@@ -43,7 +30,7 @@
             @foreach($cats as $cat)
                 @php
                     $locale = app()->getLocale();
-                    $danhsach = App\Models\BieuMau::where('locale', '=', $locale)->where('id_cat', $cat)->get();
+                    $danhsach = App\Models\BieuMau::where('id_cat', $cat)->get();
                 @endphp
             @if($danhsach && $danhsach->count() > 0)
                 <h3 style="padding:20px;color: #058B3C;"><i class="fa fa-file-text-o" aria-hidden="true"></i> {{ $cat }}</h3>

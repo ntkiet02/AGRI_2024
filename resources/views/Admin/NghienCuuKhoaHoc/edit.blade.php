@@ -8,7 +8,7 @@
 <div class="row">
   <div class="col-12">
         <div class="card-box">
-            <h3 class="m-t-0"><a href="{{ env('APP_URL').app()->getLocale() }}/admin/nghien-cuu-khoa-hoc" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> Trở về</a> Sửa Nghiên cứu Khoa học</h3>
+            <h3 class="m-t-0"><a href="{{ env('APP_URL').app()->getLocale() }}/admin/nghien-cuu-khoa-hoc" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i>{{__('Trở về')}}</a>{{__('Chỉnh sửa')}} {{__('Nghiên cứu Khoa học')}}</h3>
             <form action="{{ env('APP_URL').app()->getLocale() }}/admin/nghien-cuu-khoa-hoc/update" method="post" id="dinhkemform" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input type="hidden" name="id" id="id" value="{{ $ds['_id'] }}" placeholder="">
@@ -53,10 +53,10 @@
                         <div class="col-md-4">
                             <input type="text" id="chu_nhiem_nhiem_vu" name="chu_nhiem_nhiem_vu" class="form-control" placeholder="{{ __('Chủ nhiệm đề tài') }}" value="{{ $chu_nhiem_nhiem_vu }}" />
                         </div>
-                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Thuộc Cấp') }}</label>
+                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Cấp') }}</label>
                         <div class="col-12 col-md-4">
-                            <select name="tags" id="tags" multiple class="form-control select2" required data-placeholder="Chọn phân loại">
-                                <option value="">{{ __('Chọn phân loại') }}</option>
+                            <select name="tags" id="tags" multiple class="form-control select2" required data-placeholder="{{ __('Chọn') }}">
+                                <option value="">{{ __('Chọn') }}</option>
                                 @foreach($tags as $tag)
                                     <option value="{{ $tag }}" >{{ __($tag) }}</option>
                                 @endforeach
@@ -73,7 +73,7 @@
                                     <div class="col-md-4">
                                         <label class="btn btn-info">
                                             <input type="file" name="dinhkem_files[]" class="dinhkem_files btn btn-primary" multiple accept="*" placeholder="Chọn tập tin đính kèm" style="display:none;" />
-                                            <i class="mdi mdi mdi-attachment"></i> {{ __('Chọn Đính kèm') }} : (pdf, xlsx, docx, pptx, zip, ....)
+                                            <i class="mdi mdi mdi-attachment"></i> {{ __('Đính kèm') }} : (pdf, xlsx, docx, pptx, zip, ....)
                                         </label>
                                     </div>
                                 </div>

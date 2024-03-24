@@ -1,23 +1,11 @@
 @extends('Frontend.layout')
 @section('title', __('Category'))
 @section('body')
-<div class="col-12">
-  <div class="inner-banner contact">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-lg-12 col-md-12">
-                <div class="content" style="width:100%;">
-                    <p style="font-size:40px;color: #058B3C;"></p>     
-                </div>
-            </div>
-        </div>
-      </div>
-  </div>
-</div>
 <section class="news-wrapper padding-xs">
   <div class="container">
     <div class="row">
       <div class="col-8 col-md-8">
+        <h3 style="padding-bottom:20px;text-transform:uppercase;color: #058B3C;"><i class="fa fa-newspaper-o"></i> {{ __('Bài viết') }}</h3> 
       </div>
     </div>
     @if($danhsach)
@@ -29,11 +17,11 @@
                   <img src="{{ env('APP_URL') }}assets/frontend/images/news.gif" alt="{{ $ds['ten'] }}" title="{{ $ds['ten'] }}" class="news_icon">
                 @endif
                   @if(isset($ds['id_cat']) && $ds['id_cat'])
-                    <span class="tags">{{ implode(" / ", $ds['id_cat']) }}</span>
+                    <span class="tags">{{ __(implode(" / ", $ds['id_cat']) )}}</span>
                   @endif
                   
                 @if($ds['photos'] && isset($ds['photos'][0]['aliasname']) && $ds['photos'][0]['aliasname'])
-                    <img src="{{ env('APP_URL') }}storage/images/thumb_360x200/{{ $ds['photos'][0]['aliasname'] }}" class="img-responsive" alt="" style="width:360px;height:200px;">
+                    <img  src="{{ env('APP_URL') }}storage/images/thumb_360x200/{{ $ds['photos'][0]['aliasname'] }}" class="img-responsive" alt="" style="object-fit:cover;width:360px;height:200px;">
                 @else
                     <img src="{{ env('APP_URL') }}assets/frontend/images/default_thumb.jpg" class="img-responsive" alt="">
                 @endif

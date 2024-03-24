@@ -8,7 +8,7 @@
 <div class="row">
     <div class="col-12">
         <div class="card-box">
-            <h3 class="m-t-0"><a href="{{ env('APP_URl') }}{{ app()->getLocale() }}/admin/van-ban" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('SửaVăn bản') }}</h3>
+            <h3 class="m-t-0"><a href="{{ env('APP_URl') }}{{ app()->getLocale() }}/admin/van-ban" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Chỉnh sửa') }} {{ __('Văn bản') }}</h3>
             <form action="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/van-ban/update" method="post" id="dinhkemform" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input type="hidden" name="id" id="id" value="{{ $ds['_id'] }}" placeholder="">
@@ -49,14 +49,14 @@
                     <div class="form-group row">
                         <label class="control-label col-md-2 text-right p-t-10">{{ __('Mô tả') }}</label>
                         <div class="col-12 col-md-10">
-                            <textarea name="mo_ta" id="mo_ta" class="form-control" required placeholder="{{ __('Mô tả nội dung') }}" style="height:100px;">{{ $mo_ta }}</textarea>
+                            <textarea name="mo_ta" id="mo_ta" class="form-control" required placeholder="{{ __('Mô tả') }}" style="height:100px;">{{ $mo_ta }}</textarea>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Thuộc phân mục') }}</label>
+                        <label class="control-label col-md-2 text-right p-t-10">{{ __('Loại') }}</label>
                         <div class="col-12 col-md-10">
-                            <select name="id_cat[]" id="id_cat" multiple class="form-control select2" required data-placeholder="Chọn phân loại">
-                                <option value="">{{ __('Chọn phân loại') }}</option>
+                            <select name="id_cat[]" id="id_cat" multiple class="form-control select2" required data-placeholder="{{ __('Chọn') }}">
+                                <option value="">{{ __('Chọn') }}</option>
                                 @foreach($cats as $cat)
                                     <option value="{{ $cat }}" @if(in_array($cat, $id_cat)) selected @endif>{{ __($cat) }}</option>
                                 @endforeach
@@ -70,7 +70,7 @@
                                     <div class="col-md-4">
                                         <label class="btn btn-info">
                                             <input type="file" name="dinhkem_files[]" class="dinhkem_files btn btn-primary" multiple accept="*" placeholder="Chọn tập tin đính kèm" style="display:none;" />
-                                            <i class="mdi mdi mdi-attachment"></i> {{ __('Chọn Đính kèm') }} : (pdf, xlsx, docx, pptx, zip, ....)
+                                            <i class="mdi mdi mdi-attachment"></i> {{ __('Đính kèm') }} : (pdf, xlsx, docx, pptx, zip, ....)
                                         </label>
                                     </div>
                                 </div>

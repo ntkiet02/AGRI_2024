@@ -7,10 +7,10 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="shortcut icon" type="image/x-icon" href="{{ env('APP_URL') }}assets/frontend/images/favicon.png">
-<title> @yield('title') | {{ __('Trung tâm Nghiên cứu Xã hội và Nhân văn Trường Đại học An Giang') }}</title>
+<title> @yield('title') | {{ __('Trung tâm Xã hội và Nhân văn Trường Đại học An Giang') }}</title>
 <meta property="og:url"           content="{{ Request::fullUrl() }}" />
-<meta property="og:type"          content="{{ __('Trung tâm Nghiên cứu Xã hội và Nhân văn Trường Đại học An Giang') }}" />
-<meta property="og:title"         content="@yield('title', __('Trung tâm Nghiên cứu Xã hội và Nhân văn Trường Đại học An Giang'))" />
+<meta property="og:type"          content="{{ __('Trung tâm Xã hội và Nhân văn Trường Đại học An Giang') }}" />
+<meta property="og:title"         content="@yield('title', __('Trung tâm Xã hội và Nhân văn Trường Đại học An Giang'))" />
 <meta property="og:description"   content="@yield('description' , __('Trung tâm là một tổ chức nghiên cứu và phát triển cấp cơ sở, là đơn vị sự nghiệp trực thuộc Trường Đại học An Giang. Trung tâm có đầy đủ tư cách pháp nhân, có con dấu và tài khoản riêng tại Kho bạc nhà nước tỉnh An Giang.'))" />
 <meta property="og:image"         content="@yield('image', 'https://shrc.agu.edu.vn/assets/frontend/images/logo.jpg')" />
 <!-- Reset CSS -->
@@ -37,6 +37,8 @@
 <link href="{{ env('APP_URL') }}assets/frontend/css/custom.css" rel="stylesheet" type="text/css">
 <link href="{{ env('APP_URL') }}assets/frontend/css/owl.carousel.css" rel="stylesheet">
 <link href="{{ env('APP_URL') }}assets/frontend/css/owl.theme.css" rel="stylesheet">
+
+
 
 
 @section('css') @show
@@ -75,7 +77,7 @@
       <div class="row">
         <div class="col-sm-12 col-md-5 clearfix">
             <h3 style="padding-bottom:5px;color:#fff;">{{ __('KHOA NÔNG NGHIỆP TÀI NGUYÊN THIÊN NHIÊN') }}</h3> 
-            <p><i class="fa fa-map-marker"></i> <a href="{{ env('APP_URL') }}vi/lien-he" style="color:#fff;">18 Ung Văn Khiêm, P. Đông xuyên, TP. Long Xuyên, An Giang</a></p>
+            <p><i class="fa fa-map-marker"></i> <a href="{{ env('APP_URL') }}vi/lien-he" style="color:#fff;">{{ __('18 Ung Văn Khiêm, P. Đông xuyên, TP. Long Xuyên, An Giang') }}</a></p>
             <p><i class="fa fa-envelope"></i> <a href="mailto:agri@agu.edu.vn" style="color:#fff;">agri@agu.edu.vn</a></p>
             <p><i class="fa fa-phone" aria-hidden="true" style="font-size:17px;"></i> <a href="tel:02963943695" style="color:#fff;">02963.943.695</a></p>
           </div>

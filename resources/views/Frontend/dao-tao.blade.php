@@ -2,18 +2,6 @@
 @extends('Frontend.layout')
 @section('title', __('Đào tạo'))
 @section('body')
-<div class="col-12">
-  <div class="inner-banner contact">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-lg-12 col-md-12">
-                <div class="content" style="width:100%;">     
-                    <h2 style="color: #058B3C;">Đào tạo</h2>
-                </div>
-            </div>
-        </div>
-      </div>
-  </div>
 <section class="news-wrapper padding-xs how-study padding-lg">
   <div class="container">
     <div class="row">
@@ -31,7 +19,11 @@
               <p style="font-size: 20px;">{{$ds->tags}}</p>
             </div>
           </div>
-          <figure><img src="{{ env('APP_URL') }}storage/images/thumb_360x200/{{ $ds['photos'][0]['aliasname'] }}" class="img-responsive" alt="" style="width:360px;height:200px;"></figure>
+          @if($ds['photos'])
+          <figure><img src="{{ env('APP_URL') }}storage/images/thumb_360x200/{{ $ds['photos'][0]['aliasname']}}" class="img-responsive" alt="" style="object-fit: cover;width:360px;height:200px;"></figure>
+          @else
+          <figure><img src="{{ env('APP_URL') }}assets/frontend/images/default_thumb.jpg" class="img-responsive" alt="" style="object-fit: cover;width:360px;height:200px;"></figure>
+          @endif    
         </li>
         @endforeach
       </ul>

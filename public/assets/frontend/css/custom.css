@@ -409,8 +409,15 @@ input:focus, textarea:focus, select:focus {
 /* 03. navigation */
 /* ================================================== */
 .fonta{
-    color: #058B3C;
+    /* color: #058B3C; */
+    color:#000;
     font-size: 17px;
+}
+.fontli{
+    /* color: #058B3C; */
+    color:#000;
+    font-size: 19px;
+    font-weight: bold;
 }
 .navbar {
     border-radius: 0px;
@@ -425,7 +432,8 @@ input:focus, textarea:focus, select:focus {
 }
 .nav > li > a {
     padding: 19px 20px;
-    color:#058B3C;
+    color:#000;
+    /* color:#058B3C; */
 }
 .navbar-nav > li {
     border-right: 1px #5fc078 solid;
@@ -502,8 +510,9 @@ input:focus, textarea:focus, select:focus {
     box-shadow: none;
     border-radius: 0px;
     border-top: 4px #06b429 solid;
-    display: none;
-    color: #058B3C;
+    /* display: none; */
+    /* color: #058B3C; */
+    color:#000;
     
 }
 .navbar .dropdown-menu:after {
@@ -513,7 +522,7 @@ input:focus, textarea:focus, select:focus {
     content: " ";
     height: 0;
     width: 0;
-    position: absolute;
+    position: static;
     border-color: rgba(255, 150, 0, 0);
     border-bottom-color: #06b429;
     border-width: 10px;
@@ -1472,12 +1481,13 @@ ul.our-strength li .title {
     
 }
 .campus-tour ul.gallery li {
-    width: 20%;
+    /* width: 20%; */
     float: left;
     display: block;
-    background: white;
+    /* background: white; */
     position: relative;
-    border-color: #000;
+   /* border-color: #000; */
+   
 
 }
 .campus-tour ul.gallery li figure {
@@ -3909,11 +3919,14 @@ ul.faq-listing li h2 {
     margin-left: auto;
     margin-right: auto;
     
+    
 }
 ul.testimonials {
     text-align: center;
-    border-bottom:none;
+    border-bottom: 1px #dfe5e1 solid;
     position: relative;
+    top:0px;
+    height:350px;
 }
 ul.testimonials:after {
     width: 5px;
@@ -3927,13 +3940,15 @@ ul.testimonials:after {
 }
 ul.testimonials li {
     display: block;
-    border-right: none;
-    border-top: 50px  #fff solid;
+    /* border-right: none;
+    border-top: 50px  #fff solid; */
+    border-right: 1px #dfe5e1 solid;
+    border-bottom: 1px #dfe5e1 solid;
     position: relative;
 }
 ul.testimonials li .quotblock {
     display: block;
-    padding: 50px 20px;
+    padding: 0px 20px;
 }
 ul.testimonials li:nth-last-child(1), ul.testimonials li:nth-last-child(2), ul.testimonials li:nth-last-child(3) {
     border-bottom: none;
@@ -3967,7 +3982,7 @@ ul.testimonials li:nth-child(2n):before, ul.testimonials li:nth-child(3n):before
     -ms-filter: "FlipH";
 }
 ul.testimonials li img {
-    margin: 0 auto 22px;
+    margin: auto auto auto;
 }
 ul.testimonials li .icon-quote-left-icon {
     font-size: 20px;
@@ -4213,7 +4228,7 @@ ol.ord-listing {
     padding-left: 68px;
     counter-reset: li;
     list-style: none;
- *list-style: decimal;
+    list-style: decimal;
 }
 ol.ord-listing li {
     position: relative;
@@ -5162,7 +5177,7 @@ a.btn-circle:hover {
     }
     .nav > li > a {
         padding: 12px 20px;
-        color:
+        color:#333;
     }
     .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:focus, .navbar-inverse .navbar-nav .open .dropdown-menu > li > a:hover {
         color: #333;

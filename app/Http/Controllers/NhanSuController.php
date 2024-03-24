@@ -16,7 +16,7 @@ class NhanSuController extends Controller
     //
     protected $arr_bo_phan = array(
         'lanh-dao-khoa' => 'Lãnh đạo Khoa',
-        'van-phong-khoa' => 'Lãnh đạo Khoa',
+        'van-phong-khoa' => 'Văn phòng Khoa',
         'bo-mon-cong-nghe-thuc-pham' => 'Bộ môn Công nghệ Thực phẩm',
         'bo-mon-nuoi-trong-thuy-san' => 'Bộ môn Nuôi trồng thủy sản',
         'bo-mon-cong-nghe-sinh-hoc' => 'Bộ môn Công nghệ Sinh Học',
@@ -26,12 +26,47 @@ class NhanSuController extends Controller
     );
     
     function list(Request $request, $locale = '', $tags = ''){
-        // $file_path = base_path('resources/lang/') . $locale . '/tong-quan-'.$tags.'.txt';
-        // $noi_dung = file_get_contents($file_path);
-        $file_path = base_path('resources/lang/') . $locale .('/tong-quan-') .$tags. ('.txt');
+        if($locale=='vi'){
+            $file_path = base_path('resources/lang/') . $locale .('/tong-quan-') .$tags. ('.txt');
+        }
+        else
+        {
+            if($tags=='lanh-dao-khoa'){
+                $tagsen='faculty-leaders';
+                $file_path = base_path('resources/lang/') . $locale .('/tong-quan-faculty-leaders.txt');  
+            }
+            elseif($tags=='van-phong-khoa'){
+                $tagsen='faculty-office';
+                $file_path = base_path('resources/lang/') . $locale .('/tong-quan-faculty-office.txt');
+            }
+            elseif($tags=='bo-mon-cong-nghe-thuc-pham'){
+                $tagsen='department-of-food-technology';
+                $file_path = base_path('resources/lang/') . $locale .('/tong-quan-department-of-food-technology.txt');
+            }
+            elseif($tags=='bo-mon-nuoi-trong-thuy-san'){
+                $tagsen='department-of-aquaculture';
+                $file_path = base_path('resources/lang/') . $locale .('/tong-quan-department-of-aquaculture.txt');
+            }
+            elseif($tags=='bo-mon-cong-nghe-sinh-hoc'){
+                $tagsen='department-of-biotechnology';
+                $file_path = base_path('resources/lang/') . $locale .('/tong-quan-department-of-biotechnology.txt');
+            }
+            elseif($tags=='bo-mon-chan-nuoi-thu-y'){
+                $tagsen='department-of-animal-husbandry-and-veterinary-medicine';
+                $file_path = base_path('resources/lang/') . $locale .('/tong-quan-department-of-animal-husbandry-and-veterinary-medicine.txt');
+            }
+            elseif($tags=='bo-mon-khoa-hoc-cay-trong'){
+                $tagsen='department-of-crop-science';
+                $file_path = base_path('resources/lang/') . $locale .('/tong-quan-department-of-crop-science.txt');
+            }
+            elseif($tags=='bo-mon-phat-trien-nong-thon-va-qltntn'){
+                $tagsen='department-of-rural-development-and-natural-resource-management';
+                $file_path = base_path('resources/lang/') . $locale .('/tong-quan-department-of-rural-development-and-natural-resource-management.txt');
+            }
+        }
         $noi_dung = file_get_contents($file_path);
         $keywords = $request->input('keywords');
-        $danhsach = NhanSu::where('tags','=',$tags)->where('locale','=',$locale)->where('locale','=',$locale)->orderBy('updated_at', 'desc')->paginate(30);
+        $danhsach = NhanSu::where('tags','=',$tags)->where('locale','=',$locale)->orderBy('updated_at', 'desc')->paginate(30);
         return view('Admin.NhanSu.list')->with(compact('danhsach','tags','noi_dung'));
     }
 
@@ -208,11 +243,53 @@ class NhanSuController extends Controller
         return redirect(env('APP_URL').$locale.'/admin/nhan-su/'.$tags);
     }
 
-    function tong_quan_update (Request $request, $locale = 'vi', $tags='') {
-        $file_path = base_path('resources/lang/') . $locale .('/tong-quan-') .$tags. ('.txt');
+    function tong_quan_update (Request $request, $locale = '', $tags='') { 
+        if($locale=='vi'){
+            $file_path = base_path('resources/lang/') . $locale .('/tong-quan-') .$tags. ('.txt');
+        }
+       
+        else
+        {
+            if($tags=='lanh-dao-khoa'){
+                $tagsen='faculty-leaders';
+                $file_path = base_path('resources/lang/') . $locale .('/tong-quan-faculty-leaders.txt');  
+            }
+            elseif($tags=='van-phong-khoa'){
+                $tagsen='faculty-office';
+                $file_path = base_path('resources/lang/') . $locale .('/tong-quan-faculty-office.txt');
+            }
+            elseif($tags=='bo-mon-cong-nghe-thuc-pham'){
+                $tagsen='department-of-food-technology';
+                $file_path = base_path('resources/lang/') . $locale .('/tong-quan-department-of-food-technology.txt');
+            }
+            elseif($tags=='bo-mon-nuoi-trong-thuy-san'){
+                $tagsen='department-of-aquaculture';
+                $file_path = base_path('resources/lang/') . $locale .('/tong-quan-department-of-aquaculture.txt');
+            }
+            elseif($tags=='bo-mon-cong-nghe-sinh-hoc'){
+                $tagsen='department-of-biotechnology';
+                $file_path = base_path('resources/lang/') . $locale .('/tong-quan-department-of-biotechnology.txt');
+            }
+            elseif($tags=='bo-mon-chan-nuoi-thu-y'){
+                $tagsen='department-of-animal-husbandry-and-veterinary-medicine';
+                $file_path = base_path('resources/lang/') . $locale .('/tong-quan-department-of-animal-husbandry-and-veterinary-medicine.txt');
+            }
+            elseif($tags=='bo-mon-khoa-hoc-cay-trong'){
+                $tagsen='department-of-crop-science';
+                $file_path = base_path('resources/lang/') . $locale .('/tong-quan-department-of-crop-science.txt');
+            }
+            elseif($tags=='bo-mon-phat-trien-nong-thon-va-qltntn'){
+                $tagsen='department-of-rural-development-and-natural-resource-management';
+                $file_path = base_path('resources/lang/') . $locale .('/tong-quan-department-of-rural-development-and-natural-resource-management.txt');
+            }
+
+        }
         $noi_dung = $request->input('noi_dung');
         file_put_contents($file_path, $noi_dung);
         Session::flash('msg', 'Cập nhật thành công.');
+        // if($locale=='vi')
         return redirect(env('APP_URL').$locale.'/admin/nhan-su/'.$tags);
+        // else
+        // return redirect(env('APP_URL').$locale.'/admin/personel/'.$tagsen);
     }
 }

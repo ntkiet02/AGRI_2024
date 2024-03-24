@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 class HinhAnhHoatDongController extends Controller
 {
     function list(Request $request, $locale = ''){
-        $danhsach = HinhAnhHoatDong::where('locale','=',$locale)->orderBy('order', 'asc')->orderBy('updated_at', 'desc')->get();
+        $danhsach = HinhAnhHoatDong::orderBy('order', 'asc')->orderBy('updated_at', 'desc')->get();
         return view('Admin.HinhAnhHoatDong.list')->with(compact('danhsach'));
     }
 

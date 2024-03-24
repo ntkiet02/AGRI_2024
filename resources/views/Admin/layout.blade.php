@@ -124,14 +124,14 @@
   <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H8.96q.04-.245.04-.5C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 1 1 12z"/>
 </svg>      {{ __('Nhân sự') }} <div class="arrow-down"></div> </a>
                                 <ul class="submenu">
-                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/ban-lanh-dao-khoa">Ban Lãnh đạo khoa</a></li>
-                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/van-phong-khoa">Văn phòng khoa</a></li>
-                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/bo-mon-cong-nghe-thuc-pham">Bộ môn Công nghệ Thực phẩm</a></li>
-                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/bo-mon-nuoi-trong-thuy-san">Bộ môn Nuôi trồng Thủy sản</a></li>
-                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/bo-mon-cong-nghe-sinh-hoc">Bộ môn Công nghệ Sinh học</a></li>
-                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/bo-mon-chan-nuoi-thu-y">Bộ môn Chăn nuôi Thú y</a></li>
-                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/bo-mon-khoa-hoc-cay-trong">Bộ môn Khoa học Cây trồng</a></li>
-                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/bo-mon-phat-trien-nong-thon-va-qltntn">Bộ môn Phát triển Nông thôn và QLTNTN</a></li>  
+                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/ban-lanh-dao-khoa">{{ __('Ban Lãnh đạo khoa') }}</a></li>
+                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/van-phong-khoa">{{ __('Văn phòng khoa') }}</a></li>
+                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/bo-mon-cong-nghe-thuc-pham">{{ __('Bộ môn Công nghệ Thực phẩm') }}</a></li>
+                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/bo-mon-nuoi-trong-thuy-san">{{ __('Bộ môn Nuôi trồng Thủy sản') }}</a></li>
+                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/bo-mon-cong-nghe-sinh-hoc">{{ __('Bộ môn Công nghệ Sinh học') }}</a></li>
+                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/bo-mon-chan-nuoi-thu-y">{{ __('Bộ môn Chăn nuôi Thú y') }}</a></li>
+                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/bo-mon-khoa-hoc-cay-trong">{{ __('Bộ môn Khoa học Cây trồng') }}</a></li>
+                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/bo-mon-phat-trien-nong-thon-va-qltntn">{{ __('Bộ môn Phát triển Nông thôn và QLTNTN') }}</a></li>  
                                 </ul>
                             </li>
                             <!-- <li >
@@ -153,10 +153,9 @@
                                 <ul class="submenu">
                                     <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nghien-cuu-khoa-hoc">{{ __('Nghiên cứu khoa học') }}</a></li>
                                     <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/khoa-luan-tot-nghiep">{{ __('Khóa luận tốt nghiệp') }}</a></li>
-                                    
-                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/du-an">{{ __('Dự án') }}</a></li>
+                                    <!-- <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/du-an">{{ __('Dự án') }}</a></li>
                                     <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/hoi-nghi-hoi-thao">{{ __('Hội nghị - Hội thảo') }}</a></li>
-                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/doi-tac">{{ __('Đối tác') }}</a></li>
+                                    <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/doi-tac">{{ __('Đối tác') }}</a></li> -->
                                 </ul>
                             </li>
                             <li class="has-submenu">

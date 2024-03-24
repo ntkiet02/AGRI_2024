@@ -37,8 +37,8 @@
                             {{ __('NO PIC') }}
                         @endif
                     </td>
-                        <td class="text-center">{{ $ds['ten'] }}</td>     
-                        <td>{{ $ds['tags'] }}</td>
+                        <td class="text-center">{{__( $ds['ten'] )}}</td>     
+                        <td>{{ __($ds['tags']) }}</td>
                         <td class="text-center">
                             <a href="{{ env('APP_URL').$ds['locale'] }}/admin/dao-tao/delete/{{$ds['_id']}}" onclick="return confirm('Are you sure?')"><i class="fa fa-trash text-danger"></i></a>
                             <a href="{{ env('APP_URL').$ds['locale'] }}/admin/dao-tao/edit/{{$ds['_id']}}"><i class="fas fa-pencil-alt"></i></a>   

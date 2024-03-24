@@ -73,150 +73,42 @@
   </div>
 </div>
 <section >
-  <div class="container noi-dung">
-    <h2 style="color: #058B3C; font-style:bold">{{ __('Tổng quan') }}</h2>
-    <br/>
-    {!! $noi_dung !!}
-  </div>
-</section>
+  @if(file_exists($file_path))
+    @if(filesize($file_path)>2048)
+      <div class="container noi-dung">
+        <h2 style="color: #058B3C; font-style:bold">{{ __('Tổng quan') }}</h2>
+        {!! $noi_dung !!}
+      </div>
+    @endif
+  @endif
+</section>  
 <section class="testimonial-outer">
   <div class="container noi-dung">
-    <h2 style="color: #058B3C; font-style:bold">{{ __('Nhân sự') }}</h2>
-    <br />
-      @if($danhsach_lanh_dao)
-        @foreach($danhsach_lanh_dao as $ds)
-          <ul class="row testimonials" style="position: relative; height: 3876px;">
-              @if($ds['thu_tu']>=1 && $ds['thu_tu']<=2)
-                @php
-                  $image = isset($ds['photos'][0]['aliasname'])  ? $ds['photos'][0]['aliasname'] : '';
-                @endphp
-                <li class="col-xs-12 col-sm-13 col-md-12 grid-item" >
-                    <div class="quotblock">
-                      <div style=" width: 100px;height: 100px;border-radius: 50%;overflow: hidden; margin-bottom: 10px;text-align:center;margin-left:auto;margin-right:auto;">
-                        <div style="height: 100%;object-fit: cover;width:100%; ">
-                          @if($image)
-                            <img src="{{ env('APP_URL') }}storage/images/origin/{{ $image }}"  class="ava" title="{{ $ds['ho_ten'] }}">     
-                          @endif
-                        </div>
-                      </div>
-                        {{ $ds['title'] }}       
-                        <h3>{{ $ds['ho_ten'] }}</h3></a>
-                        @if($ds['chuc_vu'])
-                          <span class="desig">{{ __('Chức vụ') }}: {{ $ds['chuc_vu'] }}</span>  
-                          @else
-                          <span class="desig" >{{ __('Chức vụ') }}: Giảng viên</span>
-                        @endif
-                        @if($ds['hoc_vi'])
-                          <span class="desig">{{ __('Học vị') }}: {{ $ds['hoc_vi'] }}</span>
-                          @else
-                          <span class="desig">{{ __('Học vị') }}:</span>
-                        @endif
-                        @if($ds['chuyen_nganh'])
-                          <span class="desig">{{ __('Chuyên ngành') }}: {{ $ds['chuyen_nganh'] }}</span>
-                          @else
-                          <span class="desig">{{ __('Chuyên ngành') }}: </span>
-                        @endif
-                        @if($ds['email'])
-                          <span class="desig">{{ __('Email') }}: <a style="color: black;" href="mailto:{{ $ds['email'] }}">{{ $ds['email'] }}</a></span>
-                          @else
-                          <span class="desig">{{ __('Email') }}: </span>
-                        @endif  
-                        @if($ds['dien_thoai'])
-                          <span class="desig">{{ __('Điện thoại') }}: <a style="color: black;"  href="tel:{{ $ds['dien_thoai'] }}">{{ $ds['dien_thoai'] }}</a></span>
-                          @else
-                          <span class="desig">{{ __('Điện thoại') }}: </span>        
-                          <span class="desig">&nbsp;</span>
-                        @endif
-                        <a style="color:black;"  href="{{ env('APP_URL').app()->getLocale() }}/nhan-su/xem-truc-tuyen/{{$ds['_id']}}/0" data-toggle="modal" data-target="#xemdinhkem" class="view_online">{{ __('Lý lịch khoa học') }}</a></span>
-                    </div>
-                </li>
-              @endif 
-          </ul>
-        @endforeach
-      @endif
-      <ul class="row testimonials" style="position: relative; height: 3876px;">
-        @foreach($danhsach_lanh_dao as $ds)
-          @if($ds['thu_tu']>2 && $ds['thu_tu']<=5)
-          @php
-            $image = isset($ds['photos'][0]['aliasname'])  ? $ds['photos'][0]['aliasname'] : '';
-          @endphp
-            <li class="col-xs-6 col-sm-6 col-md-6 grid-item">
-              <div class="quotblock">
-                <div style=" width: 100px;height: 100px;border-radius: 50%;overflow: hidden; margin-bottom: 10px;text-align:center;margin-left:auto;margin-right:auto;">
-                  <div style="height: 100%;object-fit: cover;width:100%; ">
-                    @if($image)
-                      <img src="{{ env('APP_URL') }}storage/images/origin/{{ $image }}"  class="ava" title="{{ $ds['ho_ten'] }}">     
-                    @endif
-                  </div>
-                </div>
-                  {{ $ds['title'] }}       
-                  <h3>{{ $ds['ho_ten'] }}</h3></a>
-                  @if($ds['chuc_vu'])
-                    <span class="desig">{{ __('Chức vụ') }}: {{ $ds['chuc_vu'] }}</span>  
-                    @else
-                    <span class="desig" >{{ __('Chức vụ') }}: Giảng viên</span>
-                  @endif
-                  @if($ds['hoc_vi'])
-                    <span class="desig">{{ __('Học vị') }}: {{ $ds['hoc_vi'] }}</span>
-                    @else
-                    <span class="desig">{{ __('Học vị') }}: </span>
-                  @endif
-                  @if($ds['chuyen_nganh'])
-                    <span class="desig">{{ __('Chuyên ngành') }}: {{ $ds['chuyen_nganh'] }}</span>
-                    @else
-                    <span class="desig">{{ __('Chuyên ngành') }}: </span>
-                  @endif
-                  @if($ds['email'])
-                    <span class="desig">{{ __('Email') }}: <a style="color: black;" href="mailto:{{ $ds['email'] }}">{{ $ds['email'] }}</a></span>
-                    @else
-                    <span class="desig">{{ __('Email') }}: </span>
-                  @endif  
-                  @if($ds['dien_thoai'])
-                    <span class="desig">{{ __('Điện thoại') }}: <a style="color: black;"  href="tel:{{ $ds['dien_thoai'] }}">{{ $ds['dien_thoai'] }}</a></span>
-                    @else
-                    <span class="desig">{{ __('Điện thoại') }}: </span>
-                      
-                    <span class="desig">&nbsp;</span>
-                  @endif
-                  <a style="color:black;"  href="{{ env('APP_URL').app()->getLocale() }}/nhan-su/xem-truc-tuyen/{{$ds['_id']}}/0" data-toggle="modal" data-target="#xemdinhkem" class="view_online">{{ __('Lý lịch khoa học') }}</a></span> 
-              </div>
-            </li>
-          @endif
-        @endforeach
-      </ul>    
-    @if($danhsach_giang_vien)
-    <br/>
-    <ul class="row testimonials" style="position: relative;height:5006px;">
-      @foreach($danhsach_giang_vien as $ds)
-      @php
-        $image = isset($ds['photos'][0]['aliasname'])  ? $ds['photos'][0]['aliasname'] : '';
-      @endphp
-      <li class="col-xs-6 col-sm-6 col-md-4 grid-item">
-        <div >
-          <div style=" width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        overflow: hidden;
-        margin-bottom: 10px;
-        text-align:center;
-        margin-left:auto;
-        margin-right:auto;
-        ">
-        <div style="height: 100%;object-fit: cover;width:100%; ">
+    <h2 style="color: #058B3C; font-style:bold" >{{ __('Nhân sự') }}</h2>
+    @if($danhsach_lanh_dao) 
+      <ul class="row testimonials" style="position: relative;">
+      @foreach($danhsach_lanh_dao as $ds)
+        @if($ds['thu_tu']>=1 && $ds['thu_tu']<=2)
+                  @php
+                    $image = isset($ds['photos'][0]['aliasname'])  ? $ds['photos'][0]['aliasname'] : '';
+                  @endphp     
+        <!-- <li class="col-xs-6 col-sm-6 col-md-4 grid-item"> -->
+        <li class="col-xs-12 col-sm-13 col-md-12 grid-item" >
+        <div class="quotblock">
           @if($image)
-            <img src="{{ env('APP_URL') }}storage/images/origin/{{ $image }}" class="ava" title="{{ $ds['ho_ten'] }}">     
-          @endif</div></div>
+            <img style="object-fit: cover; width:160px; height:200px" src="{{ env('APP_URL') }}storage/images/origin/{{ $image }}" class="img-responsive" title="{{ $ds['ho_ten'] }}">
+          @endif
           {{ $ds['title'] }}       
           <h3>{{ $ds['ho_ten'] }}</h3></a>
           @if($ds['chuc_vu'])
-            <span class="desig">{{ __('Chức vụ') }}: {{ $ds['chuc_vu'] }}</span>
+            <span class="desig">{{ __('Chức vụ') }}: {{ $ds['chuc_vu'] }}</span>  
             @else
-            <span class="desig">{{ __('Chức vụ') }}: Giảng viên</span>
+            <span class="desig" >{{ __('Chức vụ') }}: Giảng viên</span>
           @endif
           @if($ds['hoc_vi'])
             <span class="desig">{{ __('Học vị') }}: {{ $ds['hoc_vi'] }}</span>
             @else
-            <span class="desig">{{ __('Học vị') }}: </span>
+            <span class="desig">{{ __('Học vị') }}:</span>
           @endif
           @if($ds['chuyen_nganh'])
             <span class="desig">{{ __('Chuyên ngành') }}: {{ $ds['chuyen_nganh'] }}</span>
@@ -224,23 +116,135 @@
             <span class="desig">{{ __('Chuyên ngành') }}: </span>
           @endif
           @if($ds['email'])
-            <span class="desig">{{ __('Email') }}: <a style="color:black;" href="mailto:{{ $ds['email'] }}">{{ $ds['email'] }}</a></span>
+            <span class="desig">{{ __('Email') }}: <a style="color: black;" href="mailto:{{ $ds['email'] }}">{{ $ds['email'] }}</a></span>
             @else
             <span class="desig">{{ __('Email') }}: </span>
           @endif  
-           @if($ds['dien_thoai'])
-            <span class="desig">{{ __('Điện thoại') }}: <a style="color:black;" href="tel:{{ $ds['dien_thoai'] }}">{{ $ds['dien_thoai'] }}</a></span>
+          @if($ds['dien_thoai'])
+            <span class="desig">{{ __('Điện thoại') }}: <a style="color: black;"  href="tel:{{ $ds['dien_thoai'] }}">{{ $ds['dien_thoai'] }}</a></span>
             @else
-            <span class="desig">{{ __('Điện thoại') }}: </span> 
+            <span class="desig">{{ __('Điện thoại') }}: </span>        
             <span class="desig">&nbsp;</span>
           @endif
-          <a style="color:black;"  href="{{ env('APP_URL').app()->getLocale() }}/nhan-su/xem-truc-tuyen/{{$ds['_id']}}/0" data-toggle="modal" data-target="#xemdinhkem" class="view_online">{{ __('Lý lịch khoa học') }}</a></span>
+          @if($ds['attachments'])      
+            <a style="color:black;"  href="{{ env('APP_URL').app()->getLocale() }}/nhan-su/xem-truc-tuyen/{{$ds['_id']}}/0" data-toggle="modal" data-target="#xemdinhkem" class="view_online">{{ __('Lý lịch khoa học') }}</a></span>
+            @else
+            <a style="color:black;">{{ __('Lý lịch khoa học') }}</a></span>
+          @endif
         </div>
-      </li>   
-      @endforeach
+       
+      </li> 
+      @endif   
+      @endforeach 
     </ul>
-    @endif
-    <br /> 
+  @endif
+    @if($danhsach_lanh_dao) 
+      <ul class="row testimonials" style="position: relative;">
+      @foreach($danhsach_lanh_dao as $ds)
+        @if($ds['thu_tu']>2 && $ds['thu_tu']<=5)
+                  @php
+                    $image = isset($ds['photos'][0]['aliasname'])  ? $ds['photos'][0]['aliasname'] : '';
+                  @endphp
+        <li class="col-xs-6 col-sm-6 col-md-6 grid-item">
+        <!-- <li class="col-xs-12 col-sm-13 col-md-12 grid-item" > -->
+        <div class="quotblock">
+          @if($image)
+            <img style="object-fit: cover; width:160px; height:200px" src="{{ env('APP_URL') }}storage/images/origin/{{ $image }}" class="img-responsive" title="{{ $ds['ho_ten'] }}">
+          @endif
+          {{ $ds['title'] }}       
+          <h3>{{ $ds['ho_ten'] }}</h3></a>
+          @if($ds['chuc_vu'])
+            <span class="desig">{{ __('Chức vụ') }}: {{ $ds['chuc_vu'] }}</span>  
+            @else
+            <span class="desig" >{{ __('Chức vụ') }}: Giảng viên</span>
+          @endif
+          @if($ds['hoc_vi'])
+            <span class="desig">{{ __('Học vị') }}: {{ $ds['hoc_vi'] }}</span>
+            @else
+            <span class="desig">{{ __('Học vị') }}:</span>
+          @endif
+          @if($ds['chuyen_nganh'])
+            <span class="desig">{{ __('Chuyên ngành') }}: {{ $ds['chuyen_nganh'] }}</span>
+            @else
+            <span class="desig">{{ __('Chuyên ngành') }}: </span>
+          @endif
+          @if($ds['email'])
+            <span class="desig">{{ __('Email') }}: <a style="color: black;" href="mailto:{{ $ds['email'] }}">{{ $ds['email'] }}</a></span>
+            @else
+            <span class="desig">{{ __('Email') }}: </span>
+          @endif  
+          @if($ds['dien_thoai'])
+            <span class="desig">{{ __('Điện thoại') }}: <a style="color: black;"  href="tel:{{ $ds['dien_thoai'] }}">{{ $ds['dien_thoai'] }}</a></span>
+            @else
+            <span class="desig">{{ __('Điện thoại') }}: </span>        
+            <span class="desig">&nbsp;</span>
+          @endif
+          @if($ds['attachments'])      
+            <a style="color:black;"  href="{{ env('APP_URL').app()->getLocale() }}/nhan-su/xem-truc-tuyen/{{$ds['_id']}}/0" data-toggle="modal" data-target="#xemdinhkem" class="view_online">{{ __('Lý lịch khoa học') }}</a></span>
+            @else
+            <a style="color:black;">{{ __('Lý lịch khoa học') }}</a></span>
+          @endif
+        </div>
+       
+      </li> 
+      @endif   
+      @endforeach 
+    </ul>
+  @endif
+
+    @if($danhsach_giang_vien) 
+      <ul class="row testimonials" style="position: relative;">
+      @foreach($danhsach_giang_vien as $ds)
+          @php
+            $image = isset($ds['photos'][0]['aliasname'])  ? $ds['photos'][0]['aliasname'] : '';
+          @endphp
+        <li class="col-xs-6 col-sm-6 col-md-4 grid-item">
+        <!-- <li class="col-xs-12 col-sm-13 col-md-12 grid-item" > -->
+        <div class="quotblock">
+          @if($image)
+            <img style="object-fit: cover; width:160px; height:200px" src="{{ env('APP_URL') }}storage/images/origin/{{ $image }}" class="img-responsive" title="{{ $ds['ho_ten'] }}">
+          @endif
+          {{ $ds['title'] }}       
+          <h3>{{ $ds['ho_ten'] }}</h3></a>
+          @if($ds['chuc_vu'])
+            <span class="desig">{{ __('Chức vụ') }}: {{ $ds['chuc_vu'] }}</span>  
+            @else
+            <span class="desig" >{{ __('Chức vụ') }}: Giảng viên</span>
+          @endif
+          @if($ds['hoc_vi'])
+            <span class="desig">{{ __('Học vị') }}: {{ $ds['hoc_vi'] }}</span>
+            @else
+            <span class="desig">{{ __('Học vị') }}:</span>
+          @endif
+          @if($ds['chuyen_nganh'])
+            <span class="desig">{{ __('Chuyên ngành') }}: {{ $ds['chuyen_nganh'] }}</span>
+            @else
+            <span class="desig">{{ __('Chuyên ngành') }}: </span>
+          @endif
+          @if($ds['email'])
+            <span class="desig">{{ __('Email') }}: <a style="color: black;" href="mailto:{{ $ds['email'] }}">{{ $ds['email'] }}</a></span>
+            @else
+            <span class="desig">{{ __('Email') }}: </span>
+          @endif  
+          @if($ds['dien_thoai'])
+            <span class="desig">{{ __('Điện thoại') }}: <a style="color: black;"  href="tel:{{ $ds['dien_thoai'] }}">{{ $ds['dien_thoai'] }}</a></span>
+            @else
+            <span class="desig">{{ __('Điện thoại') }}: </span>        
+            <span class="desig">&nbsp;</span>
+          @endif
+          @if($ds['attachments'])      
+            <a style="color:black;"  href="{{ env('APP_URL').app()->getLocale() }}/nhan-su/xem-truc-tuyen/{{$ds['_id']}}/0" data-toggle="modal" data-target="#xemdinhkem" class="view_online">{{ __('Lý lịch khoa học') }}</a></span>
+            @else
+            <a style="color:black;">{{ __('Lý lịch khoa học') }}</a></span>
+          @endif
+        </div>
+       
+      </li> 
+   
+      @endforeach 
+    </ul>
+  @endif
+  </div>
 </section>
 <div id="xemdinhkem" class="modal fade bs-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl" style="width:95%;">
@@ -252,7 +256,7 @@
                 </button>
             </div>
             <div id="chitiet" class="modal-body" style="height:700px; overflow:hidden;">
-                {{ __('Xin chào') }}
+                {{ __('Lỗi ') }}
             </div>
         </div><!-- /.modal-content -->
     </div>

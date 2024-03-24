@@ -7,7 +7,7 @@
 <div class="row">
   <div class="col-12">
         <div class="card-box">
-            <h3 class="m-t-0"><a href="{{ env('APP_URL').app()->getLocale() }}/admin/dao-tao" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Thêm mới Ngành đào tạo') }}</h3>
+            <h3 class="m-t-0"><a href="{{ env('APP_URL').app()->getLocale() }}/admin/dao-tao" class="btn btn-primary btn-sm"><i class="mdi mdi-reply-all"></i> {{ __('Trở về') }}</a> {{ __('Thêm mới') }} {{ __('Ngành đào tạo') }}</h3>
             <form action="{{ env('APP_URL').app()->getLocale() }}/admin/dao-tao/create" method="post" id="dinhkemform" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <input type="hidden" name="trans_id" id="trans_id" value="{{ $trans_id }}" placeholder="">
@@ -44,7 +44,7 @@
                         </div>
                         <div class="col-md-3">
                             <select name="tags" id="tags" class="form-control select2" required>
-                                <option value="">Chọn phân loại</option>
+                                <option value="">{{__('Chọn phân loại')}}</option>
                                 @foreach($tags as $tag)
                                     <option value="{{ $tag }}">{{ __($tag) }}</option>
                                 @endforeach
@@ -70,7 +70,7 @@
                                     <div class="col-md-4">
                                         <label class="btn btn-danger">
                                             <input type="file" name="hinhanh_files[]" class="hinhanh_files btn btn-primary" multiple accept="image/png, image/jpeg, image/jpg, image/gif" placeholder="Chọn hình ảnh" style="display:none;" />
-                                            <i class="fa fa-images"></i> {{ __('Chọn Hình ảnh') }} : (jpg, png, bmp)
+                                            <i class="fa fa-images"></i> {{ __('Hình ảnh') }} : (jpg, png, bmp)
                                         </label>
                                     </div>
                                 </div>
@@ -132,7 +132,7 @@
                                     <div class="col-md-4">
                                         <label class="btn btn-info">
                                             <input type="file" name="dinhkem_files[]" class="dinhkem_files btn btn-primary" multiple accept="*" placeholder="Chọn tập tin đính kèm" style="display:none;" />
-                                            <i class="mdi mdi mdi-attachment"></i> {{ __('Chọn Đính kèm') }} : (pdf, xlsx, docx, pptx, zip, ....)
+                                            <i class="mdi mdi mdi-attachment"></i> {{ __('Đính kèm') }} : (pdf, xlsx, docx, pptx, zip, ....)
                                         </label>
                                     </div>
                                 </div>

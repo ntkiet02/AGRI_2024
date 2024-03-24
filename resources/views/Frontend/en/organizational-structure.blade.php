@@ -16,9 +16,9 @@
   <div class="container noi-dung">
     <h2>{{ __('Organizational Structure') }}</h2>
     <hr />
-    @if($danhsach)
+    @if($danhsach_lanh_dao)
     <ul class="row testimonials" style="position: relative;">
-      @foreach($danhsach as $ds)
+      @foreach($danhsach_lanh_dao as $ds)
       @php
         $image = isset($ds['photos'][0]['aliasname'])  ? $ds['photos'][0]['aliasname'] : '';
       @endphp

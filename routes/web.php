@@ -40,10 +40,16 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     Route::get('/', 'FrontendController@index')->name('trang-chu');
     Route::get('lien-he', 'FrontendController@lien_he')->name('lien-he');
     Route::get('contacts', 'FrontendController@lien_he')->name('contacts');
+
     Route::get('tong-quan', 'FrontendController@tong_quan')->name('gioi-thieu-tong-quan');
     Route::get('overview', 'FrontendController@tong_quan')->name('introduction-overview');
+
     Route::get('nhan-su/{slug}', 'FrontendController@nhan_su')->name('gioi-thieu-nhan-su');
     Route::get('nhan-su/xem-truc-tuyen/{id}/{key}', 'FrontendController@nhan_su_xtt')->name('nhan-su-xem-truc-tuyen');
+
+    Route::get('personnel/{slug}', 'FrontendController@nhan_su')->name('introduction-personnel');
+    Route::get('personnel/view-online/{id}/{key}', 'FrontendController@nhan_su_xtt')->name('personnel-view-online');
+
 
     Route::get('tin-tuc-su-kien/tag/{key}', 'FrontendController@tin_tuc_su_kien_tag');
     Route::get('tin-tuc-su-kien', 'FrontendController@tin_tuc_su_kien');
@@ -57,10 +63,18 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     Route::get('news-and-events/{slug}', 'FrontendController@tin_tuc_su_kien_ct');
     
     Route::get('dao-tao', 'FrontendController@dao_tao');
-    Route::get('dao-tao/tag/{tags}', 'FrontendController@dao_tao_tag');
-    Route::get('dao-tao/{slug}', 'FrontendController@dao_tao_ct');
-    Route::get('dao-tao/xem-truc-tuyen/{id}/{key}', 'FrontendController@dao_tao_xtt')->name('dao-tao-xem-truc-tuyen');
-    Route::get('dao-tao/tai-ve/{id}/{key}', 'FrontendController@dao_tao_tv')->name('dao-tao-tai-ve');
+    // Route::get('dao-tao/{tags}', 'FrontendController@dao_tao_tag');
+    Route::get('dao-tao/{slugtags}/{slug}', 'FrontendController@dao_tao_ct');
+    Route::get('dao-tao/{slugtags}/{slug}/xem-truc-tuyen/{id}/{key}', 'FrontendController@dao_tao_xtt')->name('dao-tao-xem-truc-tuyen');
+    Route::get('dao-tao/{slugtags}/{slug}/tai-ve/{id}/{key}', 'FrontendController@dao_tao_tv')->name('dao-tao-tai-ve');
+
+    Route::get('training', 'FrontendController@dao_tao');
+    // Route::get('training/tag/{tags}', 'FrontendController@dao_tao_tag');
+    Route::get('training/{slugtags}/{slug}/', 'FrontendController@dao_tao_ct');
+    Route::get('training/{slugtags}/{slug}/xem-truc-tuyen/{id}/{key}', 'FrontendController@dao_tao_xtt')->name('training-xem-truc-tuyen');
+    Route::get('training/{slugtags}/{slug}/tai-ve/{id}/{key}', 'FrontendController@dao_tao_tv')->name('training-tai-ve');
+
+
 
     Route::get('du-an','FrontendController@du_an')->name('du-an');
 
@@ -89,6 +103,9 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     Route::get('category/tai-ve/{id}/{key}', 'FrontendController@category_tv')->name('category-tai-ve');
     
     Route::get('hinh-anh-hoat-dong','FrontendController@hinh_anh_hoat_dong');
+    Route::fallback(function () {
+        return view('errors.404');
+    });
     
     Route::group(['prefix' => 'admin',  'middleware' => 'checkauth'], function(){
         Route::get('/', 'AuthController@admin')->middleware('checkauth')->name('admin');
@@ -106,6 +123,8 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
         Route::post('lien-he/update', 'BannerController@lien_he_update')->middleware('role:Admi,Manager,Updater')->name('admin-banner-lien-he-update');
 
         Route::get('nhan-su/{tags}', 'NhanSuController@list')->middleware('role:Admi,Manager,Updater')->name('admin-nhan-su');
+        Route::get('personnel/{tags}', 'NhanSuController@list')->middleware('role:Admi,Manager,Updater')->name('admin-personnel');
+        
         Route::get('nhan-su/{tags}/add', 'NhanSuController@add')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-add');
         Route::post('nhan-su/{tags}/create', 'NhanSuController@create')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-create');
         Route::get('nhan-su/{tags}/edit/{id}', 'NhanSuController@edit')->middleware('role:Admin,Manager,Updater')->name('admin-nhan-su-edit-id');     

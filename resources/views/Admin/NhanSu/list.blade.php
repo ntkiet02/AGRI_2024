@@ -14,7 +14,7 @@
             <thead>
                 <tr>
                     <th>{{ __('STT') }}</th>
-                    <th>{{ __('Hình') }}</th>
+                    <th>{{ __('HÌNH') }}</th>
                     <th>{{ __('Họ tên') }}</th>
                     <th>{{ __('Chức vụ') }}</th>
                     <th>{{ __('Học vị') }}</th>
@@ -44,9 +44,9 @@
                         @endif
                     </td>
                     <td>{{ $ds['ho_ten'] }}</td>
-                    <td>{{ $ds['chuc_vu'] }}</td>
-                    <td>{{ $ds['hoc_vi'] }}</td>
-                    <td>{{ $ds['chuyen_nganh'] }}</td>
+                    <td>{{ __($ds['chuc_vu'] )}}</td>
+                    <td>{{ __($ds['hoc_vi']) }}</td>
+                    <td>{{ __($ds['chuyen_nganh']) }}</td>
                     <td>{{ $ds['dien_thoai'] }}</td>
                     <td>{{ $ds['email'] }}</td>
                     <td>{{ $ds['thu_tu'] }}</td>

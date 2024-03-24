@@ -9,7 +9,7 @@
 <div class="row">
   <div class="col-12">
         <div class="card-box">
-            <h3 class="m-t-0"><a href="{{ env('APP_URl') }}{{ app()->getLocale() }}/admin/hinh-anh-hoat-dong" class="btn btn-primary"><i class="mdi mdi-reply-all"></i></a> Thêm mới Hình Ảnh Hoạt động</h3>
+            <h3 class="m-t-0"><a href="{{ env('APP_URl') }}{{ app()->getLocale() }}/admin/hinh-anh-hoat-dong" class="btn btn-primary"><i class="mdi mdi-reply-all"></i></a> {{__('Thêm mới')}} {{__('Hình ảnh hoạt động')}}</h3>
             <form action="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/hinh-anh-hoat-dong/create" method="post" id="dinhkemform" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-body">
@@ -28,7 +28,7 @@
                             <div class="form-group row">
                                 <label class="control-label col-md-2 text-right p-t-10">{{ __('Tiêu đề') }}</label>
                                 <div class="col-md-10">
-                                    <input type="text" id="title" name="title" class="form-control" placeholder="Tiêu đề" value="{{ old('title') }}" required />
+                                    <input type="text" id="title" name="title" class="form-control" placeholder="{{__('Tiêu đề')}}" value="{{ old('title') }}" required />
                                 </div>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                     </div>
                </div>
                <div class="form-actions">
-                    <a href="{{ env('APP_URL') }}admin/hinh-anh-hoat-dong" class="btn btn-light"><i class="fa fa-reply-all"></i> {{ __('Trở về') }}</a>
+                    <a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/hinh-anh-hoat-dong" class="btn btn-light"><i class="fa fa-reply-all"></i> {{ __('Trở về') }}</a>
                     <button type="submit" class="btn btn-info"> <i class="fa fa-check"></i> {{ __('Cập nhật') }}</button>
                 </div>
             </div>

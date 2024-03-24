@@ -7,7 +7,7 @@ CKEDITOR.editorConfig = function( config ) {
 	// Define changes to default configuration here. For example:
 	// config.language = 'fr';
 	// config.uiColor = '#AADC6E';
-	var APP_URL = 'http://172.19.49.161:7000/';
+	var APP_URL = '127.0.0.1/AGRI_2024/public/';
     config.allowedContent = true;
     config.removeFormatAttributes = '';
 	config.contentsCss = [

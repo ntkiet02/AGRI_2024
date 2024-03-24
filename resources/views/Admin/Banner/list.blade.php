@@ -14,7 +14,7 @@
                 <tr>
                     <th>{{ __('STT') }}</th>
                     <th>{{ __('HÌNH') }}</th>
-                    <th>{{ __('Title') }}</th>
+                    <th>{{ __('Tiêu đề') }}</th>
                     <th>{{ __('Thứ tự') }}</th>
                     <th>{{ __('Tình trạng') }}</th>
                     <th class="text-center">#</th>

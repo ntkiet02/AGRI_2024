@@ -15,25 +15,13 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\FileController;
 class DaoTaoController extends Controller
 {
-    const TAGS = array('dai-hoc'=>'Đại học','thac-sy'=>'Thạc sỹ');
-    // protected $arr_dao_tao = array(
-    //     'dh-cong-nghe-thuc-pham' => 'Công nghệ Thực phẩm',
-    //     'dh-dam-bao-chat-luong-va-attp'=>'Đảm bảo chất lượng và ATTP',
-    //     'dh-nuoi-trong-thuy-san' => 'Nuôi trồng thủy sản',
-    //     'dh-cong-nghe-sinh-hoc' => 'Công nghệ Sinh Học',
-    //     'dh-chan-nuoi' => 'Chăn nuôi',
-    //     'dh-thu-y'=>'Thú y',
-    //     'dh-khoa-hoc-cay-trong' => 'Khoa học Cây trồng',
-    //     'dh-bao-ve-thuc-vat'=>'Bảo vệ thực vật',
-    //     'dh-phat-trien-nong-thon-va-qltntn' => 'Phát triển Nông thôn và QLTNTN',
-    //     'ts-khoa-hoc-cay-trong' => 'Khoa học Cây trồng',
-    //     'ts-bao-ve-thuc-vat'=>'Bảo vệ thực vật',
-    //     'ts-cong-nghe-sinh-hoc' => 'Công nghệ Sinh Học',
-    //     'ts-chan-nuoi' => 'Chăn nuôi',
-    // );
-
+    const TAGS = array('Đại học','Thạc sỹ');
+    const TAGSEN= array('University Programs','Masters Programs');
     static function get_tags(){
         return self::TAGS;
+    }
+    static function get_tagsen(){
+        return self::TAGSEN;
     }
     function list(Request $request, $locale = ''){
         
@@ -49,8 +37,16 @@ class DaoTaoController extends Controller
         } else {
             $ds = '';
         }
-        $tags = self::TAGS;
-        return view('Admin.DaoTao.add')->with(compact('ds','trans_id', 'trans_lang','tags'));
+        if($locale=='vi')
+        {
+            $tags = self::TAGS;
+            return view('Admin.DaoTao.add')->with(compact('ds','trans_id', 'trans_lang','tags'));
+        }
+        else
+        {
+            $tags = self::TAGSEN;
+            return view('Admin.DaoTao.add')->with(compact('ds','trans_id', 'trans_lang','tags'));
+        }
     }
     function create(Request $request, $locale = ''){
         $data = $request->all();
@@ -83,6 +79,8 @@ class DaoTaoController extends Controller
         $db->slug = $data['slug'];
         $db->noi_dung = $data['noi_dung'];
         $db->tags = $data['tags'];
+        $db->slugtags =Str::slug($data['tags'], '-');
+        
         $db->photos = $arr_photo;
         $db->attachments = $arr_dinhkem;
         $db->locale = $locale;
@@ -123,8 +121,16 @@ class DaoTaoController extends Controller
         $trans_id = $request->input('trans_id');
         $trans_lang = $request->input('trans_lang');
         $ds = DaoTao::find($id);
-        $tags = self::TAGS;
-        return view('Admin.DaoTao.edit')->with(compact('ds','trans_id', 'trans_lang' ,'tags'));
+        if($locale=='vi')
+        {
+            $tags = self::TAGS;
+            return view('Admin.DaoTao.edit')->with(compact('ds','trans_id', 'trans_lang','tags'));
+        }
+        else
+        {
+            $tags = self::TAGSEN;
+            return view('Admin.DaoTao.edit')->with(compact('ds','trans_id', 'trans_lang','tags'));
+        }
     }
     function update(Request $request, $locale = '', $id = '') {
         $data = $request->all();
@@ -151,6 +157,7 @@ class DaoTaoController extends Controller
         $db->ten = $data['ten'];
         $db->slug = $data['slug']; 
         $db->tags = $data['tags'];
+        $db->slugtags =Str::slug($data['tags'], '-');
         $db->noi_dung = $data['noi_dung'];
         $db->photos = $arr_photo;
         $db->attachments = $arr_dinhkem;
