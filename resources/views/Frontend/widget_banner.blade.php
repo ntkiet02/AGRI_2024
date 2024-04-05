@@ -1,9 +1,15 @@
 @php
     $locale = app()->getLocale();
-    $banners = App\Models\Banner::where('locale','=',$locale)->where('status','=',1)->orderBy('order', 'asc')->get()->toArray();
+    $banners = App\Models\Banner::where('status','=',1)->orderBy('order', 'asc')->get()->toArray();
 @endphp
 <!-- Start Banner Carousel no-repeat center top / cover; -->
-<div class="banner-outer">
+<!-- <div style="text-align: center; margin-top:2px">
+  <span style="font-size: 28px;">{{__('Chính trực - Tận tâm - Sáng tạo')}}</span>
+</div> -->
+<div class="centered-text">
+  <span>{{__('Chính trực - Tận tâm - Sáng tạo')}}</span>
+</div>
+<div class="banner-outer" style="margin-top:2px;">
   <div class="banner-slider"> 
     @foreach($banners as $b)
     <div class="slide1">

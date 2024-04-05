@@ -84,11 +84,11 @@
           </li>
           <li class="dropdown"><a href="#"  data-toggle="dropdown" >{{ __('Tin tức') }} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
             <ul class="dropdown-menu">
-              <li><a class="fonta"  href="{{ env('APP_URL') }}{{ app()->getLocale() }}/category">{{ __('Tất cả tin tức') }}</a></li>
-              <li><a class="fonta"  href="{{ env('APP_URL') }}{{ app()->getLocale() }}/category/thong-bao">{{ __('Thông báo') }}</a></li>
-              <li><a class="fonta"  href="{{ env('APP_URL') }}{{ app()->getLocale() }}/category/su-kien">{{ __('Sự kiện') }}</a></li>
-              <li><a class="fonta"  href="{{ env('APP_URL') }}{{ app()->getLocale() }}/category/nghien-cuu-khoa-hoc">{{ __('Nghiên cứu khoa học') }}</a></li>
-              <li><a class="fonta"  href="{{ env('APP_URL') }}{{ app()->getLocale() }}/hinh-anh-hoat-dong">{{ __('Hình ảnh hoạt động') }}</a></li>
+              <!-- <li><a class="fonta"  href="{{ env('APP_URL') }}{{ app()->getLocale() }}/category/all">{{ __('Tất cả tin tức') }}</a></li> -->
+              <li><a class="fonta"  href="{{ env('APP_URL') }}{{ app()->getLocale() }}/category/announcement">{{ __('Thông báo') }}</a></li>
+              <li><a class="fonta"  href="{{ env('APP_URL') }}{{ app()->getLocale() }}/category/events">{{ __('Sự kiện') }}</a></li>
+              <!-- <li><a class="fonta"  href="{{ env('APP_URL') }}{{ app()->getLocale() }}/category/scientific-research">{{ __('Nghiên cứu khoa học') }}</a></li>
+              <li><a class="fonta"  href="{{ env('APP_URL') }}{{ app()->getLocale() }}/activities-image">{{ __('Hình ảnh hoạt động') }}</a></li> -->
             </ul>
           </li>
           <li class="dropdown"><a href="#"  data-toggle="dropdown" >{{ __('Đào tạo') }} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
@@ -118,24 +118,24 @@
             <ul class="dropdown-menu">
               <li><a class="fontli" >{{ __('Giảng viên') }}</a></li>
                 <ul>
-                    <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/nghien-cuu-khoa-hoc/de-tai-cap-co-so">{{ __('Đề tài cấp Cơ sở') }}</a></li>  
-                    <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/nghien-cuu-khoa-hoc/de-tai-cap-truong">{{ __('Đề tài cấp Trường') }}</a></li> 
-                    <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/nghien-cuu-khoa-hoc/de-tai-cap-dhqg">{{ __('Đề tài cấp ĐHQG') }}</a></li> 
-                    <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/nghien-cuu-khoa-hoc/de-tai-cap-tinh">{{ __('Đề tài cấp Tỉnh') }}</a></li> 
-                </ul>
+                    <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/scientific-research/elementary-level-topic">{{ __('Đề tài cấp Cơ sở') }}</a></li>  
+                    <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/scientific-research/school-level-topic">{{ __('Đề tài cấp Trường') }}</a></li> 
+                    <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/scientific-research/provincial-level-topic">{{ __('Đề tài cấp Tỉnh') }}</a></li> 
+                    <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/scientific-research/national-university-level-topic">{{ __('Đề tài cấp ĐHQG') }}</a></li> 
+                  </ul>
               <li><a class="fontli">{{ __('Sinh viên') }}</a></li>
                 <ul>
-                    <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/khoa-luan-tot-nghiep/khoa-luan-tot-nghiep">{{ __('Khóa luận tốt nghiệp') }}</a></li> 
-                    <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/khoa-luan-tot-nghiep/chuyen-de-tot-nghiep">{{ __('Chuyên đề tốt nghiệp') }}</a></li> 
+                    <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/graduation-thesis/graduation-thesis">{{ __('Khóa luận tốt nghiệp') }}</a></li> 
+                    <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/graduation-thesis/thesis">{{ __('Chuyên đề tốt nghiệp') }}</a></li> 
                 </ul>
             </ul>
           </li>
-          <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/category/hop-tac-quoc-te" >{{ __('Hợp tác quốc tế') }}</a>
+          <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/category/international-cooperation" >{{ __('Hợp tác quốc tế') }}</a>
           </li>
           <li class="dropdown"><a href="#"  data-toggle="dropdown" >{{ __('Văn bản - Biểu mẫu') }} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
             <ul class="dropdown-menu">
-              <li><a class="fontla" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/van-ban">{{ __('Văn bản') }}</a></li>
-              <li><a class="fontla" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/bieu-mau">{{ __('Biểu mẫu') }}</a></li>
+              <li><a class="fontla" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/document">{{ __('Văn bản') }}</a></li>
+              <li><a class="fontla" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/form">{{ __('Biểu mẫu') }}</a></li>
             </ul>
           </li>
           <li class="dropdown"><a href="#"  data-toggle="dropdown" >{{ __('Đoàn thể') }} <i class="fa fa-angle-down" aria-hidden="true"></i></a>

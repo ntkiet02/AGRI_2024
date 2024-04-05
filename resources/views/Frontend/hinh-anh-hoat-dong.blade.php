@@ -21,6 +21,19 @@
              @endforeach
             @endif
           @endforeach
+          @if($danhsach_hinh_anh_hoat_dong2)
+          @foreach($danhsach_hinh_anh_hoat_dong2 as $b)
+            @if($b['photos'])
+             @foreach($b['photos'] as $p)
+              <li class="col-sm-3" style="margin-top: 10px;">
+                <a class="galleryItem" href="{{ env('APP_URL') }}storage/images/origin/{{ $p['aliasname'] }}"> 
+                  <figure><img style="object-fit: cover;height: 250px;width:300px; margin-left:13px;margin-top: 13px;" src="{{ env('APP_URL') }}storage/images/origin/{{ $p['aliasname'] }}" alt="{{ $b['title'] }}" title="{{ $b['title'] }}"" class="img-responsive" alt=""></figure>
+                </a> 
+             </li>
+             @endforeach
+            @endif
+          @endforeach
+          @endif
         </ul>
       @endif
   </div>

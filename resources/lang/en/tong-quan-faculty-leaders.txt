@@ -1,47 +1,6 @@
 <div class="row">
 <div class="col-md-12" style="text-align:justify">
-<a>Đây là Faculty Leader</a>
-<a>Đây là Faculty Leader</a>
-
-<a>Đây là Faculty Leader</a>
-<a>Đây là Faculty Leader</a>
-<a>Đây là Faculty Leader</a>
-
-<p style="margin-top:4px; margin-bottom:4px; text-align:justify"><span style="font-size:11pt"><span style="line-height:120%"><span style="font-family:Aptos,sans-serif"><b><span style="font-size:13.0pt"><span style="line-height:120%"><span style="font-family:&quot;Times New Roman&quot;,serif">Chương tr&igrave;nh học gồm 4 chương tr&igrave;nh</span></span></span></b></span></span></span></p>
-
-<p style="margin-top:4px; margin-bottom:4px; text-align:justify"><span style="font-size:11pt"><span style="line-height:120%"><span style="font-family:Aptos,sans-serif"><b><span style="font-size:13.0pt"><span style="line-height:120%"><span style="font-family:&quot;Times New Roman&quot;,serif">1. C&ocirc;ng nghệ thực phẩm:</span></span></span></b><span style="font-size:13.0pt"><span style="line-height:120%"><span style="font-family:&quot;Times New Roman&quot;,serif"> Chế biến v&agrave; ph&aacute;t triển sản phẩm mới cho ng&agrave;nh c&ocirc;ng nghiệp chế biến thực phẩm.</span></span></span></span></span></span></p>
-
-<p style="margin-top:4px; margin-bottom:4px; text-align:justify"><span style="font-size:11pt"><span style="line-height:120%"><span style="font-family:Aptos,sans-serif"><b><span style="font-size:13.0pt"><span style="line-height:120%"><span style="font-family:&quot;Times New Roman&quot;,serif">2. C&ocirc;ng nghệ sau thu hoạch:</span></span></span></b><span style="font-size:13.0pt"><span style="line-height:120%"><span style="font-family:&quot;Times New Roman&quot;,serif"> Sơ chế, bảo quản v&agrave; kiểm so&aacute;t chất lượng n&ocirc;ng sản cho ng&agrave;nh chế biến n&ocirc;ng sản tươi sống.</span></span></span></span></span></span></p>
-
-<p style="margin-top:4px; margin-bottom:4px; text-align:justify"><span style="font-size:11pt"><span style="line-height:120%"><span style="font-family:Aptos,sans-serif"><b><span style="font-size:13.0pt"><span style="line-height:120%"><span style="font-family:&quot;Times New Roman&quot;,serif">3. Đảm bảo chất lượng v&agrave; an to&agrave;n thực phẩm:</span></span></span></b><span style="font-size:13.0pt"><span style="line-height:120%"><span style="font-family:&quot;Times New Roman&quot;,serif"> Thanh tra, kiểm tra, quản l&yacute; v&agrave; kiểm so&aacute;t chất lượng v&agrave; an to&agrave;n vệ sinh trong c&ocirc;ng nghiệp thực phẩm.</span></span></span></span></span></span></p>
-
-<p style="margin-top:4px; margin-bottom:4px; text-align:justify"><span style="font-size:11pt"><span style="line-height:120%"><span style="font-family:Aptos,sans-serif"><b><span style="font-size:13.0pt"><span style="line-height:120%"><span style="font-family:&quot;Times New Roman&quot;,serif">4. Thạc sĩ C&ocirc;ng nghệ thực phẩm:</span></span></span></b><span style="font-size:13.0pt"><span style="line-height:120%"><span style="font-family:&quot;Times New Roman&quot;,serif"> Đ&agrave;o tạo n&acirc;ng cao về c&ocirc;ng nghệ thực phẩm</span></span></span></span></span></span></p>
-
-<p style="margin-top:4px; margin-bottom:4px; text-align:justify"><span style="font-size:11pt"><span style="line-height:120%"><span style="font-family:Aptos,sans-serif"><b><span style="font-size:13.0pt"><span style="line-height:120%"><span style="font-family:&quot;Times New Roman&quot;,serif">5. Thời gian đ&agrave;o tạo:</span></span></span></b><span style="font-size:13.0pt"><span style="line-height:120%"><span style="font-family:&quot;Times New Roman&quot;,serif"> 4 năm (đại học)</span></span></span></span></span></span></p>
-
-<p style="margin-top:4px; margin-bottom:4px; text-align:justify"><span style="font-size:11pt"><span style="line-height:120%"><span style="font-family:Aptos,sans-serif"><b><span style="font-size:13.0pt"><span style="line-height:120%"><span style="font-family:&quot;Times New Roman&quot;,serif">Sinh vi&ecirc;n ng&agrave;nh c&ocirc;ng nghệ thực phẩm c&oacute; c&aacute;c cơ hội nghề nghiệp:</span></span></span></b></span></span></span></p>
-
-<p style="margin-top:4px; margin-bottom:4px; text-align:justify"><span style="font-size:11pt"><span style="line-height:120%"><span style="font-family:Aptos,sans-serif"><span style="font-size:13.0pt"><span style="line-height:120%"><span style="font-family:&quot;Times New Roman&quot;,serif">1. C&aacute;n bộ quản l&yacute; kỹ thuật, quản l&yacute; chất lượng, nghi&ecirc;n cứu ph&aacute;t triển sản phẩm tại c&aacute;c c&ocirc;ng ty sản xuất, kinh doanh thực phẩm.</span></span></span></span></span></span></p>
-
-<p style="margin-top:4px; margin-bottom:4px; text-align:justify"><span style="font-size:11pt"><span style="line-height:120%"><span style="font-family:Aptos,sans-serif"><span style="font-size:13.0pt"><span style="line-height:120%"><span style="font-family:&quot;Times New Roman&quot;,serif">2. Chuy&ecirc;n vi&ecirc;n nghi&ecirc;n cứu, tư vấn tại c&aacute;c sở, ban ng&agrave;nh, trung t&acirc;m nghi&ecirc;n cứu, viện, trường hoặc đơn vị c&oacute; li&ecirc;n quan. Theo học c&aacute;c chương tr&igrave;nh sau đại học tại c&aacute;c viện, trường trong v&agrave; ngo&agrave;i nước. Tham gia c&aacute;c nh&oacute;m nghi&ecirc;n cứu khoa học hoặc chủ tr&igrave; c&aacute;c đề t&agrave;i, dự &aacute;n li&ecirc;n quan</span></span></span></span></span></span></p>
-
-<p style="margin-top:4px; margin-bottom:4px; text-align:justify"><span style="font-size:11pt"><span style="line-height:120%"><span style="font-family:Aptos,sans-serif"><span style="font-size:13.0pt"><span style="line-height:120%"><span style="font-family:&quot;Times New Roman&quot;,serif">3. C&oacute; khả năng tự học, tự nghi&ecirc;n cứu, khởi nghiệp. Điều h&agrave;nh v&agrave; quản l&yacute; doanh nghiệp tư nh&acirc;n.</span></span></span></span></span></span></p>
-
-<p style="margin-top:4px; margin-bottom:4px; text-align:justify"><span style="font-size:11pt"><span style="line-height:120%"><span style="font-family:Aptos,sans-serif"><b><span style="font-size:13.0pt"><span style="line-height:120%"><span style="font-family:&quot;Times New Roman&quot;,serif">Điều kiện học tập</span></span></span></b></span></span></span></p>
-
-<p style="margin-top:4px; margin-bottom:4px; text-align:justify"><span style="font-size:11pt"><span style="line-height:120%"><span style="font-family:Aptos,sans-serif"><span style="font-size:13.0pt"><span style="line-height:120%"><span style="font-family:&quot;Times New Roman&quot;,serif">Sinh vi&ecirc;n được học tập trong m&ocirc;i trường hiện đại, đầy đủ c&aacute;c trang thiết bị phục vụ học tập.</span></span></span></span></span></span></p>
-
-<p style="margin-top:4px; margin-bottom:4px; text-align:justify"><span style="font-size:11pt"><span style="line-height:120%"><span style="font-family:Aptos,sans-serif"><span style="font-size:13.0pt"><span style="line-height:120%"><span style="font-family:&quot;Times New Roman&quot;,serif">1. Ph&ograve;ng học được trang bị c&aacute;c thiết bị đa phương tiện.</span></span></span></span></span></span></p>
-
-<p style="margin-top:4px; margin-bottom:4px; text-align:justify"><span style="font-size:11pt"><span style="line-height:120%"><span style="font-family:Aptos,sans-serif"><span style="font-size:13.0pt"><span style="line-height:120%"><span style="font-family:&quot;Times New Roman&quot;,serif">2. Khu thực h&agrave;nh th&iacute; nghiệm phục vụ học tập v&agrave; nghi&ecirc;n cứu.</span></span></span></span></span></span></p>
-
-<p style="margin-top:4px; margin-bottom:4px; text-align:justify"><span style="font-size:11pt"><span style="line-height:120%"><span style="font-family:Aptos,sans-serif"><span style="font-size:13.0pt"><span style="line-height:120%"><span style="font-family:&quot;Times New Roman&quot;,serif">3. Khu thư viện hiện đại phục vụ học tập cho sinh vi&ecirc;n.</span></span></span></span></span></span></p>
-
-<p style="margin-top:4px; margin-bottom:4px; text-align:justify"><span style="font-size:11pt"><span style="line-height:120%"><span style="font-family:Aptos,sans-serif"><span style="font-size:13.0pt"><span style="line-height:120%"><span style="font-family:&quot;Times New Roman&quot;,serif">4. Ph&ograve;ng m&aacute;y t&iacute;nh phục vụ học tập v&agrave; nghi&ecirc;n cứu.</span></span></span></span></span></span></p>
-
-<p style="margin-top:4px; margin-bottom:4px; text-align:justify"><span style="font-size:11pt"><span style="line-height:120%"><span style="font-family:Aptos,sans-serif"><b><span style="font-size:13.0pt"><span style="line-height:120%"><span style="font-family:&quot;Times New Roman&quot;,serif">Li&ecirc;n hệ:</span></span></span></b></span></span></span></p>
-
-<p style="margin-top:4px; margin-bottom:4px; text-align:justify"><span style="font-size:11pt"><span style="line-height:120%"><span style="font-family:Aptos,sans-serif"><span style="font-size:13.0pt"><span style="line-height:120%"><span style="font-family:&quot;Times New Roman&quot;,serif">Tiến sĩ Trần Nghĩa Khang, Ph&oacute; trưởng Bộ m&ocirc;n</span></span></span></span></span></span></p>
+<p style="margin-top:4px; margin-bottom:4px; text-align:justify">&nbsp;</p>
 
 <p style="margin-top:4px; margin-bottom:4px; text-align:justify">&nbsp;</p>
 </div>

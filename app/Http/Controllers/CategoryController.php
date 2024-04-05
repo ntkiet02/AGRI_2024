@@ -15,7 +15,7 @@ class CategoryController extends Controller
 {
     //
     protected const CATS = array(
-        'nghien-cuu-khoa-hoc'=>'__("Nghiên cứu khoa học")',
+        'nghien-cuu-khoa-hoc'=>'Nghiên cứu khoa học',
         'hop-tac-quoc-te'=>'Hợp tác quốc tế',
         'doan-the'=>'Đoàn thể',
         'hoat-dong-doi-ngoai'=>'Hoạt động đối ngoại',
@@ -28,15 +28,36 @@ class CategoryController extends Controller
         'de-tai'=>'Đề tài',
         'hoi-thao'=>'Hội thảo'
     );
+    protected const CATSEN = array(
+        'scientific-research'=>'Scientific Research',
+        'international-cooperation'=>'International cooperation',
+        'union'=>'Union',
+        'foreign-affairs-activities'=>'Foreign affairs activities',
+        'scholarship'=>'Scholarship',
+        'events'=>'Events',
+        'announcement'=>'Announcement',
+        'recruitment'=>'Recruitment',
+        'uncategorized'=>'Uncategorized',
+        'news'=>'News',
+        'topic'=>'Topic',
+        'seminar'=>'Seminar'
+    );
 
     static function get_cats() {
         return self::CATS;
     }
+    static function get_catsen() {
+        return self::CATSEN;
+    }
 
     function list(Request $request, $locale = ''){
-        $cats = self::CATS;
+        if($locale=='vi')
+            $cats = self::CATS;
+        else
+            $cats = self::CATSEN;
+        // dd($cats);
         $keywords = $request->input('keywords');
-        $danhsach = Category::where('locale','=',$locale)->where('locale','=',$locale)->orderBy('date_post', 'desc')->paginate(30);
+        $danhsach = Category::where('locale','=',$locale)->orderBy('date_post', 'desc')->paginate(30);
         return view('Admin.Category.list')->with(compact('danhsach', 'cats'));
     }
 
@@ -48,7 +69,11 @@ class CategoryController extends Controller
         } else {
             $ds = '';
         }
+        if($locale=='vi')
         $cats = self::CATS;
+        else
+        $cats = self::CATSEN;
+        // dd($cats);
         return view('Admin.Category.add')->with(compact('ds','trans_id', 'trans_lang','cats'));
     }
 
@@ -115,7 +140,7 @@ class CategoryController extends Controller
         $logQuery = array (
             'action' => 'Thêm Thông tin ['.$data['ten'].']',
             'id_collection' => $id,
-            'collection' => 'tin_tuc_su_kien',
+            'collection' => 'category',
             'data' => $data
         );
         LogController::addLog($logQuery);
@@ -128,7 +153,10 @@ class CategoryController extends Controller
         $trans_id = $request->input('trans_id');
         $trans_lang = $request->input('trans_lang');
         $ds = Category::find($id);
+        if($locale=='vi')
         $cats = self::CATS;
+        else
+        $cats = self::CATSEN;
         return view('Admin.Category.edit')->with(compact('ds','trans_id', 'trans_lang','cats'));
     }
 

@@ -17,10 +17,10 @@ class NghienCuuKhoaHocController extends Controller
 {
     //
     const TAGS = array(
-                        'de-tai-cap-co-so'=>'Đề tài cấp Cơ sở',
-                        'de-tai-cap-truong'=>'Đề tài cấp Trường',
-                        'de-tai-cap-dhqg'=>'Đề tài cấp ĐHQG',
-                        'de-tai-cap-tinh'=> 'Đề tài cấp Tỉnh');
+        'de-tai-cap-co-so'=>'Đề tài cấp Cơ sở',
+        'de-tai-cap-truong'=>'Đề tài cấp Trường',
+        'de-tai-cap-tinh'=> 'Đề tài cấp Tỉnh',
+        'de-tai-cap-dhqg'=>'Đề tài cấp ĐHQG');
 
     static function get_tags(){
         return self::TAGS;

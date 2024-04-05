@@ -31,7 +31,7 @@ class NhanSuController extends Controller
         }
         else
         {
-            if($tags=='lanh-dao-khoa'){
+            if($tags=='ban-lanh-dao-khoa'){
                 $tagsen='faculty-leaders';
                 $file_path = base_path('resources/lang/') . $locale .('/tong-quan-faculty-leaders.txt');  
             }
@@ -250,7 +250,7 @@ class NhanSuController extends Controller
        
         else
         {
-            if($tags=='lanh-dao-khoa'){
+            if($tags=='ban-lanh-dao-khoa'){
                 $tagsen='faculty-leaders';
                 $file_path = base_path('resources/lang/') . $locale .('/tong-quan-faculty-leaders.txt');  
             }

@@ -21,8 +21,8 @@
             </div>
         </div>
     </div>
-</div>
   </div>
+</div>
 <section class="about inner padding-lg">
   <div class="container noi-dung">
     {!! $noi_dung !!}

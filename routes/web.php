@@ -43,66 +43,67 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
 
     Route::get('tong-quan', 'FrontendController@tong_quan')->name('gioi-thieu-tong-quan');
     Route::get('overview', 'FrontendController@tong_quan')->name('introduction-overview');
-
+    
     Route::get('nhan-su/{slug}', 'FrontendController@nhan_su')->name('gioi-thieu-nhan-su');
     Route::get('nhan-su/xem-truc-tuyen/{id}/{key}', 'FrontendController@nhan_su_xtt')->name('nhan-su-xem-truc-tuyen');
-
     Route::get('personnel/{slug}', 'FrontendController@nhan_su')->name('introduction-personnel');
     Route::get('personnel/view-online/{id}/{key}', 'FrontendController@nhan_su_xtt')->name('personnel-view-online');
 
-
-    Route::get('tin-tuc-su-kien/tag/{key}', 'FrontendController@tin_tuc_su_kien_tag');
-    Route::get('tin-tuc-su-kien', 'FrontendController@tin_tuc_su_kien');
-    Route::get('tin-tuc-su-kien/xem-truc-tuyen/{id}/{key}', 'FrontendController@tin_tuc_su_kien_xtt')->name('tin-tuc-su-kien-xem-truc-tuyen');
-    Route::get('tin-tuc-su-kien/tai-ve/{id}/{key}', 'FrontendController@tin_tuc_su_kien_tv')->name('tin-tuc-su-kien-tai-ve');
-    Route::get('tin-tuc-su-kien/{slug}', 'FrontendController@tin_tuc_su_kien_ct');
-    Route::get('news-and-events/tag/{key}', 'FrontendController@tin_tuc_su_kien_tag');
-    Route::get('news-and-events', 'FrontendController@tin_tuc_su_kien');
-    Route::get('news-and-events/xem-truc-tuyen/{id}/{key}', 'FrontendController@tin_tuc_su_kien_xtt')->name('news-and-events-xem-truc-tuyen');
-    Route::get('news-and-events/tai-ve/{id}/{key}', 'FrontendController@tin_tuc_su_kien_tv')->name('news-and-events-tai-ve');
-    Route::get('news-and-events/{slug}', 'FrontendController@tin_tuc_su_kien_ct');
+    // Route::get('tin-tuc-su-kien/tag/{key}', 'FrontendController@tin_tuc_su_kien_tag');
+    // Route::get('tin-tuc-su-kien', 'FrontendController@tin_tuc_su_kien');
+    // Route::get('tin-tuc-su-kien/xem-truc-tuyen/{id}/{key}', 'FrontendController@tin_tuc_su_kien_xtt')->name('tin-tuc-su-kien-xem-truc-tuyen');
+    // Route::get('tin-tuc-su-kien/tai-ve/{id}/{key}', 'FrontendController@tin_tuc_su_kien_tv')->name('tin-tuc-su-kien-tai-ve');
+    // Route::get('tin-tuc-su-kien/{slug}', 'FrontendController@tin_tuc_su_kien_ct');
+    // Route::get('news-and-events/tag/{key}', 'FrontendController@tin_tuc_su_kien_tag');
+    // Route::get('news-and-events', 'FrontendController@tin_tuc_su_kien');
+    // Route::get('news-and-events/xem-truc-tuyen/{id}/{key}', 'FrontendController@tin_tuc_su_kien_xtt')->name('news-and-events-xem-truc-tuyen');
+    // Route::get('news-and-events/tai-ve/{id}/{key}', 'FrontendController@tin_tuc_su_kien_tv')->name('news-and-events-tai-ve');
+    // Route::get('news-and-events/{slug}', 'FrontendController@tin_tuc_su_kien_ct');
     
     Route::get('dao-tao', 'FrontendController@dao_tao');
-    // Route::get('dao-tao/{tags}', 'FrontendController@dao_tao_tag');
     Route::get('dao-tao/{slugtags}/{slug}', 'FrontendController@dao_tao_ct');
     Route::get('dao-tao/{slugtags}/{slug}/xem-truc-tuyen/{id}/{key}', 'FrontendController@dao_tao_xtt')->name('dao-tao-xem-truc-tuyen');
     Route::get('dao-tao/{slugtags}/{slug}/tai-ve/{id}/{key}', 'FrontendController@dao_tao_tv')->name('dao-tao-tai-ve');
-
     Route::get('training', 'FrontendController@dao_tao');
-    // Route::get('training/tag/{tags}', 'FrontendController@dao_tao_tag');
     Route::get('training/{slugtags}/{slug}/', 'FrontendController@dao_tao_ct');
     Route::get('training/{slugtags}/{slug}/xem-truc-tuyen/{id}/{key}', 'FrontendController@dao_tao_xtt')->name('training-xem-truc-tuyen');
     Route::get('training/{slugtags}/{slug}/tai-ve/{id}/{key}', 'FrontendController@dao_tao_tv')->name('training-tai-ve');
-
-
 
     Route::get('du-an','FrontendController@du_an')->name('du-an');
 
     Route::get('van-ban','FrontendController@van_ban')->name('van-ban');
     Route::get('van-ban-ct/{slug}','FrontendController@van_ban_ct')->name('van-ban-ct');
     Route::get('van-ban/tai-ve/{id}/{key}','FrontendController@van_ban_tv')->name('van-ban-tai-ve');
+    Route::get('document','FrontendController@van_ban')->name('document');
     
     Route::get('bieu-mau','FrontendController@bieu_mau')->name('bieu_mau');
     Route::get('bieu-mau-ct/{slug}','FrontendController@bieu_mau_ct')->name('bieu-mau-ct');
     Route::get('bieu-mau/tai-ve/{id}/{key}','FrontendController@bieu_mau_tv')->name('bieu-mau-tai-ve');
+    Route::get('form','FrontendController@bieu_mau')->name('form');
 
     Route::get('khoa-luan-tot-nghiep','FrontendController@khoa_luan_tot_nghiep')->name('khoa-luan-tot-nghiep');
     Route::get('khoa-luan-tot-nghiep/{tags}','FrontendController@khoa_luan_tot_nghiep_tags');
     Route::get('khoa-luan-tot-nghiep/xem-truc-tuyen/{id}/{key}', 'FrontendController@khoa_luan_tot_nghiep_xtt')->name('khoa-luan-tot-nghiep-xem-truc-tuyen');
     Route::get('khoa-luan-tot-nghiep/tai-ve/{id}/{key}', 'FrontendController@khoa_luan_tot_nghiep_tv')->name('khoa-luan-tot-nghiep-tai-ve');
-    
+    Route::get('graduation-thesis/{tags}','FrontendController@khoa_luan_tot_nghiep_tags');
+
     Route::get('nghien-cuu-khoa-hoc','FrontendController@nghien_cuu_khoa_hoc')->name('nghien-cuu-khoa-hoc');
     Route::get('nghien-cuu-khoa-hoc/{cats}','FrontendController@nghien_cuu_khoa_hoc_cats');
     Route::get('nghien-cuu-khoa-hoc/tai-ve/{id}/{key}', 'FrontendController@nghien_cuu_khoa_hoc_tv')->name('nghien-cuu-khoa-hoc-tai-ve');
-    
+    Route::get('scientific-research','FrontendController@nghien_cuu_khoa_hoc')->name('nghien-cuu-khoa-hoc');
+    Route::get('scientific-research/{cats}','FrontendController@nghien_cuu_khoa_hoc_cats');
+    // Route::get('scientific-research/tai-ve/{id}/{key}', 'FrontendController@nghien_cuu_khoa_hoc_tv')->name('nghien-cuu-khoa-hoc-tai-ve');
     
     Route::get('category', 'FrontendController@category');
+    Route::get('category/all', 'FrontendController@category');
     Route::get('category/{cats}', 'FrontendController@category_cats');
     Route::get('category/{slug}/ct', 'FrontendController@category_ct');
     Route::get('category/xem-truc-tuyen/{id}/{key}', 'FrontendController@category_xtt')->name('category-xem-truc-tuyen');
     Route::get('category/tai-ve/{id}/{key}', 'FrontendController@category_tv')->name('category-tai-ve');
-    
+    Route::get('tim-kiem', [FrontendController::class, 'search'])->name('search');
     Route::get('hinh-anh-hoat-dong','FrontendController@hinh_anh_hoat_dong');
+    Route::get('activities-image','FrontendController@hinh_anh_hoat_dong');
+
     Route::fallback(function () {
         return view('errors.404');
     });

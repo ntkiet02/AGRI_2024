@@ -2,9 +2,9 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>@yield('title') | {{ __("ĐẠI HỌC QUỐC GIA TPHCM TRƯỜNG ĐẠI HỌC AN GIANG") }} - {{ __("AGU") }}</title>
+        <title>@yield('title') | {{ __("Khoa Nông nghiệp & TNTN") }} - {{ __("AGU") }}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta content="{{ __("ĐẠI HỌC QUỐC GIA TPHCM TRƯỜNG ĐẠI HỌC AN GIANG") }} - {{ __("AGU") }}" name="description" />
+        <meta content="{{ __("Khoa Nông nghiệp & TNTN") }} - {{ __("AGU") }}" name="description" />
         <meta content="Phan Minh Trung - trungminhphan@gmail.com" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <!-- App favicon -->
@@ -124,6 +124,7 @@
   <path d="M2 2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2zM1 4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H8.96q.04-.245.04-.5C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 1 1 12z"/>
 </svg>      {{ __('Nhân sự') }} <div class="arrow-down"></div> </a>
                                 <ul class="submenu">
+                                    
                                     <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/ban-lanh-dao-khoa">{{ __('Ban Lãnh đạo khoa') }}</a></li>
                                     <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/van-phong-khoa">{{ __('Văn phòng khoa') }}</a></li>
                                     <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/nhan-su/bo-mon-cong-nghe-thuc-pham">{{ __('Bộ môn Công nghệ Thực phẩm') }}</a></li>
@@ -138,7 +139,7 @@
                                 <a href="{{ env('APP_URL') . app()->getLocale() }}/admin/tin-tuc-su-kien">{{ __('Tin tức - Sự kiện') }}</a>
     
                             </li> -->
-                            <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/category"><i class="far fa-newspaper"></i> {{ __('Category') }}</a></li>
+                            <li><a href="{{ env('APP_URL') }}{{ app()->getLocale() }}/admin/category"><i class="far fa-newspaper"></i> {{ __('Bài viết') }}</a></li>
                             <li>
                                 <a href="{{ env('APP_URL') . app()->getLocale() }}/admin/dao-tao"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
   <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>

@@ -7,11 +7,11 @@
 <meta name="description" content="">
 <meta name="author" content="">
 <link rel="shortcut icon" type="image/x-icon" href="{{ env('APP_URL') }}assets/frontend/images/favicon.png">
-<title> @yield('title') | {{ __('Trung tâm Xã hội và Nhân văn Trường Đại học An Giang') }}</title>
+<title> @yield('title') | {{ __('Khoa Nông nghiệp & TNTN') }}</title>
 <meta property="og:url"           content="{{ Request::fullUrl() }}" />
-<meta property="og:type"          content="{{ __('Trung tâm Xã hội và Nhân văn Trường Đại học An Giang') }}" />
-<meta property="og:title"         content="@yield('title', __('Trung tâm Xã hội và Nhân văn Trường Đại học An Giang'))" />
-<meta property="og:description"   content="@yield('description' , __('Trung tâm là một tổ chức nghiên cứu và phát triển cấp cơ sở, là đơn vị sự nghiệp trực thuộc Trường Đại học An Giang. Trung tâm có đầy đủ tư cách pháp nhân, có con dấu và tài khoản riêng tại Kho bạc nhà nước tỉnh An Giang.'))" />
+<meta property="og:type"          content="{{ __('Khoa Nông nghiệp & TNTN') }}" />
+<meta property="og:title"         content="@yield('title', __('Khoa Nông nghiệp & TNTN'))" />
+<meta property="og:description"   content="@yield('description' , __('Khoa Nông nghiệp & TNTN là đơn vị sự nghiệp trực thuộc Trường Đại học An Giang.'))" />
 <meta property="og:image"         content="@yield('image', 'https://shrc.agu.edu.vn/assets/frontend/images/logo.jpg')" />
 <!-- Reset CSS -->
 <link href="{{ env('APP_URL') }}assets/frontend/css/reset.css" rel="stylesheet" type="text/css">
@@ -39,8 +39,26 @@
 <link href="{{ env('APP_URL') }}assets/frontend/css/owl.theme.css" rel="stylesheet">
 
 
+<style>
+  .centered-text {
+    text-align: center;
+    margin-top: 2px;
+    background-color: #06b429; /* Đặt màu nền cho div */
+    padding: 10px; /* Thêm padding cho div để tạo khoảng cách với nội dung */
 
+  }
+  .centered-text span {
+    font-size: 28px;
+    color: white;
+  }
 
+  @media only screen and (max-width: 768px) {
+    /* Điều chỉnh kích thước cho các thiết bị di động */
+    .centered-text span {
+      font-size: 18px; /* Đặt kích thước phù hợp với màn hình di động */
+    }
+  }
+</style>
 @section('css') @show
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
