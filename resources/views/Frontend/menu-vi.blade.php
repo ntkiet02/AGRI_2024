@@ -1,4 +1,5 @@
 @php
+
   $path = App\Http\Controllers\TranslatePathController::getPath(Request::path());
   $locale = app()->getLocale();
   if($path) {
@@ -17,7 +18,8 @@
   $tags_khoa_luan=App\Http\Controllers\KhoaLuanTotNghiepController::get_tags();
   $tags_nghien_cuu_khoa_hoc=App\Http\Controllers\NghienCuuKhoaHocController::get_tags();
   $cats_catelory=App\Http\Controllers\CategoryController::get_cats();
-
+  $list_dtdh=App\Http\Controllers\DaoTaoController::get_list_dh();
+  $list_dtts=App\Http\Controllers\DaoTaoController::get_list_ts();
 @endphp
 <header>
   <div class="header-top">
@@ -89,7 +91,7 @@
             </ul>
           </li>
           <li class="dropdown"><a href="#"  data-toggle="dropdown" >{{ __('Đào tạo') }} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-            <ul class="dropdown-menu">
+            <!-- <ul class="dropdown-menu">
               <li><a class="fontli" >{{ __('Đại học') }}</a></li>
                 <ul> 
                   <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/dao-tao/dai-hoc/cong-nghe-thuc-pham"> Công nghệ thực phẩm</a></li>
@@ -109,6 +111,20 @@
                   <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/dao-tao/thac-sy/khoa-hoc-cay-trong">Khoa học Cây trồng</a></li>
                   <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/dao-tao/thac-sy/cong-nghe-thuc-pham">Công nghệ Thực phẩm</a></li>
                   <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/dao-tao/thac-sy/cong-nghe-sinh-hoc">Công nghệ Sinh học</a></li>
+                </ul>
+            </ul> -->
+            <ul class="dropdown-menu">
+              <li><a class="fontli" >{{ __('Đại học') }}</a></li>
+                <ul> 
+                @foreach($list_dtdh as $ds)
+                  <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/dao-tao/dai-hoc/{{$ds['slug']}}">{{$ds['ten']}}</a></li>        
+                @endforeach
+                </ul>
+              <li><a class="fontli">{{ __('Thạc sỹ') }}</a></li>
+                <ul >
+                @foreach($list_dtts as $ds)
+                  <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/dao-tao/thac-sy/{{$ds['slug']}}">{{$ds['ten']}}</a></li>        
+                @endforeach
                 </ul>
             </ul>
           </li> 

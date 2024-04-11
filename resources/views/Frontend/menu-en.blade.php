@@ -17,6 +17,8 @@
   $tags_khoa_luan=App\Http\Controllers\KhoaLuanTotNghiepController::get_tags();
   $tags_nghien_cuu_khoa_hoc=App\Http\Controllers\NghienCuuKhoaHocController::get_tags();
   $cats_catelory=App\Http\Controllers\CategoryController::get_cats();
+  $list_dtdh=App\Http\Controllers\DaoTaoController::get_list_dh_en();
+  $list_dtts=App\Http\Controllers\DaoTaoController::get_list_ts_en();
 @endphp
 <header>
   <div class="header-top">
@@ -92,7 +94,7 @@
             </ul>
           </li>
           <li class="dropdown"><a href="#"  data-toggle="dropdown" >{{ __('Đào tạo') }} <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-            <ul class="dropdown-menu">
+            <!-- <ul class="dropdown-menu">
               <li><a class="fontli" >{{ __('Đại học') }}</a></li>
                 <ul> 
                   <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/training/university-programs/food-technology"> {{ __('Công nghệ thực phẩm') }}</a></li>
@@ -111,6 +113,20 @@
                   <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/training/masters-programs/crop-science">{{ __('Khoa học Cây trồng') }}</a></li>
                   <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/training/masters-programs/food-technology">{{ __('Công nghệ thực phẩm') }}</a></li>
                   <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/training/masters-programs/biotechnology">{{ __('Công nghệ Sinh học') }}</a></li>
+                </ul>
+            </ul> -->
+            <ul class="dropdown-menu">
+              <li><a class="fontli" >{{ __('Đại học') }}</a></li>
+                <ul> 
+                @foreach($list_dtdh as $ds)
+                  <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/training/university-programs/{{$ds['slug']}}">{{$ds['ten']}}</a></li>        
+                @endforeach
+                </ul>
+              <li><a class="fontli">{{ __('Thạc sỹ') }}</a></li>
+                <ul >
+                @foreach($list_dtts as $ds)
+                  <li><a class="fonta" href="{{ env('APP_URL') }}{{ app()->getLocale() }}/training/masters-programs/{{$ds['slug']}}">{{$ds['ten']}}</a></li>        
+                @endforeach
                 </ul>
             </ul>
           </li>

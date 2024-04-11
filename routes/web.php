@@ -194,6 +194,7 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
         Route::post('doi-tac/update', 'DoiTacController@update')->middleware('role:Admin,Manager,Updater')->name('admin-doi-tac-update');
         Route::get('doi-tac/delete/{id}', 'DoiTacController@delete')->middleware('role:Admin,Manager,Updater')->name('admin-doi-tac-delete');
 
+        Route::get('log', 'LogController@list')->middleware('role:Admin')->name('admin-log');
 
         Route::get('user', 'UserController@list')->middleware('role:Admin')->name('admin-user');
         Route::get('user/change-password', 'UserController@change_password')->middleware('role:Admin')->name('admin-change-password');

@@ -23,6 +23,22 @@ class DaoTaoController extends Controller
     static function get_tagsen(){
         return self::TAGSEN;
     }
+    static function get_list_dh(){
+        $danhsach_dtdh= DaoTao::where('slugtags','=','dai-hoc')->orderBy('date_post', 'desc')->paginate(30);
+        return $danhsach_dtdh ;
+    }
+    static function get_list_ts(){
+        $danhsach_dtts= DaoTao::where('slugtags','=','thac-sy')->orderBy('date_post', 'desc')->paginate(30);
+        return $danhsach_dtts;
+    }
+    static function get_list_dh_en(){
+        $danhsach_dtdh= DaoTao::where('slugtags','=','university-programs')->orderBy('date_post', 'desc')->paginate(30);
+        return $danhsach_dtdh ;
+    }
+    static function get_list_ts_en(){
+        $danhsach_dtts= DaoTao::where('slugtags','=','masters-programs')->orderBy('date_post', 'desc')->paginate(30);
+        return $danhsach_dtts;
+    }
     function list(Request $request, $locale = ''){
         
         $danhsach = DaoTao::where('locale','=',$locale);

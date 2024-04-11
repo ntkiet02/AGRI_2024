@@ -13,7 +13,10 @@ class LogController extends Controller
     function index(){
     	return view('Admin.Report.logs');
     }
-
+    function list(Request $request, $locale = '') {
+        $danhsach = Log::orderBy('date_post', 'asc')->get();
+        return view('Admin.Logs.list')->with(compact('danhsach'));
+    }
     function datatable(Request $request){
     	$start = $request->input('start') != null ? $request->input('start') : 0;
      	$length = $request->input('length') != null ? $request->input('length') : 20;
