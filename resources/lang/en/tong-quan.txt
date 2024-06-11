@@ -1,18 +1,29 @@
 <div class="row">
 <div class="col-md-12" style="text-align:justify">
-<p style="text-align:center"><span style="color:#0066ff;"><span style="font-size:28px"><strong>SOCIAL SCIENCES AND HUMANITIES RESEARCH CENTER</strong></span></span></p>
-
-<p style="text-align:center"><span style="font-size:28px;"><font color="#e74c3c"><b>&quot;CREATIVITY - RESPONSIBILITY - INTEGRATION&quot;</b></font></span></p>
-
-<p>Social Sciences and Humannities Research Center was established under the Decision 671/QD.UB dated 7th May 2003 by The People&#39;s Committe of An Giang Province.</p>
-
-<ul>
-	<li>Office: 18, Ung Van Khiem street, Dong Xuyen ward, Long Xuyen city, An Giang, Vietnam</li>
-	<li>Phone number: (+84) (296) 3943695</li>
-	<li>E-mail: shrc@agu.edu.vn</li>
-	<li>Website: shrc.agu.edu.vn</li>
-</ul>
-
-<p style="text-align: left;">The Center&#39;s research staff are young and active. They participate in researches and projects on social sciences and humannities, such as: education, culture, community development, social work, history, etc.</p>
+<p style="text-align: left;">The Faculty of Agriculture and Natural Resources was established by Decision No. 241 / QD-UB-TC of the Chairman of the People&#39;s Committee of An Giang Province, signed on February 21, 2001 as a unit under the School with the vision and mission:<br />
+<br />
+Mission<br />
+<br />
+The Faculty&#39;s mission is to train high-quality university and postgraduate human resources, research, international cooperation and technology transfer in the fields of agriculture, rural development and resource management, contributing to sustainable socio-economic development for the local, Southwestern region and the country.<br />
+<br />
+Vision<br />
+<br />
+By 2030, the Faculty will become a multidisciplinary training centre with specialties such as: Plant Science, Plant Protection, Animal Care, Veterinary Medicine, Aquaculture, Food Technology, Biotechnology and Rural Development; becoming one of the strong faculty in training, research and technology transfer to serve the internationally recognised community. The skills, qualities and expertise of the faculty are raised to regional and international levels.<br />
+<br />
+Organizational structure and human resources<br />
+<p><img alt="" src="https://agri.agu.edu.vn//storage/photos/65e82eb0d9df722c6edd1e4b/So-do-to-chuc-2023.jpg" style="width: 100%; height: 100%; float: left;" /></p>
+<br />
+As of June 2023, the Faculty had 76 faculty members (Female: 40). Teachers with PGS: 01 (rate 1.3%); PhDs: 33 (rate 43.5%); Masters: 40 (52.6%); University: 2 (2.6%). The Faculty has a Board of Trustees, six departments and a Department Office.<br />
+Training<br />
+<br />
+Currently, the Faculty has 04 master programmes in Plant Science, Animal and Food Technology, Biotechnology; 09 Bachelor programmes; 07 Bachelor programs in the form of continuous education; 02 upgradation programmes from college to bachelor&#39;s degree and 01 secondary degree programmes.<br />
+<br />
+As of June 2023, the Faculty is training a total of 1,391 students, including: 72 graduate students; 1,239 undergraduates; and 80 continuing students. The number of graduates is over 8,000 undergraduates / 20 full-time courses,. The graduation rate is over 80%.<br />
+<br />
+In addition, the Faculty also has specific exchange and cooperation programmes for international students with Israel and the University of Andalas. 120 students have been selected for internship in Israel.<br />
+<br />
+Scientific research and international cooperation<br />
+<br />
+As of June 2021, the Faculty has 351 papers published in domestic and foreign journals; it has carried out 302 projects funded from a variety of sources. Among them, one Ministry-level topic; six provincial-level projects; 29 primary projects; 169 university projects; 16 TRIG projects funded by the Ministry of Education and Training (MOET); 42 projects by MEKARN (Mekong Basin Animal Research Network) and projects from other projects in cooperation with foreign countries. Currently, the department is implementing 51 subjects (1 Ministry, 6 Provincial, 5 Undergraduate, 12 University, 5 Faculty and 22 Student Scientific Research Subjects). The Faculty has also implemented international collaborative projects such as: NICHE Project; Mekarn Project; Ecosystem Services Project (sponsored by SIDA/Sweden); Biotrop/SEAMEO Project; JICA Project; Living Delta Project (UK) 2020-2025.</p>
 </div>
 </div>

@@ -315,20 +315,18 @@ class FrontendController extends Controller
         $noi_dung = file_get_contents($file_path);
         if($locale=='vi')
         {
-            $danhsach_lanh_dao = NhanSu::where('thu_tu','<',5)->where('tags','=',$tags)->orderBy('thu_tu', 'asc')->get();
-            $danhsach_giang_vien = NhanSu::where('thu_tu','=',0)->where('tags','=',$tags)->orderBy('thu_tu', 'asc')->get();
+            $danhsach_lanh_dao = NhanSu::where('tags','=',$tags)->orderBy('thu_tu', 'asc')->get();
         }
         else
         {
-            $danhsach_lanh_dao = NhanSu::where('thu_tu','<',5)->where('tags','=',$tagsvi)->orderBy('thu_tu', 'asc')->get();
-            $danhsach_giang_vien = NhanSu::where('thu_tu','=',0)->where('tags','=',$tagsvi)->orderBy('thu_tu', 'asc')->get();
+            $danhsach_lanh_dao = NhanSu::where('tags','=',$tagsvi)->orderBy('thu_tu', 'asc')->get();
         }
         $tamp=$tags;
         if($locale == 'vi') {
-            return view('Frontend.'.$locale.'.nhan-su')->with(compact('danhsach_lanh_dao','noi_dung','danhsach_giang_vien','tamp','file_path'));
+            return view('Frontend.'.$locale.'.nhan-su')->with(compact('danhsach_lanh_dao','noi_dung','tamp','file_path'));
         }
         if($locale == 'en') {
-            return view('Frontend.'.$locale.'.personnel')->with(compact('danhsach_lanh_dao','noi_dung','danhsach_giang_vien','tamp','file_path' ));
+            return view('Frontend.'.$locale.'.personnel')->with(compact('danhsach_lanh_dao','noi_dung','tamp','file_path' ));
         }
     }
     function nhan_su_xtt(Request $request, $locale = '', $id = '', $tags=0) {
